@@ -1,0 +1,22 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Agregar Mascota</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form>
+    <ion-item>
+      <ion-label>Nombre</ion-label>
+      <ion-input type="text" name="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Descripción</ion-label>
+      <ion-textarea name="description"></ion-textarea>
+    </ion-item>
+    <ion-button expand="block" type="submit" class="add">Agregar Mascota</ion-button>
+  </form>
+</ion-content>

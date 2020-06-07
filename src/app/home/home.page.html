@@ -1,0 +1,77 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Inicio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-avatar style="width: 60px;height: auto;" slot="start">
+      <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+    </ion-avatar>
+    <ion-label>
+      <h3>Usuario Nombre</h3>
+      <p>Viajes realizados: 12 | Calificación: </p>
+    </ion-label>
+  </ion-item>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+          <ion-button expand="block" class="btn-inicio">
+            <div>
+                <ion-icon name="flash" class="icon-menu"></ion-icon><br>
+                <label>Servicio</label>
+            </div>
+          </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button expand="block" class="btn-inicio">
+          <div>
+              <ion-icon name="time" class="icon-menu"></ion-icon><br>
+              <label>Historial</label>
+          </div>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+          <ion-button expand="block" class="btn-inicio">
+            <div>
+                <ion-icon name="send" class="icon-menu"></ion-icon><br>
+                <label>Publicar Aviso</label>
+            </div>
+          </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button expand="block" class="btn-inicio">
+          <div>
+              <ion-icon name="mail" class="icon-menu"></ion-icon><br>
+              <label>Especialista</label>
+          </div>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+          <ion-button expand="block" class="btn-inicio">
+            <div>
+                <ion-icon name="warning" class="icon-menu"></ion-icon><br>
+                <label>Reportar</label>
+            </div>
+          </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button expand="block" class="btn-inicio">
+          <div>
+              <ion-icon name="search" class="icon-menu"></ion-icon><br>
+              <label>Publicaciones</label>
+          </div>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
