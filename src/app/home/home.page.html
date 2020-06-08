@@ -14,8 +14,23 @@
     </ion-avatar>
     <ion-label>
       <h3>Usuario Nombre</h3>
-      <p>Viajes realizados: 12 | Calificación: </p>
+      <p>
+        Viajes realizados: 12 | Calificación:
+         <ion-icon name="star" item-right></ion-icon>
+         <ion-icon name="star" item-right></ion-icon>
+         <ion-icon name="star" item-right></ion-icon>
+         <ion-icon name="star" item-right></ion-icon>
+         <ion-icon name="star" item-right></ion-icon>
+      </p>
     </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label>Mascota</ion-label>
+    <ion-select interface="popover">
+      <ion-select-option value="nes">Druppie</ion-select-option>
+      <ion-select-option value="n64">Tito</ion-select-option>
+      <ion-select-option value="ps">Kimbu</ion-select-option>
+    </ion-select>
   </ion-item>
 
   <ion-grid>
@@ -75,3 +90,14 @@
     </ion-row>
   </ion-grid>
 </ion-content>
+
+<!-- Footer without a border -->
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-item>
+      <ion-input placeholder="Perrunos App © 2020" type="text"></ion-input>
+      <ion-button fill="clear" item-end><ion-icon name="power" style="font-size: 25px;padding:5px;"></ion-icon></ion-button>
+    </ion-item>
+  </ion-toolbar>
+</ion-footer>
+

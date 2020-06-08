@@ -8,3 +8,12 @@ ion-content {
   .add{
     margin-top:20px;
   }
+
+  .titulo{
+    font-weight: bold;
+    font-size:20px;
+  }
+
+  .error-message {
+    color: var(--ion-color-danger);
+  }
