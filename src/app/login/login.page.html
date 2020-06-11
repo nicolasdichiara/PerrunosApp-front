@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Iniciar Sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="background-image" no-scroll padding>
+  <div class="row row-center" >
+    <div class="col text-center" >
+        <img alt="Logo" height="30%" src="assets/img/logoTxt.png" >
+    </div>
+  </div>
+  <ion-card class="loginForm">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Usuario</ion-label>
+        <ion-input type="text" [(ngModel)]="username"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input type="password" [(ngModel)]="password"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-button fill="solid" expand="block" color="dark" (click)="login()">Iniciar Sesión</ion-button>
+    <ion-button fill="solid" expand="block" color="dark">Registrarse</ion-button>
+  </ion-card>
+</ion-content>
+
+<!-- Footer without a border -->
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-item>
+      <ion-text item-end>Perrunos App © 2020</ion-text>
+    </ion-item>
+  </ion-toolbar>
+</ion-footer>
