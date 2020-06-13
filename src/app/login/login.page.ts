@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuariosService } from '../services/usuarios.service';
+import { ToastService } from '../services/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -9,26 +10,64 @@ import { UsuariosService } from '../services/usuarios.service';
 })
 export class LoginPage implements OnInit {
 
-  username: string = "";
-  password: string = "";
+  postData = {
+    username: '',
+    password: ''
+    };
 
-  constructor(private loginService: UsuariosService, private router: Router) { }
+  constructor(
+    private authService: UsuariosService,
+    private toastService: ToastService,
+    private router: Router) { }
 
   ngOnInit() {
   }
 
   login(){
-    const {username, password} = this;
 
     try {
-      alert('login correcto ' + username);
-      this.loginService.loguear();
-      alert(this.loginService.isLoggedIn());
+      alert('login correcto ');
+      this.authService.loguear();
       this.navigate();
     } catch (error) {
       console.log(error);
     }
   }
+
+  validateInputs() {
+    console.log(this.postData);
+    let username = this.postData.username.trim();
+    let password = this.postData.password.trim();
+    return (
+    this.postData.username &&
+    this.postData.password &&
+    username.length > 0 &&
+    password.length > 0
+    );
+  }
+
+    loginAction() {
+    if (this.validateInputs()) {
+      this.authService.login(this.postData).subscribe(
+      (res: any) => {
+      if (res.userData) {
+      // Storing the User data.
+      this.storageService.store(AuthConstants.AUTH, res.userData);
+      this.router.navigate(['home/feed']);
+      } else {
+      this.toastService.presentToast('Incorrect username and password.');
+      }
+      },
+      (error: any) => {
+      this.toastService.presentToast('Network Issue.');
+      }
+      );
+    } else {
+      this.toastService.presentToast(
+      'Por favor ingrese usuario y contraseña.'
+      );
+    }
+    }
   /*
   logIn(username: string, password: string, event: Event) {
     event.preventDefault(); // Avoid default action for the submit button of the login form
@@ -54,6 +93,10 @@ export class LoginPage implements OnInit {
 
   navigate() {
     this.router.navigateByUrl('/home');
+  }
+
+  registrarse() {
+    this.router.navigateByUrl('/register');
   }
 
 }

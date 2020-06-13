@@ -48,8 +48,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.isLoggedIn = this.loginService.isLoggedIn();
-    alert(this.loginService.isLoggedIn());
     const path = window.location.pathname.split('home')[1];
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());

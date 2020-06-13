@@ -1,9 +1,38 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>register</ion-title>
+  <ion-title>Cree su cuenta</ion-title>
   </ion-toolbar>
-</ion-header>
+  </ion-header>
+  
+  <ion-content class="background-image" no-scroll padding>
+    <div class="row row-center" style="margin-bottom:170px ;">
+      <div class="col text-center" >
+          <img alt="Logo" height="30%" src="assets/img/logoTxt.png" >
+      </div>
+    </div>
 
-<ion-content>
-
-</ion-content>
+  <ion-card class="loginForm">
+  <form>
+  <ion-list>
+  <ion-item>
+  <ion-label position="stacked">Email</ion-label>
+  <ion-input autocomplete="off" type="email"></ion-input>
+  </ion-item>
+  <ion-item>
+  <ion-label position="stacked">Usuario</ion-label>
+  <ion-input autocomplete="off" type="text"></ion-input>
+  </ion-item>
+  
+  <ion-item>
+  <ion-label position="stacked">Contraseña</ion-label>
+  <ion-input autocomplete="off" type="password"></ion-input>
+  </ion-item>
+  
+  <ion-item lines='none' style="font-size: 14px;text-align: center;">
+  Ya tiene una cuenta?&nbsp;<a routerLink='/login'> Inicie Sesión</a>
+  </ion-item>
+  </ion-list>
+  <ion-button expand="block" color="success">Registrarme</ion-button>
+  </form>
+</ion-card>
+  </ion-content>
