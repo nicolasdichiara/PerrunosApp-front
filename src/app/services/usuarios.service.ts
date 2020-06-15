@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
+import { HttpService } from './http.service';
+import { StorageService } from './storage.service';
+import { AuthConstants } from '../config/auth-constants';
 
 @Injectable({
   providedIn: 'root'
@@ -7,8 +11,13 @@ import { Observable } from 'rxjs';
 export class UsuariosService {
 
   private isUserLoggedIn;
+  userData$ = new BehaviorSubject<any>([]);
 
-  constructor() {
+  constructor(
+    private httpService: HttpService,
+    private storageService: StorageService,
+    private router: Router
+  ) {
     this.isUserLoggedIn = false;
   }
 
@@ -18,6 +27,31 @@ export class UsuariosService {
 
   public loguear(){
     this.isUserLoggedIn = true;
+  }
+
+  // Auth Service - Definitivos
+
+  getUserData() {
+    this.storageService.get(AuthConstants.AUTH).then(res => {
+    this.userData$.next(res);
+    });
+    }
+
+  login(postData: any): Observable<any> {
+    // console.log(postData);
+    return this.httpService.post('login', postData);
+  }
+
+  signup(postData: any): Observable<any> {
+    return this.httpService.post('signup', postData);
+  }
+
+  logout() {
+    this.storageService.removeStorageItem(AuthConstants.AUTH).then(res => {
+    this.userData$.next('');
+    this.isUserLoggedIn = false;
+    this.router.navigate(['/login']);
+    });
   }
 
 }

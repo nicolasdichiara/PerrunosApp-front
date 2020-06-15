@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuariosService } from '../services/usuarios.service';
 import { ToastService } from '../services/toast.service';
+import { StorageService } from '../services/storage.service';
+import { AuthConstants } from '../config/auth-constants';
 
 @Component({
   selector: 'app-login',
@@ -15,10 +17,12 @@ export class LoginPage implements OnInit {
     password: ''
     };
 
-  constructor(
-    private authService: UsuariosService,
-    private toastService: ToastService,
-    private router: Router) { }
+    constructor(
+      private router: Router,
+      private authService: UsuariosService,
+      private storageService: StorageService,
+      private toastService: ToastService
+    ) {}
 
   ngOnInit() {
   }
@@ -47,26 +51,28 @@ export class LoginPage implements OnInit {
   }
 
     loginAction() {
-    if (this.validateInputs()) {
-      this.authService.login(this.postData).subscribe(
-      (res: any) => {
-      if (res.userData) {
-      // Storing the User data.
-      this.storageService.store(AuthConstants.AUTH, res.userData);
-      this.router.navigate(['home/feed']);
+      if (this.validateInputs()) {
+        this.authService.login(this.postData).subscribe(
+        (res: any) => {
+        if (res.userData) {
+        console.log(res);
+        // Storing the User data.
+        this.authService.loguear();
+        this.storageService.store(AuthConstants.AUTH, res.userData);
+        this.router.navigate(['home']);
+        } else {
+          this.toastService.presentToast('Usuario y contraseña incorrectos.');
+        }
+        },
+        (error: any) => {
+        this.toastService.presentToast('Problemas de red.');
+        }
+        );
       } else {
-      this.toastService.presentToast('Incorrect username and password.');
+        this.toastService.presentToast(
+        'Por favor ingrese usuario y contraseña.'
+        );
       }
-      },
-      (error: any) => {
-      this.toastService.presentToast('Network Issue.');
-      }
-      );
-    } else {
-      this.toastService.presentToast(
-      'Por favor ingrese usuario y contraseña.'
-      );
-    }
     }
   /*
   logIn(username: string, password: string, event: Event) {

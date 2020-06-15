@@ -13,7 +13,7 @@
       <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
     </ion-avatar>
     <ion-label>
-      <h3>Usuario Nombre</h3>
+      <h3>Bienvenido, {{ authUser?.name }}</h3>
       <p>
         Viajes realizados: 12 | Calificación:
          <ion-icon name="star" item-right></ion-icon>
@@ -96,7 +96,7 @@
   <ion-toolbar>
     <ion-item>
       <ion-input placeholder="Perrunos App © 2020" type="text"></ion-input>
-      <ion-button fill="clear" routerLink='/login' item-end><ion-icon name="power" style="font-size: 25px;padding:5px;"></ion-icon></ion-button>
+      <ion-button fill="clear" (click)="logout()" item-end><ion-icon name="power" style="font-size: 25px;padding:5px;"></ion-icon></ion-button>
     </ion-item>
   </ion-toolbar>
 </ion-footer>

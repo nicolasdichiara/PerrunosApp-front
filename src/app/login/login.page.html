@@ -14,15 +14,17 @@
     <ion-list>
       <ion-item>
         <ion-label position="floating">Usuario</ion-label>
-        <ion-input type="text" [(ngModel)]="username"></ion-input>
+        <ion-input autocomplete="off" type="text" name="username" [(ngModel)]="postData.username"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Contraseña</ion-label>
-        <ion-input type="password" [(ngModel)]="password"></ion-input>
+        <ion-input autocomplete="off" type="password" name="password" [(ngModel)]="postData.password"></ion-input>
       </ion-item>
     </ion-list>
-    <ion-button fill="solid" expand="block" color="dark" (click)="login()">Iniciar Sesión</ion-button>
-    <ion-button fill="solid" expand="block" color="dark" (click)="registrarse()">Registrarse</ion-button>
+    <ion-button expand="block" share="round" color="dark" (click)="loginAction()">Iniciar Sesión</ion-button>
+    <ion-item lines='none' style="font-size: 14px;text-align: center;">
+      Aun no tiene cuenta?&nbsp;<a (click)="registrarse()"> Registrarse</a>
+    </ion-item>
   </ion-card>
 </ion-content>
 
