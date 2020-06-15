@@ -1,103 +1,19 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Inicio</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-split-pane contentId="main-content">
+  <ion-menu [disabled]="!isLoggedIn()" contentId="main-content" type="overlay">
+    <ion-content>
+      <ion-list id="inbox-list">
+        <ion-list-header>{{ authUser?.name }}</ion-list-header>
+        <ion-note>{{ authUser?.email }}</ion-note>
 
-<ion-content>
-  <ion-item>
-    <ion-avatar style="width: 60px;height: auto;" slot="start">
-      <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-    </ion-avatar>
-    <ion-label>
-      <h3>Bienvenido, {{ authUser?.name }}</h3>
-      <p>
-        Viajes realizados: 12 | Calificación:
-         <ion-icon name="star" item-right></ion-icon>
-         <ion-icon name="star" item-right></ion-icon>
-         <ion-icon name="star" item-right></ion-icon>
-         <ion-icon name="star" item-right></ion-icon>
-         <ion-icon name="star" item-right></ion-icon>
-      </p>
-    </ion-label>
-  </ion-item>
-  <ion-item>
-    <ion-label>Mascota</ion-label>
-    <ion-select interface="popover">
-      <ion-select-option value="nes">Druppie</ion-select-option>
-      <ion-select-option value="n64">Tito</ion-select-option>
-      <ion-select-option value="ps">Kimbu</ion-select-option>
-    </ion-select>
-  </ion-item>
+        <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
+          <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
+            <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+            <ion-label>{{ p.title }}</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-          <ion-button expand="block" class="btn-inicio">
-            <div>
-                <ion-icon name="flash" class="icon-menu"></ion-icon><br>
-                <label>Servicio</label>
-            </div>
-          </ion-button>
-      </ion-col>
-      <ion-col>
-        <ion-button expand="block" class="btn-inicio">
-          <div>
-              <ion-icon name="time" class="icon-menu"></ion-icon><br>
-              <label>Historial</label>
-          </div>
-        </ion-button>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-          <ion-button expand="block" class="btn-inicio">
-            <div>
-                <ion-icon name="send" class="icon-menu"></ion-icon><br>
-                <label>Publicar Aviso</label>
-            </div>
-          </ion-button>
-      </ion-col>
-      <ion-col>
-        <ion-button expand="block" class="btn-inicio">
-          <div>
-              <ion-icon name="mail" class="icon-menu"></ion-icon><br>
-              <label>Especialista</label>
-          </div>
-        </ion-button>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-          <ion-button expand="block" class="btn-inicio">
-            <div>
-                <ion-icon name="warning" class="icon-menu"></ion-icon><br>
-                <label>Reportar</label>
-            </div>
-          </ion-button>
-      </ion-col>
-      <ion-col>
-        <ion-button expand="block" class="btn-inicio">
-          <div>
-              <ion-icon name="search" class="icon-menu"></ion-icon><br>
-              <label>Publicaciones</label>
-          </div>
-        </ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-</ion-content>
-
-<!-- Footer without a border -->
-<ion-footer class="ion-no-border">
-  <ion-toolbar>
-    <ion-item>
-      <ion-input placeholder="Perrunos App © 2020" type="text"></ion-input>
-      <ion-button fill="clear" (click)="logout()" item-end><ion-icon name="power" style="font-size: 25px;padding:5px;"></ion-icon></ion-button>
-    </ion-item>
-  </ion-toolbar>
-</ion-footer>
-
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main-content"></ion-router-outlet>
+</ion-split-pane>

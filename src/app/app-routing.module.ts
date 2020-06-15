@@ -2,6 +2,19 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
+  {
+    path: '',
+    loadChildren: () =>
+      import('./index/index.module').then(m => m.IndexPageModule)
+  },
+  {
+    path: '',
+    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
+  },  {
+    path: 'menuuser',
+    loadChildren: () => import('./menuuser/menuuser.module').then( m => m.MenuuserPageModule)
+  }
+
   /*
   {
     path: '',
@@ -13,6 +26,7 @@ const routes: Routes = [
     loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
   },
   */
+ /*
   {
     path: '',
     redirectTo: 'login',
@@ -20,19 +34,9 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)},
-  {
-    path: 'mascota-detail/:id',
-    loadChildren: () => import('./mascota-detail/mascota-detail.module').then( m => m.MascotaDetailPageModule)
+    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
-  {
-    path: 'mascota-add',
-    loadChildren: () => import('./mascota-add/mascota-add.module').then( m => m.MascotaAddPageModule)
-  },
-  {
-    path: 'mascota-edit/:id',
-    loadChildren: () => import('./mascota-edit/mascota-edit.module').then( m => m.MascotaEditPageModule)
-  },
+
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
@@ -40,10 +44,21 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
+    path: 'index',
+    loadChildren: () => import('./index/index.module').then( m => m.IndexPageModule)
+  },
+  {
+    path: 'welcome',
+    loadChildren: () => import('./welcome/welcome.module').then( m => m.WelcomePageModule)
+  },
+  {
+    path: 'perfil',
+    loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
   }
+*/
 ];
-
-
 
 @NgModule({
   imports: [

@@ -10,22 +10,7 @@ import { UsuariosService } from './services/usuarios.service';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss']
 })
-export class AppComponent implements OnInit {
-
-  public selectedIndex = 0;
-
-  public appPages = [
-    {
-      title: 'Inicio',
-      url: '/home',
-      icon: 'home'
-    },
-    {
-      title: 'Agregar Mascota',
-      url: '/mascota-add',
-      icon: 'add-circle'
-    }
-  ];
+export class AppComponent {
 
   constructor(
     private platform: Platform,
@@ -36,22 +21,11 @@ export class AppComponent implements OnInit {
     this.initializeApp();
   }
 
-  isLoggedIn(){
-    return this.loginService.isLoggedIn();
-  }
-
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
-  }
-
-  ngOnInit() {
-    const path = window.location.pathname.split('home')[1];
-    if (path !== undefined) {
-      this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
-    }
   }
 
 }

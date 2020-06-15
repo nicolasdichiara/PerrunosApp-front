@@ -1,0 +1,28 @@
+<ion-header>
+  <!--
+  <ion-toolbar>
+    <ion-title>Bienvenido a Perrunos</ion-title>
+  </ion-toolbar>
+  -->
+</ion-header>
+
+<ion-content class="background-image" no-scroll padding>
+  <ion-slides pager="true" [options]="slideOpts">
+    <ion-slide>
+    <img src="assets/img/logoTxt.png" />
+    <h2>Bienvenido</h2>
+    <p>Una app pensada para tu mejor compañero</p>
+    </ion-slide>
+    <ion-slide>
+    <h3>Realizá seguimiento <br>de tu mascota donde estés</h3>
+    </ion-slide>
+    <ion-slide>
+    <h3>Agendá el paseo que tu perro necesite</h3>
+    </ion-slide>
+    <ion-slide>
+      <h3>Si sos paseador o<br> te gustan las mascotas, <br>aprovecha tu tiempo libre junto a ellos</h3>
+    </ion-slide>
+    </ion-slides>
+
+    <ion-button expand="block" share="round" color="success" (click)="navigateToLogin()">Comenzar</ion-button>
+</ion-content>

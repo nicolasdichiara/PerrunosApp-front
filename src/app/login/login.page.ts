@@ -27,17 +27,6 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  login(){
-
-    try {
-      alert('login correcto ');
-      this.authService.loguear();
-      this.navigate();
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   validateInputs() {
     console.log(this.postData);
     let username = this.postData.username.trim();
@@ -57,7 +46,6 @@ export class LoginPage implements OnInit {
         if (res.userData) {
         console.log(res);
         // Storing the User data.
-        this.authService.loguear();
         this.storageService.store(AuthConstants.AUTH, res.userData);
         this.router.navigate(['home']);
         } else {
