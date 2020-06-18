@@ -2,7 +2,7 @@
   <ion-menu [disabled]="!isLoggedIn()" contentId="main-content" type="overlay">
     <ion-content>
       <ion-list id="inbox-list">
-        <ion-list-header>{{ authUser?.name }}</ion-list-header>
+        <ion-list-header>{{ authUser?.nombre }}</ion-list-header>
         <ion-note>{{ authUser?.email }}</ion-note>
 
         <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">

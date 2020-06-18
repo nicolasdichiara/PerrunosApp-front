@@ -4,6 +4,7 @@ import { UsuariosService } from '../services/usuarios.service';
 import { ToastService } from '../services/toast.service';
 import { StorageService } from '../services/storage.service';
 import { AuthConstants } from '../config/auth-constants';
+import { Usuario } from 'src/domain/usuario';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ import { AuthConstants } from '../config/auth-constants';
 export class LoginPage implements OnInit {
 
   postData = {
-    username: '',
+    usuario: '',
     password: ''
     };
 
@@ -29,12 +30,12 @@ export class LoginPage implements OnInit {
 
   validateInputs() {
     console.log(this.postData);
-    let username = this.postData.username.trim();
+    let usuario = this.postData.usuario.trim();
     let password = this.postData.password.trim();
     return (
-    this.postData.username &&
+    this.postData.usuario &&
     this.postData.password &&
-    username.length > 0 &&
+    usuario.length > 0 &&
     password.length > 0
     );
   }
@@ -42,19 +43,22 @@ export class LoginPage implements OnInit {
     loginAction() {
       if (this.validateInputs()) {
         this.authService.login(this.postData).subscribe(
-        (res: any) => {
-        if (res.userData) {
-        console.log(res);
-        // Storing the User data.
-        this.storageService.store(AuthConstants.AUTH, res.userData);
-        this.router.navigate(['home']);
-        } else {
-          this.toastService.presentToast('Usuario y contraseña incorrectos.');
-        }
-        },
-        (error: any) => {
-        this.toastService.presentToast('Problemas de red.');
-        }
+          (res: any) => {
+            if (res.dni) {
+              console.log(res);
+              const u: Usuario = Usuario.fromJson(res);
+              console.log(u);
+              // Storing the User data.
+              this.storageService.store(AuthConstants.AUTH, u);
+              this.router.navigate(['home']);
+            } else {
+              console.log(res);
+              this.toastService.presentToast('Usuario y contraseña incorrectos.');
+            }
+          },
+          (error: any) => {
+            this.toastService.presentToast('Problemas de red.');
+          }
         );
       } else {
         this.toastService.presentToast(

@@ -5,11 +5,18 @@
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "ionic lab --proxy-config proxy.conf.json",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "ionic-build": "ionic build --prod",
+    "ios-add": "ionic capacitor add ios",
+    "android-add": "ionic capacitor add android",
+    "ios-open": "ionic capacitor open ios",
+    "android-open": "ionic capacitor open android",
+    "ios-copy": "ionic capacitor copy ios",
+    "android-copy": "ionic capacitor copy android"
   },
   "private": true,
   "dependencies": {
