@@ -1,0 +1,29 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Mis Mascotas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+      <ion-list-header>
+        <ion-label class="titulo">Mis Mascotas</ion-label>
+      </ion-list-header>
+    <ion-card *ngFor="let mascota of mascotas">
+      <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y" />  
+      <ion-card-header>
+        <ion-card-title>
+          {{mascota.nombre}}
+        </ion-card-title>
+        <ion-card-subtitle>{{mascota.raza.nombre}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-button size="small" color="danger" fill="outline" slot="end" (click)="eliminar(mascota.idPerro)">Eliminar</ion-button>
+        <ion-button size="small" slot="end" (click)="verDetalle(mascota.idPerro)">Ver Detalle</ion-button>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+</ion-content>

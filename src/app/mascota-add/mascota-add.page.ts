@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 })
 export class MascotaAddPage implements OnInit {
 
+  public authUser: any;
   today: any;
   mascota: Mascota;
   edad = 0;
@@ -119,8 +120,13 @@ export class MascotaAddPage implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private mascotasService: MascotasService,
+    private auth: UsuariosService,
     private toastService: ToastService) {
     this.today = new Date().toISOString();
+    this.auth.userData$.subscribe((res: any) => {
+      this.authUser = res;
+      console.log(res);
+    });
   }
 
   public async submit(){
@@ -142,7 +148,7 @@ export class MascotaAddPage implements OnInit {
     this.mascota.imagenLibretaVacunacion = 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y';
     // this.registrationForm.get('imagenLibretaVacunacion').value;
     try {
-      await this.mascotasService.postMascota(this.mascota);
+      await this.mascotasService.postMascota(this.mascota, this.authUser.id);
       this.router.navigate(['home']);
     } catch (error) {
       this.toastService.presentToast('Ha ocurrido un error, reintente.' + error);

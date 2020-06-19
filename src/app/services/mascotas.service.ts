@@ -15,16 +15,11 @@ import { UsuariosService } from './usuarios.service';
 
 export class MascotasService {
 
-  public authUser: any;
-
   constructor(
     private http: HttpClient,
     private auth: UsuariosService,
     private httpService: HttpService
     ) {
-      this.auth.userData$.subscribe((res: any) => {
-        this.authUser = res;
-      });
     }
 
   async getTodasLasRazas() {
@@ -32,20 +27,26 @@ export class MascotasService {
     return razas.map((raza) => Raza.fromJson(raza));
   }
 
-  async postMascota(mascota: Mascota) {
+  async postMascota(mascota: Mascota, idUser) {
     console.log(mascota.toJSON());
-    return this.http.post(environment.apiUrl + 'perros/crearPerro/' + this.authUser.id, mascota.toJSON()).toPromise();
+    return this.http.post(environment.apiUrl + 'perros/crearPerro/' + idUser, mascota.toJSON()).toPromise();
   }
 
-  async getMascotas(user) {
-    const mascotas: Mascota[] = await this.http.get<any>(environment.apiUrl + '/usuario/perros/' + user).toPromise();
+  async getMascotasUser(idUser) {
+    const mascotas: Mascota[] = await this.http.get<any>(environment.apiUrl + 'usuario/perros/' + idUser).toPromise();
     return mascotas.map((mascota) => Mascota.fromJson(mascota));
   }
-/*
+
   async getMascotaById(id: number) {
-    const mascota = await this.http.get<Mascota>(environment.apiUrl + 'razas/' + id).toPromise();
+    const mascota = await this.http.get<Mascota>(environment.apiUrl + 'perros/' + id).toPromise();
     return Mascota.fromJson(mascota);
   }
+
+  async eliminarMascota(id: number) {
+    return this.http.delete(environment.apiUrl + 'perros/deshabilitarPerro/' + id).toPromise();
+  }
+
+/*
 
   async actualizarMascota(tarea: Mascota) {
     return this.http.put(REST_SERVER_URL + '/tareas/' + tarea.id, tarea.toJSON()).toPromise();

@@ -22,6 +22,11 @@ export class HomePage implements OnInit {
       icon: 'person'
     },
     {
+      title: 'Mis Mascotas',
+      url: '/home/mascotas',
+      icon: 'heart'
+    },
+    {
       title: 'Agregar Mascota',
       url: '/home/mascota-add',
       icon: 'add-circle'

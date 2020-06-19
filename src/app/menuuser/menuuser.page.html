@@ -26,10 +26,8 @@
   </ion-item>
   <ion-item>
     <ion-label>Mascota</ion-label>
-    <ion-select interface="popover">
-      <ion-select-option value="nes">Druppie</ion-select-option>
-      <ion-select-option value="n64">Tito</ion-select-option>
-      <ion-select-option value="ps">Kimbu</ion-select-option>
+    <ion-select interface="popover" placeholder="Seleccione una mascota" name="mascotaSeleccionada">
+      <ion-select-option value="{{mascota.idPerro}}" *ngFor="let mascota of mascotas">{{mascota.nombre}}</ion-select-option>
     </ion-select>
   </ion-item>
 

@@ -1,9 +1,44 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>mascota-detail</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{mascota?.idPerro}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <div align="center">
+          
+    <h1> {{mascota?.nombre}}</h1>
+    <img class="profile-image" src="{{mascota?.imagen}}">
+      <h4>{{mascota?.raza.nombre}}</h4>
+      <h5>Tiene {{(today.getFullYear()-mascota?.fechaNacimiento.year)}} años</h5>
+  </div>
+<ion-list>
+  <ion-item>
+    <ion-label floating>Nombre</ion-label>
+    <ion-text type="text" name="name" required>{{mascota?.nombre}}</ion-text>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Descripcion</ion-label>
+    <ion-text type="text" name="name" required>{{mascota?.descripcion}}</ion-text>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Cuidados Especiales</ion-label>
+    <ion-text type="text" name="name" required>{{mascota?.cuidadosEsp}}</ion-text>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Pasea Frecuentemente?</ion-label>
+    <ion-text type="text" name="name" required>{{mascota?.paseaFrecuente}}</ion-text>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Compartio paseos con otros perros?</ion-label>
+    <ion-text type="text" name="name" required>{{mascota?.paseoConOtrosPerros}}</ion-text>
+  </ion-item> 
+  <ion-item>
+    <ion-label floating>Desparasitado</ion-label>
+    <ion-text type="text" name="name" required>{{mascota?.desparasitado}}</ion-text>
+  </ion-item> 
+</ion-list>
 </ion-content>
