@@ -37,7 +37,11 @@ export class MascotasPage implements OnInit {
     this.router.navigate(['home/mascota-detail', idMascota]);
   }
 
-  async eliminar(idMascota){
+  editar(idMascota){
+    this.router.navigate(['home/mascota-edit', idMascota]);
+  }
+
+  async eliminar(idMascota, index){
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Confimación',
@@ -55,7 +59,8 @@ export class MascotasPage implements OnInit {
           handler: () => {
             console.log('Confirmado');
             this.mascotasService.eliminarMascota(idMascota);
-            this.obtenerMascotas();
+            this.mascotas.splice(index, 1);
+            // this.obtenerMascotas();
           }
         }
       ]
