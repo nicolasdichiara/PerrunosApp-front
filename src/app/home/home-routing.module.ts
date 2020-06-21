@@ -42,6 +42,23 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'avisos',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../avisos/avisos.module').then( m => m.AvisosPageModule)
+          },
+          {
+            path: 'avisos-add',
+            loadChildren: () => import('../avisos-add/avisos-add.module').then( m => m.AvisosAddPageModule)
+          }
+        ]
+      },
+      {
+        path: 'geolocalizacion',
+        loadChildren: () => import('../geolocalizacion/geolocalizacion.module').then( m => m.GeolocalizacionPageModule)
+      },
+      {
         path: 'mascota-detail/:id',
         loadChildren: () => import('../mascota-detail/mascota-detail.module').then( m => m.MascotaDetailPageModule)
       },

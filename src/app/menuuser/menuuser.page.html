@@ -37,12 +37,12 @@
           <ion-button expand="block" class="btn-inicio">
             <div>
                 <ion-icon name="flash" class="icon-menu"></ion-icon><br>
-                <label>Servicio</label>
+                <label>Servicios Actuales</label>
             </div>
           </ion-button>
       </ion-col>
       <ion-col>
-        <ion-button expand="block" class="btn-inicio">
+        <ion-button expand="block" class="btn-inicio" disabled="true">
           <div>
               <ion-icon name="time" class="icon-menu"></ion-icon><br>
               <label>Historial</label>
@@ -52,7 +52,7 @@
     </ion-row>
     <ion-row>
       <ion-col>
-          <ion-button expand="block" class="btn-inicio">
+          <ion-button expand="block" class="btn-inicio" [routerLink]="'/home/avisos-add'">
             <div>
                 <ion-icon name="send" class="icon-menu"></ion-icon><br>
                 <label>Publicar Aviso</label>
@@ -60,7 +60,7 @@
           </ion-button>
       </ion-col>
       <ion-col>
-        <ion-button expand="block" class="btn-inicio">
+        <ion-button expand="block" class="btn-inicio" disabled="true">
           <div>
               <ion-icon name="mail" class="icon-menu"></ion-icon><br>
               <label>Especialista</label>
@@ -70,7 +70,7 @@
     </ion-row>
     <ion-row>
       <ion-col>
-          <ion-button expand="block" class="btn-inicio">
+          <ion-button expand="block" class="btn-inicio" disabled="true">
             <div>
                 <ion-icon name="warning" class="icon-menu"></ion-icon><br>
                 <label>Reportar</label>
@@ -78,7 +78,7 @@
           </ion-button>
       </ion-col>
       <ion-col>
-        <ion-button expand="block" class="btn-inicio">
+        <ion-button expand="block" class="btn-inicio" [routerLink]="'/home/avisos-add'">
           <div>
               <ion-icon name="search" class="icon-menu"></ion-icon><br>
               <label>Publicaciones</label>

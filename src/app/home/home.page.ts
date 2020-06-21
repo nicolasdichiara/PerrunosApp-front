@@ -30,6 +30,11 @@ export class HomePage implements OnInit {
       title: 'Agregar Mascota',
       url: '/home/mascota-add',
       icon: 'add-circle'
+    },
+    {
+      title: 'Ver ubicación',
+      url: '/home/geolocalizacion',
+      icon: 'map'
     }
   ];
 
