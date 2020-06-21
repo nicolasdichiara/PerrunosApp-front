@@ -33,9 +33,8 @@
         <small class="error-message">{{ error.message }}</small>
       </ng-container>
     </div>
-
+    <ion-item>Descripción</ion-item>
     <ion-item>
-      <ion-label>Descripción</ion-label>
       <ion-textarea formControlName="descripcion" name="descripcion"></ion-textarea>
     </ion-item>
     <div *ngFor="let error of errorMessages.descripcion">
@@ -61,8 +60,8 @@
     <ion-list-header>
       <ion-label class="titulo">Cuidados</ion-label>
     </ion-list-header>
+    <ion-item>Cuidados Especiales</ion-item>
     <ion-item>
-      <ion-label>Cuidados Especiales</ion-label>
       <ion-textarea formControlName="cuidadosEsp" name="cuidadosEsp"></ion-textarea>
     </ion-item>
     <div *ngFor="let error of errorMessages.cuidadosEsp">
@@ -70,8 +69,8 @@
         <small class="error-message">{{ error.message }}</small>
       </ng-container>
     </div>
+    <ion-item>Enfermedades Previas</ion-item>
     <ion-item>
-      <ion-label>Enfermedades Previas</ion-label>
       <ion-textarea formControlName="enfermedadesPrev" name="enfermedadesPrev"></ion-textarea>
     </ion-item>
     <div *ngFor="let error of errorMessages.enfermedadesPrev">
