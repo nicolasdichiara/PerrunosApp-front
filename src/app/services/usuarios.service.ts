@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { HttpService } from './http.service';
 import { StorageService } from './storage.service';
 import { AuthConstants } from '../config/auth-constants';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +16,7 @@ export class UsuariosService {
   userData$ = new BehaviorSubject<any>([]);
 
   constructor(
+    private http: HttpClient,
     private httpService: HttpService,
     private storageService: StorageService,
     private router: Router
@@ -44,10 +47,14 @@ export class UsuariosService {
 
   }
 
+  signupDuenio(postData: any) {
+    // return this.httpService.post('usuario/createDuenio', postData);
+    return this.http.post(environment.apiUrl + 'usuario/createDuenio', postData).toPromise();
+  }
 
-
-  signup(postData: any): Observable<any> {
-    return this.httpService.post('signup', postData);
+  signupPaseador(postData: any) {
+    // return this.httpService.post('usuario/createPaseador', postData);
+    return this.http.post(environment.apiUrl + 'usuario/createPaseador', postData).toPromise();
   }
 
   logout() {

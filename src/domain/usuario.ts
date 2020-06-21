@@ -10,6 +10,7 @@ export class Usuario {
     dni: string;
     telefono: string;
     direccion: string;
+    tipoPerfil: string;
 
     static fromJson(individuoJSON): Usuario {
         return Object.assign(new Usuario(), individuoJSON);
@@ -19,7 +20,8 @@ export class Usuario {
         _fechaNacimiento?: Date,
         _dni?: string,
         _telefono?: string,
-        _direccion?: string) {
+        _direccion?: string,
+        _tipoPerfil?: string) {
       this.nombre = _nombre;
       this.email = _email;
       this.apellido = _apellido;
@@ -29,6 +31,7 @@ export class Usuario {
       this.dni = _dni;
       this.telefono = _telefono;
       this.direccion = _direccion;
+      this.tipoPerfil = _tipoPerfil;
 
     }
 

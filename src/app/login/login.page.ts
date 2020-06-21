@@ -44,7 +44,7 @@ export class LoginPage implements OnInit {
       if (this.validateInputs()) {
         this.authService.login(this.postData).subscribe(
           (res: any) => {
-            if (res.dni) {
+            if (res.id) {
               console.log(res);
               const u: Usuario = Usuario.fromJson(res);
               console.log(u);

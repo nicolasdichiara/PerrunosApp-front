@@ -13,6 +13,7 @@ export class MenuuserPage implements OnInit {
 
   mascotas: Array<Mascota> = [];
   public authUser: any;
+
   constructor(
     private auth: UsuariosService,
     private mascotasService: MascotasService,

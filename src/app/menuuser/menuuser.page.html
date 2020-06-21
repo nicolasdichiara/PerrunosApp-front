@@ -15,7 +15,7 @@
     <ion-label>
       <h3>Bienvenido, {{ authUser?.nombre }}</h3>
       <p>
-        Viajes realizados: 12 | Calificación:
+        Viajes realizados: 0 | Calificación:
          <ion-icon name="star" item-right></ion-icon>
          <ion-icon name="star" item-right></ion-icon>
          <ion-icon name="star" item-right></ion-icon>
@@ -31,7 +31,7 @@
     </ion-select>
   </ion-item>
 
-  <ion-grid>
+  <ion-grid *ngIf="authUser?.tipoPerfil == 'Due?o'">
     <ion-row>
       <ion-col>
           <ion-button expand="block" class="btn-inicio">
@@ -79,6 +79,64 @@
       </ion-col>
       <ion-col>
         <ion-button expand="block" class="btn-inicio" [routerLink]="'/home/avisos'">
+          <div>
+              <ion-icon name="search" class="icon-menu"></ion-icon><br>
+              <label>Publicaciones</label>
+          </div>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+  <ion-grid *ngIf="authUser?.tipoPerfil == 'Paseador'">
+    <ion-row>
+      <ion-col>
+          <ion-button color="secondary" expand="block" class="btn-inicio">
+            <div>
+                <ion-icon name="flash" class="icon-menu"></ion-icon><br>
+                <label>Servicios Actuales</label>
+            </div>
+          </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button color="secondary" expand="block" class="btn-inicio" disabled="true">
+          <div>
+              <ion-icon name="time" class="icon-menu"></ion-icon><br>
+              <label>Historial</label>
+          </div>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+          <ion-button color="secondary" expand="block" class="btn-inicio" [routerLink]="'/home/avisos/avisos-add'">
+            <div>
+                <ion-icon name="send" class="icon-menu"></ion-icon><br>
+                <label>Publicar Aviso</label>
+            </div>
+          </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button color="secondary" expand="block" class="btn-inicio" disabled="true">
+          <div>
+              <ion-icon name="mail" class="icon-menu"></ion-icon><br>
+              <label>Especialista</label>
+          </div>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+          <ion-button color="secondary" expand="block" class="btn-inicio" disabled="true">
+            <div>
+                <ion-icon name="warning" class="icon-menu"></ion-icon><br>
+                <label>Reportar</label>
+            </div>
+          </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button color="secondary" expand="block" class="btn-inicio" [routerLink]="'/home/avisos'">
           <div>
               <ion-icon name="search" class="icon-menu"></ion-icon><br>
               <label>Publicaciones</label>
