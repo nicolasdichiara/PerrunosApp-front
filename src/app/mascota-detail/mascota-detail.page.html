@@ -11,7 +11,7 @@
   <div align="center">
           
     <h1> {{mascota?.nombre}}</h1>
-    <img class="profile-image" src="{{mascota?.imagen}}">
+    <img class="profile-image" src="../../assets/img/{{mascota?.raza.nombre}}.jpg">
       <h4>{{mascota?.raza.nombre}}</h4>
       <h5>Tiene {{(today.getFullYear()-mascota?.fechaNacimiento.year)}} años</h5>
   </div>

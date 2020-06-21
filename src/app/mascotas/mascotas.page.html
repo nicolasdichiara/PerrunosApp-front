@@ -13,7 +13,7 @@
         <ion-label class="titulo">Mis Mascotas</ion-label>
       </ion-list-header>
     <ion-card *ngFor="let mascota of mascotas; let i = index">
-      <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y" />  
+      <img src="../../assets/img/{{mascota?.raza.nombre}}.jpg" />  
       <ion-card-header>
         <ion-card-title>
           {{mascota.nombre}}
