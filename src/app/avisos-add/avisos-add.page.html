@@ -8,5 +8,65 @@
 </ion-header>
 
 <ion-content>
+  <form [formGroup]="avisoForm" (ngSubmit)="submit()" >
+    <ion-list>
+        <ion-list-header>
+          <ion-label class="titulo">Crear un nuevo aviso</ion-label>
+        </ion-list-header>
+      <ion-item>
+        <ion-label>Tipo de servicio</ion-label>
+        <ion-select placeholder="Seleccione tipo" formControlName="tipoServicio" type="text" name="tipoServicio">
+          <ion-select-option value="{{tipo.id}}" *ngFor="let tipo of tipos">{{tipo.nombre}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.tipoServicio">
+        <ng-container *ngIf="tipoServicio.hasError(error.type) && (tipoServicio.dirty || tipoServicio.touched)">
+          <small class="error-message">{{ error.message }}</small>
+        </ng-container>
+      </div>      
+      <ion-item>
+        <ion-label>Perro</ion-label>
+        <ion-select placeholder="Seleccione perro por favor" formControlName="perro" type="text" name="perro">
+          <ion-select-option value="{{mascota.idPerro}}" *ngFor="let mascota of mascotas">{{mascota.nombre}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.perro">
+        <ng-container *ngIf="perro.hasError(error.type) && (perro.dirty || perro.touched)">
+          <small class="error-message">{{ error.message }}</small>
+        </ng-container>
+      </div>    
+      <ion-item>
+        <ion-label>Detalle</ion-label>
+        <ion-input formControlName="detalle" type="text" name="detalle"></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.detalle">
+        <ng-container *ngIf="detalle.hasError(error.type) && (detalle.dirty || detalle.touched)">
+          <small class="error-message">{{ error.message }}</small>
+        </ng-container>
+      </div>
+      <ion-item lines="none">
+        <ion-label>Fecha</ion-label>
+        <ion-datetime name="fecha" placeholder="Seleccione una fecha" [min]="today" formControlName="fecha" ></ion-datetime>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.fecha">
+        <ng-container *ngIf="fecha.hasError(error.type) && (fecha.dirty || fecha.touched)">
+          <small class="error-message">{{ error.message }}</small>
+        </ng-container>
+      </div>
+      <ion-item>
+        <ion-label>Horario</ion-label>
+        <ion-datetime name="horario" formControlName="horario" displayFormat="HH:mm"></ion-datetime>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.horario">
+        <ng-container *ngIf="horario.hasError(error.type) && (horario.dirty || horario.touched)">
+          <small class="error-message">{{ error.message }}</small>
+        </ng-container>
+      </div>
 
+    </ion-list>
+
+
+      <ion-button [disabled]="!avisoForm.valid" expand="block" type="submit" class="add"><ion-icon name="add-outline"></ion-icon> Crear aviso</ion-button>
+  
+    </form>
 </ion-content>

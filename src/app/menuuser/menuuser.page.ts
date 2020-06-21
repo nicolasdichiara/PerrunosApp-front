@@ -26,7 +26,7 @@ export class MenuuserPage implements OnInit {
         try {
           this.mascotas = await this.mascotasService.getMascotasUser(this.authUser.id);
         } catch (error) {
-          this.toastService.presentToast('Ha ocurrido un error, reintente.' + error);
+          this.toastService.presentToast('No se han podido cargar sus mascotas, reintente.' + error);
         }
       }
 
