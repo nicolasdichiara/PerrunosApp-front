@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="home"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{mascota?.idPerro}}</ion-title>
+    <!--<ion-title>{{mascota?.idPerro}}</ion-title>   esto esta mostrando el id del perro-->
   </ion-toolbar>
 </ion-header>
 
@@ -34,23 +34,23 @@
   </ion-item>
   <ion-item>
     <ion-label floating>Desparasitado</ion-label>
-    <ion-text type="text" name="name" required>{{mascota?.desparasitado}}</ion-text>
+    <ion-text type="text" name="name" required>{{parseTrue(mascota?.desparasitado)}}</ion-text>
   </ion-item> 
   <ion-item>
     <ion-label floating>Paseo alguna vez?</ion-label>
-    <ion-text type="text" name="name" required>{{mascota?.paseoAlgunaVez}}</ion-text>
+    <ion-text type="text" name="name" required>{{parseTrue(mascota?.paseoAlgunaVez)}}</ion-text>
   </ion-item>
   <ion-item>
     <ion-label floating>Paseo con duenio o paseador?</ion-label>
-    <ion-text type="text" name="name" required>{{mascota?.paseoConUnPaseador}}</ion-text>
+    <ion-text type="text" name="name" required>{{parsePaseo(mascota?.paseoConUnPaseador)}}</ion-text>
   </ion-item>
   <ion-item>
     <ion-label floating>Interactua con otros animales?</ion-label>
-    <ion-text type="text" name="name" required>{{mascota?.paseaFrecuente}}</ion-text>
+    <ion-text type="text" name="name" required>{{parseTrue(mascota?.paseaFrecuente)}}</ion-text>
   </ion-item>
   <ion-item>
     <ion-label floating>Compartio paseos con otros perros?</ion-label>
-    <ion-text type="text" name="name" required>{{mascota?.paseoConOtrosPerros}}</ion-text>
+    <ion-text type="text" name="name" required>{{parseTrue(mascota?.paseoConOtrosPerros)}}</ion-text>
   </ion-item> 
  
 </ion-list>

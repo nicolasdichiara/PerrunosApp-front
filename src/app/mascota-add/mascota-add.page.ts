@@ -33,11 +33,11 @@ export class MascotaAddPage implements OnInit {
   }
 
   get cuidadosEsp() {
-    return this.registrationForm.get('cuidadosEsp');
+    return this.registrationForm.get('cuidadosEspeciales');
   }
 
   get enfermedadesPrev() {
-    return this.registrationForm.get('enfermedadesPrev');
+    return this.registrationForm.get('enfermedadesPrevias');
   }
 
   get fechaNacimiento() {
@@ -106,8 +106,8 @@ export class MascotaAddPage implements OnInit {
     nombre: ['', [Validators.required, Validators.maxLength(50)]],
     raza: ['', [Validators.required]],
     descripcion: ['', [Validators.required, Validators.maxLength(100)]],
-    cuidadosEsp: ['', [Validators.maxLength(100)]],
-    enfermedadesPrev: ['', [Validators.maxLength(100)]],
+    cuidadosEspeciales: ['', [Validators.maxLength(100)]],
+    enfermedadesPrevias: ['', [Validators.maxLength(100)]],
     fechaNacimiento: ['', [Validators.required]],
     desparasitado: ['', [Validators.required]],
     paseoAlgunaVez: ['', [Validators.required]],

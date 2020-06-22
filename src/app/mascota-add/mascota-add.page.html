@@ -62,19 +62,19 @@
     </ion-list-header>
     <ion-item>Cuidados Especiales</ion-item>
     <ion-item>
-      <ion-textarea formControlName="cuidadosEsp" name="cuidadosEsp"></ion-textarea>
+      <ion-textarea formControlName="cuidadosEspeciales" name="cuidadosEspeciales"></ion-textarea>
     </ion-item>
-    <div *ngFor="let error of errorMessages.cuidadosEsp">
-      <ng-container *ngIf="cuidadosEsp.hasError(error.type) && (cuidadosEsp.dirty || cuidadosEsp.touched)">
+    <div *ngFor="let error of errorMessages.cuidadosEspeciales">
+      <ng-container *ngIf="cuidadosEspeciales.hasError(error.type) && (cuidadosEspeciales.dirty || cuidadosEspeciales.touched)">
         <small class="error-message">{{ error.message }}</small>
       </ng-container>
     </div>
     <ion-item>Enfermedades Previas</ion-item>
     <ion-item>
-      <ion-textarea formControlName="enfermedadesPrev" name="enfermedadesPrev"></ion-textarea>
+      <ion-textarea formControlName="enfermedadesPrevias" name="enfermedadesPrevias"></ion-textarea>
     </ion-item>
-    <div *ngFor="let error of errorMessages.enfermedadesPrev">
-      <ng-container *ngIf="enfermedadesPrev.hasError(error.type) && (enfermedadesPrev.dirty || enfermedadesPrev.touched)">
+    <div *ngFor="let error of errorMessages.enfermedadesPrevias">
+      <ng-container *ngIf="enfermedadesPrevias.hasError(error.type) && (enfermedadesPrevias.dirty || enfermedadesPrevias.touched)">
         <small class="error-message">{{ error.message }}</small>
       </ng-container>
     </div>

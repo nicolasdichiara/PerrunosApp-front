@@ -14,6 +14,7 @@ export class MascotaDetailPage implements OnInit {
   idMascota: number;
   mascota: Mascota;
   today: any = new Date();
+  valor: boolean ;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,6 +34,22 @@ export class MascotaDetailPage implements OnInit {
         }
       }
     });
+  }
+
+  parseTrue(valor: Boolean){
+    if(valor){
+      return "Si"
+    }else{
+      return "No"
+    }
+  }
+
+  parsePaseo(valor: Boolean){
+    if(valor){
+      return "Solo"
+    }else{
+      return "Paseador"
+    }
   }
 
 }
