@@ -4,7 +4,7 @@ export class Mascota {
 //se declaran los mismos nombres que hay en el back
     idPerro: number;
     nombre: string;
-    cuidadosEsp: string;
+    cuidadosEspeciales: string;
     descripcion: string;
     enfermedadesPrevias: string;
     fechaNacimiento: Date;
@@ -16,6 +16,8 @@ export class Mascota {
     paseaFrecuente: number;
     paseoConOtrosPerros: number;
     raza: Raza;
+    poseeLibretaSanitaria: number;
+    vacunaDeLaRabia: number;
 
     static fromJson(individuoJSON): Mascota {
         return Object.assign(new Mascota(), individuoJSON, {
@@ -24,10 +26,11 @@ export class Mascota {
     }
 //el constructor lo armas como quieras pero cuando lo invocas, se declaran los mismos nombres que hay en el back
     constructor(_idPerro?: number, _nombre?: string, _cuidadosEsp?: string, _descripcion?: string, _enfermedadesPrev?: string, _imagenLibretaVacunacion?: string, _imagen?: string,
-        _paseoConOtrosPerros?: number, _fechaNacimiento?: Date, _desparasitado?: number, _paseoAlgunaVez?: number, _paseoConUnPaseador?: number, _paseaFrecuente?: number, _raza?: Raza) {
+        _paseoConOtrosPerros?: number, _fechaNacimiento?: Date, _desparasitado?: number, _paseoAlgunaVez?: number, _paseoConUnPaseador?: number, _paseaFrecuente?: number, _raza?: Raza,
+        _poseeLibretaSanitaria?: number,_vacunaDeLaRabia?: number) {
       this.idPerro = _idPerro;
       this.nombre = _nombre;
-      this.cuidadosEsp = _cuidadosEsp;
+      this.cuidadosEspeciales = _cuidadosEsp;
       this.descripcion = _descripcion;
       this.enfermedadesPrevias = _enfermedadesPrev;
       this.imagenLibretaVacunacion = _imagenLibretaVacunacion;
@@ -39,6 +42,8 @@ export class Mascota {
       this.paseoConUnPaseador = _paseoConUnPaseador;
       this.paseaFrecuente = _paseaFrecuente;
       this.raza = _raza;
+      this.poseeLibretaSanitaria = _poseeLibretaSanitaria;
+      this.vacunaDeLaRabia = _vacunaDeLaRabia;
     }
 
     toJSON(): any {
