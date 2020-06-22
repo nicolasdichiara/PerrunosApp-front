@@ -136,7 +136,7 @@ export class MascotaAddPage implements OnInit {
     this.mascota.raza = this.registrationForm.get('raza').value;
     this.mascota.descripcion = this.registrationForm.get('descripcion').value;
     this.mascota.cuidadosEsp = this.registrationForm.get('cuidadosEsp').value;
-    this.mascota.enfermedadesPrev = this.registrationForm.get('enfermedadesPrev').value;
+    this.mascota.enfermedadesPrevias = this.registrationForm.get('enfermedadesPrevias').value;
     this.mascota.fechaNacimiento = this.registrationForm.get('fechaNacimiento').value;
     this.mascota.desparasitado = this.registrationForm.get('desparasitado').value;
     this.mascota.paseoAlgunaVez = this.registrationForm.get('paseoAlgunaVez').value;

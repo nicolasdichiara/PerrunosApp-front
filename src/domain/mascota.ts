@@ -1,12 +1,12 @@
 import { Raza } from './raza';
 
 export class Mascota {
-
+//se declaran los mismos nombres que hay en el back
     idPerro: number;
     nombre: string;
     cuidadosEsp: string;
     descripcion: string;
-    enfermedadesPrev: string;
+    enfermedadesPrevias: string;
     fechaNacimiento: Date;
     desparasitado: number;
     paseoAlgunaVez: number;
@@ -22,14 +22,14 @@ export class Mascota {
             raza: Raza.fromJson(individuoJSON.raza)
            });
     }
-
+//el constructor lo armas como quieras pero cuando lo invocas, se declaran los mismos nombres que hay en el back
     constructor(_idPerro?: number, _nombre?: string, _cuidadosEsp?: string, _descripcion?: string, _enfermedadesPrev?: string, _imagenLibretaVacunacion?: string, _imagen?: string,
         _paseoConOtrosPerros?: number, _fechaNacimiento?: Date, _desparasitado?: number, _paseoAlgunaVez?: number, _paseoConUnPaseador?: number, _paseaFrecuente?: number, _raza?: Raza) {
       this.idPerro = _idPerro;
       this.nombre = _nombre;
       this.cuidadosEsp = _cuidadosEsp;
       this.descripcion = _descripcion;
-      this.enfermedadesPrev = _enfermedadesPrev;
+      this.enfermedadesPrevias = _enfermedadesPrev;
       this.imagenLibretaVacunacion = _imagenLibretaVacunacion;
       this.imagen = _imagen;
       this.paseoConOtrosPerros = _paseoConOtrosPerros;
