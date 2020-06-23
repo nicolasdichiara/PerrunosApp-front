@@ -32,6 +32,11 @@ export class MascotasService {
     return this.http.post(environment.apiUrl + 'perros/crearPerro/' + idUser, mascota.toJSON()).toPromise();
   }
 
+  async updateMascota(mascota: Mascota, idMascota) {
+    console.log(mascota.toJSON());
+    return this.http.post(environment.apiUrl + 'perros/modificarPerro/' + idMascota, mascota.toJSON()).toPromise();
+  }
+
   async getMascotasUser(idUser) {
     const mascotas: Mascota[] = await this.http.get<any>(environment.apiUrl + 'usuario/perros/' + idUser).toPromise();
     return mascotas.map((mascota) => Mascota.fromJson(mascota));

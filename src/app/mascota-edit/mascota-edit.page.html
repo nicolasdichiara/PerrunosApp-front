@@ -15,7 +15,8 @@
       </ion-list-header>
     <ion-item>
       <ion-label>Nombre</ion-label>
-      <ion-input formControlName="nombre" type="text" name="nombre"></ion-input>
+      <ion-input formControlName="nombre" type="text" name="nombre" value="{{mascota?.nombre}}"></ion-input>
+    
     </ion-item>
     <div *ngFor="let error of errorMessages.nombre">
       <ng-container *ngIf="nombre.hasError(error.type) && (nombre.dirty || nombre.touched)">
