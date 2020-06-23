@@ -1,9 +1,35 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>servicios-detail</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Servicio</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-card>
+    <img src="../../assets/img/servicio2.png" style="padding:5px;max-width: 50px;" />  
+    <ion-card-header>
+      <ion-card-title>
+        {{servicio?.tipoServicio.nombre}}
+      </ion-card-title>
+      <ion-card-subtitle>
+        {{servicio?.fechaRealizacion.dayOfMonth}}/{{servicio?.fechaRealizacion.monthValue}}/{{servicio?.fechaRealizacion.year}} - {{servicio?.horario.hour}}:{{servicio?.horario.minute}}
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-card>
+        <img src="../../assets/img/{{mascota?.raza.nombre}}.jpg" />  
+        <ion-card-header>
+          <ion-card-title>
+            {{mascota?.nombre}}
+          </ion-card-title>
+          <ion-card-subtitle>{{mascota?.raza.nombre}}</ion-card-subtitle>
+        </ion-card-header>
+      </ion-card>
+      <ion-button color="danger" fill="outline" slot="end" (click)="finalizarServicio(servicio.idServicio)">Finalizar</ion-button>
+      <ion-button slot="end" (click)="verMapa(servicio.idServicio)">Ver Mapa</ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

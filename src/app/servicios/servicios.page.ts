@@ -84,7 +84,7 @@ export class ServiciosPage implements OnInit {
   }
 
   verDetalle(idServicio){
-    this.router.navigate(['home/servicios-detail', idServicio]);
+    this.router.navigate(['home/servicios/servicios-detail', idServicio]);
   }
 
 }

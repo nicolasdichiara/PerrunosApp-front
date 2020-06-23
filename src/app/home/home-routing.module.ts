@@ -68,7 +68,7 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'geolocalizacion',
+        path: 'geolocalizacion/:id',
         loadChildren: () => import('../geolocalizacion/geolocalizacion.module').then( m => m.GeolocalizacionPageModule)
       },
       {

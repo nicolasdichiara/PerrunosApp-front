@@ -1,6 +1,9 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild, Input} from '@angular/core';
 import {Geolocation} from '@ionic-native/geolocation/ngx';
 import { ToastService } from '../services/toast.service';
+import { ServiciosService } from '../services/servicios.service';
+import { ActivatedRoute } from '@angular/router';
+import { Servicio } from 'src/domain/servicio';
 declare var google;
 
 @Component({
@@ -13,12 +16,29 @@ export class GeolocalizacionPage implements OnInit, AfterViewInit {
   latitude: any;
   longitude: any;
   @ViewChild('mapElement') mapNativeElement: ElementRef;
+
+  idServicio: number;
+  servicio: Servicio;
+
   constructor(
+    private route: ActivatedRoute,
     private geolocation: Geolocation,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private serviciosService: ServiciosService
   ) { }
 
   ngOnInit() {
+    this.route.params.subscribe(async params => {
+      this.idServicio = params['id'];
+      if (this.idServicio){
+        try {
+          this.servicio = await this.serviciosService.getServicioById(this.idServicio);
+          console.log(this.servicio);
+        } catch (error) {
+          this.toastService.presentToast('Ha ocurrido un error, reintente.');
+        }
+      }
+    });
   }
 
   ngAfterViewInit(): void {
