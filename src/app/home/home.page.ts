@@ -76,7 +76,7 @@ export class HomePage implements OnInit {
     });
     const path = window.location.pathname.split('home')[1];
     if (path !== undefined) {
-      if (this.authUser.tipoPerfil == 'Due?io'){
+      if (this.authUser.tipoPerfil == 'Duenio'){
         this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
       }else{
         this.selectedIndex = this.appPagesPaseador.findIndex(page => page.title.toLowerCase() === path.toLowerCase());

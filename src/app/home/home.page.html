@@ -1,7 +1,7 @@
 <ion-split-pane contentId="main-content">
   <ion-menu [disabled]="!isLoggedIn()" contentId="main-content" type="overlay">
     <ion-content>
-      <ion-list *ngIf="authUser?.tipoPerfil == 'Due?o'" id="inbox-list">
+      <ion-list *ngIf="authUser?.tipoPerfil == 'Duenio'" id="inbox-list">
         <ion-list-header>{{ authUser?.nombre }}</ion-list-header>
         <ion-note>{{ authUser?.email }}</ion-note>
 
@@ -13,7 +13,7 @@
         </ion-menu-toggle>
         
       </ion-list>
-      <ion-list *ngIf="authUser?.tipoPerfil != 'Due?o'" id="inbox-list2">
+      <ion-list *ngIf="authUser?.tipoPerfil != 'Duenio'" id="inbox-list2">
         <ion-list-header>{{ authUser?.nombre }}</ion-list-header>
         <ion-note>{{ authUser?.email }}</ion-note>
 
