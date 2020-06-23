@@ -38,4 +38,12 @@ export class ServiciosService {
     return Servicio.fromJson(servicio);
   }
 
+  async establecerUbicacionPrestador(postData: any) {
+    return this.http.post(environment.apiUrl + 'servicios/geolocalizacionPrestador', postData).toPromise();
+  }
+
+  async establecerUbicacionDuenio(postData: any) {
+    return this.http.post(environment.apiUrl + 'servicios/geolocalizacionDuenio', postData).toPromise();
+  }
+
 }
