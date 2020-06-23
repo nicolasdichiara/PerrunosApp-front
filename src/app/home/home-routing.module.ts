@@ -42,6 +42,19 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'servicios',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../servicios/servicios.module').then( m => m.ServiciosPageModule)
+          },
+          {
+            path: 'servicios-detail',
+            loadChildren: () => import('../servicios-detail/servicios-detail.module').then( m => m.ServiciosDetailPageModule)
+          }
+        ]
+      },
+      {
         path: 'avisos',
         children: [
           {
