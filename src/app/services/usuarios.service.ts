@@ -57,6 +57,10 @@ export class UsuariosService {
     return this.http.post(environment.apiUrl + 'usuario/createPaseador', postData).toPromise();
   }
 
+  editProfile(postData: any, idUser: any){
+    return this.http.post(environment.apiUrl + 'usuario/perfil/completarPerfil/' + idUser, postData).toPromise();
+  }
+
   logout() {
     this.storageService.removeStorageItem(AuthConstants.AUTH).then(res => {
     this.userData$.next('');

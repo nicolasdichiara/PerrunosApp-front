@@ -1,9 +1,74 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>perfil-edit</ion-title>
+    <ion-title>Editar Perfil</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <form [formGroup]="registrationForm" (ngSubmit)="submit()">
+    <ion-item>
+      <ion-avatar style="width: 60px;height: auto;" slot="start">
+        <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+      </ion-avatar>
+      <ion-label>
+        <h3>{{parseTipoPerfil(authUser?.tipoPerfil)}}</h3>
+      </ion-label>
+    </ion-item>
+    <!-- <ion-item>
+      <ion-label>Nombre</ion-label>
+      <ion-input formControlName="nombre" type="text" name="nombre"  [(ngModel)]="nombreEdit"></ion-input>
+    </ion-item>
+    <div *ngFor="let error of errorMessages.nombre">
+      <ng-container *ngIf="nombre.hasError(error.type) && (nombre.dirty || nombre.touched)">
+        <small class="error-message">{{ error.message }}</small>
+      </ng-container>
+    </div>
+    <ion-item>
+      <ion-label>Apellido</ion-label>
+      <ion-input formControlName="apellido" name="apellido" type="text" [(ngModel)]="apellidoEdit"></ion-input>
+    </ion-item>
+    <div *ngFor="let error of errorMessages.apellido">
+      <ng-container *ngIf="apellido.hasError(error.type) && (apellido.dirty || apellido.touched)">
+        <small class="error-message">{{ error.message }}</small>
+      </ng-container>
+    </div> -->
+    <ion-item>
+      <ion-label>Apodo</ion-label>
+      <ion-input formControlName="apodo" name="apodo" type="text" [(ngModel)]="apodoEdit"></ion-input>
+    </ion-item>
+    <div *ngFor="let error of errorMessages.apodo">
+      <ng-container *ngIf="apodo.hasError(error.type) && (apodo.dirty || apodo.touched)">
+        <small class="error-message">{{ error.message }}</small>
+      </ng-container>
+    </div>
+    <ion-item lines="none">
+      <ion-label>Fecha Nacimiento</ion-label>
+      <ion-datetime name="fechaNacimiento" placeholder="Seleccione una fecha" [max]="today" (ionChange)="calcEdad()" formControlName="fechaNacimiento" ></ion-datetime>
+    </ion-item>
+    <div *ngFor="let error of errorMessages.fechaNacimiento">
+      <ng-container *ngIf="fechaNacimiento.hasError(error.type) && (fechaNacimiento.dirty || fechaNacimiento.touched)">
+        <small class="error-message">{{ error.message }}</small>
+      </ng-container>
+    </div>
+    <ion-item>
+      <ion-label>DNI</ion-label>
+      <ion-input formControlName="dni" name="dni" type="text" [(ngModel)]="dniEdit"></ion-input>
+    </ion-item>
+    <div *ngFor="let error of errorMessages.dni">
+      <ng-container *ngIf="dni.hasError(error.type) && (dni.dirty || dni.touched)">
+        <small class="error-message">{{ error.message }}</small>
+      </ng-container>
+    </div>
+    <ion-item>
+      <ion-label>Teléfono</ion-label>
+      <ion-input formControlName="telefono" name="telefono" type="text" [(ngModel)]="telefonoEdit"></ion-input>
+    </ion-item>
+    <div *ngFor="let error of errorMessages.telefono">
+      <ng-container *ngIf="telefono.hasError(error.type) && (telefono.dirty || telefono.touched)">
+        <small class="error-message">{{ error.message }}</small>
+      </ng-container>
+    </div>
+    <ion-button [disabled]="!registrationForm.valid" expand="block" type="submit" class="add">Aceptar</ion-button>
+    <ion-button [routerLink]="'/home/menuuser'" expand="block" color="danger">Cancelar</ion-button>
+  </form>
 </ion-content>
