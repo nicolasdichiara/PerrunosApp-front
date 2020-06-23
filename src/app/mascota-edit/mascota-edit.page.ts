@@ -182,6 +182,7 @@ export class MascotaEditPage implements OnInit {
     });
   }
 
+
   calcEdad(){
     let today: any = new Date();
     let selectedDate: any = new Date(this.registrationForm.get('fechaNacimiento').value);
