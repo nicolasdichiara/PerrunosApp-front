@@ -38,6 +38,24 @@ export class HomePage implements OnInit {
     }
   ];
 
+  public appPagesPaseador = [
+    {
+      title: 'Inicio',
+      url: '/home',
+      icon: 'home'
+    },
+    {
+      title: 'Perfil',
+      url: '/home/menuuser/perfil',
+      icon: 'person'
+    },
+    {
+      title: 'Ver ubicación',
+      url: '/home/geolocalizacion',
+      icon: 'map'
+    }
+  ];
+
   public authUser: any;
   constructor(private auth: UsuariosService) {}
 
@@ -58,7 +76,12 @@ export class HomePage implements OnInit {
     });
     const path = window.location.pathname.split('home')[1];
     if (path !== undefined) {
-      this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
+      if (this.authUser.tipoPerfil == 'Due?io'){
+        this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
+      }else{
+        this.selectedIndex = this.appPagesPaseador.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
+      }
+
     }
   }
 
