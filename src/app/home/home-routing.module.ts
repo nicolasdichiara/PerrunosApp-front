@@ -38,6 +38,11 @@ const routes: Routes = [
             path: 'perfil',
             loadChildren: () =>
               import('../perfil/perfil.module').then(m => m.PerfilPageModule)
+          },
+          {
+            path: 'perfil-edit',
+            loadChildren: () =>
+              import('../perfil-edit/perfil-edit.module').then(m => m.PerfilEditPageModule)
           }
         ]
       },
@@ -46,11 +51,11 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('../servicios/servicios.module').then( m => m.ServiciosPageModule)
+            loadChildren: () => import('../servicios/servicios.module').then(m => m.ServiciosPageModule)
           },
           {
             path: 'servicios-detail/:id',
-            loadChildren: () => import('../servicios-detail/servicios-detail.module').then( m => m.ServiciosDetailPageModule)
+            loadChildren: () => import('../servicios-detail/servicios-detail.module').then(m => m.ServiciosDetailPageModule)
           }
         ]
       },
@@ -59,33 +64,33 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('../avisos/avisos.module').then( m => m.AvisosPageModule)
+            loadChildren: () => import('../avisos/avisos.module').then(m => m.AvisosPageModule)
           },
           {
             path: 'avisos-add',
-            loadChildren: () => import('../avisos-add/avisos-add.module').then( m => m.AvisosAddPageModule)
+            loadChildren: () => import('../avisos-add/avisos-add.module').then(m => m.AvisosAddPageModule)
           }
         ]
       },
       {
         path: 'geolocalizacion/:id',
-        loadChildren: () => import('../geolocalizacion/geolocalizacion.module').then( m => m.GeolocalizacionPageModule)
+        loadChildren: () => import('../geolocalizacion/geolocalizacion.module').then(m => m.GeolocalizacionPageModule)
       },
       {
         path: 'mascota-detail/:id',
-        loadChildren: () => import('../mascota-detail/mascota-detail.module').then( m => m.MascotaDetailPageModule)
+        loadChildren: () => import('../mascota-detail/mascota-detail.module').then(m => m.MascotaDetailPageModule)
       },
       {
         path: 'mascota-add',
-        loadChildren: () => import('../mascota-add/mascota-add.module').then( m => m.MascotaAddPageModule)
+        loadChildren: () => import('../mascota-add/mascota-add.module').then(m => m.MascotaAddPageModule)
       },
       {
         path: 'mascota-edit/:id',
-        loadChildren: () => import('../mascota-edit/mascota-edit.module').then( m => m.MascotaEditPageModule)
+        loadChildren: () => import('../mascota-edit/mascota-edit.module').then(m => m.MascotaEditPageModule)
       },
       {
         path: 'mascotas',
-        loadChildren: () => import('../mascotas/mascotas.module').then( m => m.MascotasPageModule)
+        loadChildren: () => import('../mascotas/mascotas.module').then(m => m.MascotasPageModule)
       },
       {
         path: '',
@@ -100,5 +105,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class HomePageRoutingModule {}
+export class HomePageRoutingModule { }
 
