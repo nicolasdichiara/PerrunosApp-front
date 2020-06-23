@@ -16,7 +16,8 @@ export class Servicio {
     longitudDuenio: string;
     latitudPrestador: string;
     longitudPrestador: string;
-
+    idPrestador: number;
+    idDuenio: number;
 
     static fromJson(servicioJSON): Servicio {
         return Object.assign(new Servicio(), servicioJSON);
@@ -24,7 +25,8 @@ export class Servicio {
 
     constructor(_idServicio?: number, _idPerro?: number, _activo?: string, _tipoServicio?: string, _pago?: string,
         _fechaRealizacion?: Date, _horario?: string, _calificacionDuenio?: string, _calificacionPrestador?: string,
-        _latitudDuenio?: string, _longitudDuenio?: string, _latitudPrestador?: string, _longitudPrestador?: string) {
+        _latitudDuenio?: string, _longitudDuenio?: string, _latitudPrestador?: string, _longitudPrestador?: string,
+         _idPrestador?: number, _idDuenio?: number) {
             this.idServicio = _idServicio;
             this.idPerro = _idPerro;
             this.activo = _activo;
@@ -38,6 +40,9 @@ export class Servicio {
             this.longitudDuenio = _longitudDuenio;
             this.latitudPrestador = _latitudPrestador;
             this.longitudPrestador = _longitudPrestador;
+            // lo siguiente se modificara cuando los prestadores puedan crear avisos
+            this.idPrestador = _idPrestador;
+            this.idDuenio = _idDuenio;
     }
 
     toJSON(): any {

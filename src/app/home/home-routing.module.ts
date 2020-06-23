@@ -56,6 +56,14 @@ const routes: Routes = [
           {
             path: 'servicios-detail/:id',
             loadChildren: () => import('../servicios-detail/servicios-detail.module').then(m => m.ServiciosDetailPageModule)
+          },
+          {
+            path: 'calificar/:id',
+            loadChildren: () => import('../calificar/calificar.module').then( m => m.CalificarPageModule)
+          },
+          {
+            path: 'historial',
+            loadChildren: () => import('../historial/historial.module').then( m => m.HistorialPageModule)
           }
         ]
       },

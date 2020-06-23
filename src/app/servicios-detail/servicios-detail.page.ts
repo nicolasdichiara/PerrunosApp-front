@@ -73,7 +73,7 @@ export class ServiciosDetailPage implements OnInit {
             try {
               this.serviciosService.finalizarServicio(idServicio);
               this.toastService.presentToast('Servicio Finalizado');
-              this.router.navigate(['home']);
+              this.router.navigate(['home/servicios/calificar/' + idServicio ]);
             }
             catch (error) {
               this.toastService.presentToast('Ha ocurrido un error, reintente.');

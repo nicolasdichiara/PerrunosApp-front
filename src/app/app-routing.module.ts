@@ -10,13 +10,7 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
-  },
-  {
-    path: 'calificar',
-    loadChildren: () => import('./calificar/calificar.module').then( m => m.CalificarPageModule)
   }
-
-
   /*,
   {
     path: 'menuuser',

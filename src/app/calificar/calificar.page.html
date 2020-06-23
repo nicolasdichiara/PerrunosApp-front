@@ -1,9 +1,24 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>calificar</ion-title>
+    <ion-title>Calificar servicio</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-list style="padding: 20px;">
+    <ion-list-header>
+      <img src="../../assets/img/calificacion.png" style="max-width: 100px;" />  
+      <ion-label class="titulo" style="line-height: 1.2;margin-left:10px;">Gracias por utilizar nuestro servicio, a continuación califica a tu contraparte</ion-label>
+    </ion-list-header>
+    
+    <ion-item style="margin-top: 25px;">
+      <ion-label position="floating">El servicio estuvo:</ion-label>
+      <ion-select [(ngModel)]="calificacionSeleccionada" placeholder="Seleccione Calificación" type="text" name="calificacionSeleccionada">
+        <ion-select-option value="{{calificacion.id}}" *ngFor="let calificacion of calificaciones">{{calificacion.desc}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-button style="margin-top: 30px;" expand="block" color="success" (click)="calificar()">Enviar</ion-button>
+    <ion-button expand="block" color="warning" (click)="toHome()">Ir al Inicio</ion-button>
+</ion-list>
 
 </ion-content>

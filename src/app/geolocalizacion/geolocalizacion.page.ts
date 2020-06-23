@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild, Input} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild, Input, OnDestroy} from '@angular/core';
 import {Geolocation} from '@ionic-native/geolocation/ngx';
 import { ToastService } from '../services/toast.service';
 import { ServiciosService } from '../services/servicios.service';
@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Servicio } from 'src/domain/servicio';
 import { UsuariosService } from '../services/usuarios.service';
 import { AlertController } from '@ionic/angular';
+import { Subscription, interval } from 'rxjs';
 declare var google;
 
 @Component({
@@ -13,7 +14,7 @@ declare var google;
   templateUrl: './geolocalizacion.page.html',
   styleUrls: ['./geolocalizacion.page.scss'],
 })
-export class GeolocalizacionPage implements OnInit {
+export class GeolocalizacionPage implements OnInit, OnDestroy {
 
   latitude: any;
   longitude: any;
@@ -22,6 +23,7 @@ export class GeolocalizacionPage implements OnInit {
   idServicio: number;
   servicio: Servicio;
   public authUser: any;
+  subscription: Subscription;
   postLocalizacionData = {
     idServicio: '',
     lat: '',
@@ -49,11 +51,22 @@ export class GeolocalizacionPage implements OnInit {
           this.servicio = await this.serviciosService.getServicioById(this.idServicio);
           console.log(this.servicio);
           this.renderizado(); // muestro mapa con localizaciones
+
+
         } catch (error) {
           this.toastService.presentToast('Ha ocurrido un error, reintente.');
         }
       }
     });
+    // Suscripción para actualización automatica
+    const source = interval(10000);
+    this.subscription = source.subscribe(val => {
+      console.log('dale');
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription && this.subscription.unsubscribe();
   }
 
   renderizado(): void {
@@ -195,7 +208,7 @@ export class GeolocalizacionPage implements OnInit {
             try {
               this.serviciosService.finalizarServicio(idServicio);
               this.toastService.presentToast('Servicio Finalizado');
-              this.router.navigate(['home']);
+              this.router.navigate(['home/servicios/calificar/' + idServicio ]);
             }
             catch (error) {
               this.toastService.presentToast('Ha ocurrido un error, reintente.');

@@ -38,12 +38,28 @@ export class ServiciosService {
     return Servicio.fromJson(servicio);
   }
 
+  async getHistorialServiciosUser(idUser) {
+    const servicios: Servicio[] = await this.http.get<any>(environment.apiUrl +
+       'usuario/historialDeServicios/' + idUser).toPromise();
+    return servicios.map((servicio) => Servicio.fromJson(servicio));
+  }
+
+  // Localizacion
   async establecerUbicacionPrestador(postData: any) {
     return this.http.post(environment.apiUrl + 'servicios/geolocalizacionPrestador', postData).toPromise();
   }
 
   async establecerUbicacionDuenio(postData: any) {
     return this.http.post(environment.apiUrl + 'servicios/geolocalizacionDuenio', postData).toPromise();
+  }
+
+  // Calificaciones
+  async calificarServicioPrestador(postData: any) {
+    return this.http.post(environment.apiUrl + 'servicios/calificarAlPrestador', postData).toPromise();
+  }
+
+  async calificarServicioDuenio(postData: any) {
+    return this.http.post(environment.apiUrl + 'servicios/calificarAlDuenio', postData).toPromise();
   }
 
 }
