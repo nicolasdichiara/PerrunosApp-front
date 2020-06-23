@@ -6,6 +6,7 @@ import { MascotasService } from '../services/mascotas.service';
 import { Raza } from 'src/domain/raza';
 import { UsuariosService } from '../services/usuarios.service';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-mascota-edit',
@@ -14,7 +15,7 @@ import { Router } from '@angular/router';
 })
 export class MascotaEditPage implements OnInit {
 
-
+  idMascota: number;
   public authUser: any;
   today: any;
   mascota: Mascota;
@@ -118,6 +119,7 @@ export class MascotaEditPage implements OnInit {
   });
 
   constructor(
+    private route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
     private mascotasService: MascotasService,
@@ -132,7 +134,7 @@ export class MascotaEditPage implements OnInit {
 
   public async submit(){
     console.log(this.registrationForm.value);
-    this.mascota = new Mascota();
+    //this.mascota = new Mascota();
     this.mascota.nombre = this.registrationForm.get('nombre').value;
     this.mascota.raza = this.registrationForm.get('raza').value;
     this.mascota.descripcion = this.registrationForm.get('descripcion').value;
@@ -149,7 +151,7 @@ export class MascotaEditPage implements OnInit {
     this.mascota.imagenLibretaVacunacion = 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y';
     // this.registrationForm.get('imagenLibretaVacunacion').value;
     try {
-      await this.mascotasService.postMascota(this.mascota, this.authUser.id);
+      await this.mascotasService.updateMascota(this.mascota, this.mascota.idPerro);
       this.router.navigate(['home']);
     } catch (error) {
       this.toastService.presentToast('Ha ocurrido un error, reintente.' + error);
@@ -164,6 +166,17 @@ export class MascotaEditPage implements OnInit {
     } catch (error) {
       this.toastService.presentToast('Ha ocurrido un error, reintente.' + error);
     }
+    this.route.params.subscribe(async params => {
+      this.idMascota = params['id'];
+      if (this.idMascota){
+        try {
+          this.mascota = await this.mascotasService.getMascotaById(this.idMascota);
+          console.log(this.mascota);
+        } catch (error) {
+          this.toastService.presentToast('Ha ocurrido un error, reintente.' + error);
+        }
+      }
+    });
   }
 
   calcEdad(){
