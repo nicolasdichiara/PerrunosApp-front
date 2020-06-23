@@ -28,6 +28,11 @@ export class AvisosService {
     return avisos.map((aviso) => Aviso.fromJson(aviso));
   }
 
+  async getAvisosActivos() {
+    const avisos: Aviso[] = await this.http.get<any>(environment.apiUrl + 'avisos/traerTodosLosAvisos').toPromise();
+    return avisos.map((aviso) => Aviso.fromJson(aviso));
+  }
+
   async eliminarAviso(id: number) {
     return this.http.delete(environment.apiUrl + 'usuario/eliminarAviso/' + id).toPromise();
   }

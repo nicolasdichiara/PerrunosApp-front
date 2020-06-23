@@ -12,6 +12,7 @@
     <ion-list-header>
       <ion-label class="titulo">Mis Avisos</ion-label>
     </ion-list-header>
+    <ion-card *ngIf="msg == 1"><ion-card-content>Los paseadores no pueden publicar avisos momentaneamente</ion-card-content></ion-card>
   <ion-card *ngFor="let aviso of avisos; let i = index">
     <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y" />  
     <ion-card-header>
@@ -30,5 +31,28 @@
       <ion-button size="small" slot="end" (click)="verDetalle(aviso.id)">Ver Detalle</ion-button>
     </ion-card-content>
   </ion-card>
+</ion-list>
+<ion-list *ngIf="authUser?.tipoPerfil == 'Paseador'">
+  <ion-list-header>
+    <ion-label class="titulo">Avisos de usuarios a realizar</ion-label>
+  </ion-list-header>
+<ion-card *ngFor="let avisoActivo of avisosActivos; let i = index">
+  <img src="../../assets/img/aviso.png" style="max-width: 40px;" />  
+  <ion-card-header>
+    <ion-card-title>
+      {{avisoActivo.tipoServicio.nombre}}
+    </ion-card-title>
+    <ion-card-subtitle>
+      {{avisoActivo.fecha.dayOfMonth}}/{{avisoActivo.fecha.monthValue}}/{{avisoActivo.fecha.year}} - {{avisoActivo.horario.hour}}:{{avisoActivo.horario.minute}}
+    </ion-card-subtitle>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-button size="small" color="success" slot="end" (click)="realizar(avisoActivo.idAviso, avisoActivo.idPerro, i)">Realizar</ion-button>
+    <!--
+    <ion-button size="small" color="warning" slot="end" (click)="editar(aviso.id)">Editar</ion-button>
+    -->
+    <ion-button size="small" slot="end" fill="outline" (click)="verDetalle(avisoActivo.id)">Ver Detalle</ion-button>
+  </ion-card-content>
+</ion-card>
 </ion-list>
 </ion-content>

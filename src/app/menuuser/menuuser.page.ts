@@ -23,11 +23,14 @@ export class MenuuserPage implements OnInit {
   ngOnInit() {
     this.auth.userData$.subscribe(async (res: any) => {
       this.authUser = res;
+
       if (this.authUser.id){
-        try {
-          this.mascotas = await this.mascotasService.getMascotasUser(this.authUser.id);
-        } catch (error) {
-          this.toastService.presentToast('No se han podido cargar sus mascotas, reintente.' + error);
+        if (this.authUser.tipoPerfil != 'Paseador'){
+          try {
+            this.mascotas = await this.mascotasService.getMascotasUser(this.authUser.id);
+          } catch (error) {
+            this.toastService.presentToast('No se han podido cargar sus mascotas, reintente.' + error);
+          }
         }
       }
 

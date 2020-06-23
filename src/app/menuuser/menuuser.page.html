@@ -24,7 +24,7 @@
       </p>
     </ion-label>
   </ion-item>
-  <ion-item>
+  <ion-item *ngIf="authUser?.tipoPerfil == 'Due?o'">
     <ion-label>Mascota</ion-label>
     <ion-select interface="popover" placeholder="Seleccione una mascota" name="mascotaSeleccionada">
       <ion-select-option value="{{mascota.idPerro}}" *ngFor="let mascota of mascotas">{{mascota.nombre}}</ion-select-option>
