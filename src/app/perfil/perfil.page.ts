@@ -25,4 +25,12 @@ export class PerfilPage implements OnInit {
     });
   }
 
+  parseTipoPerfil(valor:string){
+    if(valor=="Duenio"){
+      return "Dueño De Mascota"
+    } else {
+      return valor
+    }
+  }
+
 }
