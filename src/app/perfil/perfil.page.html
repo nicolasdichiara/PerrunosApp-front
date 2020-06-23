@@ -15,12 +15,52 @@
       <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
     </ion-avatar>
     <ion-label>
-      <h3>HOLA</h3>
+      <h3>{{parseTipoPerfil(authUser?.tipoPerfil)}}</h3>
     </ion-label>
   </ion-item>
 
   <ion-item>
     <ion-label floating>Nombre</ion-label>
     <ion-text type="text" name="name" required>{{authUser.nombre}}</ion-text>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Apellido</ion-label>
+    <ion-text type="text" name="name" required>{{authUser.apellido}}</ion-text>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Apodo</ion-label>
+    <ion-text type="text" name="name" required>{{authUser.apodo}}</ion-text>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Fecha de Nacimiento</ion-label>
+    <ion-text type="text" name="name" required>{{authUser.fechaNacimiento}}</ion-text>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>DNI</ion-label>
+    <ion-text type="text" name="name" required>{{authUser.dni}}</ion-text>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Telefono</ion-label>
+    <ion-text type="text" name="name" required>{{authUser.telefono}}</ion-text>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Dirección</ion-label>
+    <ion-text type="text" name="name" required>{{authUser.direccion}}</ion-text>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Fecha de Alta</ion-label>
+    <ion-text type="text" name="name" required>{{authUser.fechaAlta}}</ion-text>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Email</ion-label>
+    <ion-text type="text" name="name" required>{{authUser.email}}</ion-text>
   </ion-item>
 </ion-content>
