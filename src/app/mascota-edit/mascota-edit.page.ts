@@ -35,11 +35,11 @@ export class MascotaEditPage implements OnInit {
   }
 
   get cuidadosEsp() {
-    return this.registrationForm.get('cuidadosEsp');
+    return this.registrationForm.get('cuidadosEspeciales');
   }
 
   get enfermedadesPrev() {
-    return this.registrationForm.get('enfermedadesPrev');
+    return this.registrationForm.get('enfermedadesPrevias');
   }
 
   get fechaNacimiento() {
@@ -108,8 +108,8 @@ export class MascotaEditPage implements OnInit {
     nombre: ['', [Validators.required, Validators.maxLength(50)]],
     raza: ['', [Validators.required]],
     descripcion: ['', [Validators.required, Validators.maxLength(100)]],
-    cuidadosEsp: ['', [Validators.maxLength(100)]],
-    enfermedadesPrev: ['', [Validators.maxLength(100)]],
+    cuidadosEspeciales: ['', [Validators.maxLength(100)]],
+    enfermedadesPrevias: ['', [Validators.maxLength(100)]],
     fechaNacimiento: ['', [Validators.required]],
     desparasitado: ['', [Validators.required]],
     paseoAlgunaVez: ['', [Validators.required]],
@@ -137,19 +137,22 @@ export class MascotaEditPage implements OnInit {
     //this.mascota = new Mascota();
     this.mascota.nombre = this.registrationForm.get('nombre').value;
     this.mascota.raza = this.registrationForm.get('raza').value;
-    this.mascota.descripcion = this.registrationForm.get('descripcion').value;
-    this.mascota.cuidadosEspeciales = this.registrationForm.get('cuidadosEspeciales').value;
-    this.mascota.enfermedadesPrevias = this.registrationForm.get('enfermedadesPrevias').value;
+    this.mascota.imagen = 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y';
     this.mascota.fechaNacimiento = this.registrationForm.get('fechaNacimiento').value;
+    this.mascota.poseeLibretaSanitaria = this.registrationForm.get('poseeLibretaSanitaria').value;
+    this.mascota.imagenLibretaVacunacion = 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y';
+    this.mascota.vacunaDeLaRabia = this.registrationForm.get('vacunaDeLaRabia').value;
     this.mascota.desparasitado = this.registrationForm.get('desparasitado').value;
-    this.mascota.paseoAlgunaVez = this.registrationForm.get('paseoAlgunaVez').value;
+    this.mascota.enfermedadesPrevias = this.registrationForm.get('enfermedadesPrevias').value;
     this.mascota.paseaFrecuente = this.registrationForm.get('paseaFrecuente').value;
+    this.mascota.paseoAlgunaVez = this.registrationForm.get('paseoAlgunaVez').value;
     this.mascota.paseoConUnPaseador = this.registrationForm.get('paseoConUnPaseador').value;
     this.mascota.paseoConOtrosPerros = this.registrationForm.get('paseoConOtrosPerros').value;
-    this.mascota.imagen = 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y';
+    this.mascota.descripcion = this.registrationForm.get('descripcion').value;
+    this.mascota.cuidadosEspeciales = this.registrationForm.get('cuidadosEspeciales').value;
     // this.registrationForm.get('imagen').value;
-    this.mascota.imagenLibretaVacunacion = 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y';
     // this.registrationForm.get('imagenLibretaVacunacion').value;
+
     try {
       await this.mascotasService.updateMascota(this.mascota, this.mascota.idPerro);
       this.router.navigate(['home']);
