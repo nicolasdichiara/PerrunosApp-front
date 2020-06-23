@@ -5,6 +5,7 @@ import { HttpService } from './http.service';
 import { UsuariosService } from './usuarios.service';
 import { environment } from '../../environments/environment';
 import { Aviso } from 'src/domain/aviso';
+import { Servicio } from 'src/domain/servicio';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,16 @@ export class ServiciosService {
 
   async contratarServicio(postData: any) {
     return this.http.post(environment.apiUrl + 'usuario/servicios/contratarPaseo', postData).toPromise();
+  }
+
+  async getServiciosUser(idUser) {
+    const servicios: Servicio[] = await this.http.get<any>(environment.apiUrl +
+       'usuario/serviciosActualesDelUsuario/' + idUser).toPromise();
+    return servicios.map((servicio) => Servicio.fromJson(servicio));
+  }
+
+  async finalizarServicio(id: number) {
+    return this.http.post(environment.apiUrl + 'usuario/servicios/finalizarServicio/' + id, '').toPromise();
   }
 
 }

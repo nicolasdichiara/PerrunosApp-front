@@ -1,9 +1,34 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>servicios</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Servicios</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-list>
+    <ion-list-header>
+      <ion-label class="titulo">Mis Servicios</ion-label>
+    </ion-list-header>
+  <ion-card *ngFor="let servicio of servicios; let i = index">
+    <img src="../../assets/img/servicio2.png" style="padding:5px;max-width: 50px;" />  
+    <ion-card-header>
+      <ion-card-title>
+        {{servicio.tipoServicio.nombre}}
+      </ion-card-title>
+      <ion-card-subtitle>
+        {{servicio.fechaRealizacion.dayOfMonth}}/{{servicio.fechaRealizacion.monthValue}}/{{servicio.fechaRealizacion.year}} - {{servicio.horario.hour}}:{{servicio.horario.minute}}
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button size="small" color="danger" fill="outline" slot="end" (click)="finalizarServicio(servicio.idServicio, i)">Finalizar</ion-button>
+<!--
+      <ion-button size="small" color="warning" slot="end" (click)="editar(aviso.id)">Editar</ion-button>
+-->
+      <ion-button size="small" slot="end" (click)="verDetalle(servicio.idServicio)">Ver Detalle</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-list>
 </ion-content>

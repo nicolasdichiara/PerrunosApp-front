@@ -49,7 +49,7 @@ const routes: Routes = [
             loadChildren: () => import('../servicios/servicios.module').then( m => m.ServiciosPageModule)
           },
           {
-            path: 'servicios-detail',
+            path: 'servicios-detail/:id',
             loadChildren: () => import('../servicios-detail/servicios-detail.module').then( m => m.ServiciosDetailPageModule)
           }
         ]

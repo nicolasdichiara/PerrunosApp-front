@@ -5,9 +5,9 @@ import { Mascota } from 'src/domain/mascota';
 import { Router } from '@angular/router';
 import { UsuariosService } from '../services/usuarios.service';
 import { AlertController } from '@ionic/angular';
-import { Aviso } from 'src/domain/aviso';
 import { AvisosService } from '../services/avisos.service';
 import { ServiciosService } from '../services/servicios.service';
+import { Servicio } from 'src/domain/servicio';
 
 @Component({
   selector: 'app-servicios',
@@ -17,7 +17,7 @@ import { ServiciosService } from '../services/servicios.service';
 export class ServiciosPage implements OnInit {
 
   public authUser: any;
-  avisos: Array<Aviso> = [];
+  servicios: Array<Servicio> = [];
 
 
   constructor(
@@ -41,11 +41,50 @@ export class ServiciosPage implements OnInit {
 
   async obtenerServicios(){
       try {
-        this.avisos = await this.avisosService.getAvisosUser(this.authUser.id);
-        console.log(this.avisos);
+        this.servicios = await this.serviciosService.getServiciosUser(this.authUser.id);
+        console.log(this.servicios);
       } catch (error) {
-        this.toastService.presentToast('Ha ocurrido un error obteniendo avisos' + error);
+        this.toastService.presentToast('Ha ocurrido un error obteniendo servicios');
       }
+  }
+
+  async finalizarServicio(idServicio, index){
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Confimación',
+      message: 'Desea finalizar el servicio?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Cancelado');
+          }
+        }, {
+          text: 'Sí',
+          handler: () => {
+            console.log('Confirmado');
+            try {
+              this.serviciosService.finalizarServicio(idServicio);
+              this.servicios.splice(index, 1);
+              this.toastService.presentToast('Servicio Finalizado');
+            }
+            catch (error) {
+              this.toastService.presentToast('Ha ocurrido un error, reintente.');
+            }
+
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+
+  }
+
+  verDetalle(idServicio){
+    this.router.navigate(['home/servicios-detail', idServicio]);
   }
 
 }
