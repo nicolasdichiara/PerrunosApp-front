@@ -81,6 +81,10 @@ export class AvisosAddPage implements OnInit {
     this.auth.userData$.subscribe(async (res: any) => {
       this.authUser = res;
       if (this.authUser.id){
+        if (this.authUser.tipoPerfil == 'Paseador') {
+          this.toastService.presentToast('Momentaneamente los paseadores no pueden generar avisos');
+          this.router.navigate(['home']);
+        }
         try {
           this.mascotas = await this.mascotasService.getMascotasUser(this.authUser.id);
         } catch (error) {

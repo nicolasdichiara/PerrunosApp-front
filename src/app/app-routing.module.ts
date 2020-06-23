@@ -10,14 +10,14 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
-  }
-  
-  
-  /*,
+  },
   {
-    path: 'perfil-edit',
-    loadChildren: () => import('./perfil-edit/perfil-edit.module').then( m => m.PerfilEditPageModule)
+    path: 'calificar',
+    loadChildren: () => import('./calificar/calificar.module').then( m => m.CalificarPageModule)
   }
+
+
+  /*,
   {
     path: 'menuuser',
     loadChildren: () => import('./menuuser/menuuser.module').then( m => m.MenuuserPageModule)
