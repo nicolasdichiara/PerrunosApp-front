@@ -44,17 +44,13 @@
     </div>
     <ion-item lines="none">
       <ion-label>Fecha Nacimiento</ion-label>
-      <ion-datetime name="fechaNacimiento" placeholder="Seleccione una fecha" [max]="today" (ionChange)="calcEdad()" value="{{mascota?.fechaNacimiento}}" ></ion-datetime>
+      <ion-datetime name="fechaNacimiento" placeholder="Seleccione una fecha" [max]="today" (ionChange)="calcEdad()" formControlName="fechaNacimiento" ></ion-datetime>
     </ion-item>
     <div *ngFor="let error of errorMessages.fechaNacimiento">
       <ng-container *ngIf="fechaNacimiento.hasError(error.type) && (fechaNacimiento.dirty || fechaNacimiento.touched)">
         <small class="error-message">{{ error.message }}</small>
       </ng-container>
     </div>
-    <ion-item>
-      <ion-label style="font-size:13px;" > Su mascota tiene  años</ion-label>
-      <ion-icon slot="end" name="information-circle-outline"></ion-icon>
-    </ion-item>
   </ion-list>
   <ion-list>
     <ion-list-header>
