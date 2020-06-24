@@ -13,6 +13,7 @@ export class MenuuserPage implements OnInit {
 
   mascotas: Array<Mascota> = [];
   public authUser: any;
+  userStats: any;
 
   constructor(
     private auth: UsuariosService,
@@ -21,10 +22,40 @@ export class MenuuserPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    /*
     this.auth.userData$.subscribe(async (res: any) => {
       this.authUser = res;
 
       if (this.authUser.id){
+        try {
+          this.userStats = await this.auth.getUserById(this.authUser.id);
+        } catch (error) {
+          this.toastService.presentToast('No se ha podido actualizar calificacion');
+        }
+        if (this.authUser.tipoPerfil != 'Paseador'){
+          try {
+            this.mascotas = await this.mascotasService.getMascotasUser(this.authUser.id);
+          } catch (error) {
+            this.toastService.presentToast('No se han podido cargar sus mascotas, reintente.' + error);
+          }
+        }
+      }
+
+    });
+*/
+  }
+
+  ionViewWillEnter() {
+    console.log('cargando view');
+    this.auth.userData$.subscribe(async (res: any) => {
+      this.authUser = res;
+
+      if (this.authUser.id){
+        try {
+          this.userStats = await this.auth.getUserById(this.authUser.id);
+        } catch (error) {
+          this.toastService.presentToast('No se ha podido actualizar calificacion');
+        }
         if (this.authUser.tipoPerfil != 'Paseador'){
           try {
             this.mascotas = await this.mascotasService.getMascotasUser(this.authUser.id);

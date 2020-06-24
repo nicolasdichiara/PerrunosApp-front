@@ -6,6 +6,7 @@ import { StorageService } from './storage.service';
 import { AuthConstants } from '../config/auth-constants';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { Usuario } from 'src/domain/usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -59,6 +60,11 @@ export class UsuariosService {
 
   editProfile(postData: any, idUser: any){
     return this.http.post(environment.apiUrl + 'usuario/perfil/completarPerfil/' + idUser, postData).toPromise();
+  }
+
+  async getUserById(id) {
+    const user = await this.http.get<Usuario>(environment.apiUrl + 'usuario/' + id).toPromise();
+    return Usuario.fromJson(user);
   }
 
   logout() {
