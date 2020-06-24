@@ -144,6 +144,7 @@ export class AvisosPage implements OnInit {
   }
 
   async chequearSiHayAvisosActivos(){
+    /*
     if (this.avisosActivos.length <= 0){
       const alert = await this.alertController.create({
         header: 'No hay avisos',
@@ -153,6 +154,7 @@ export class AvisosPage implements OnInit {
 
       await alert.present();
     }
+    */
   }
 
 
