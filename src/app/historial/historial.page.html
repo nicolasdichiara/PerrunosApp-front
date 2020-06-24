@@ -20,8 +20,8 @@
   <ion-card *ngFor="let servicio of servicios; let i = index">
     <img src="../../assets/img/servicio2.png" style="padding:5px;max-width: 50px;" />  
     <ion-card-header>
-      <ion-card-title>
-        {{servicio?.tipoServicio.nombre}}
+      <ion-card-title style="font-size:24px;">
+        #{{servicio?.idServicio}} - {{servicio?.tipoServicio.nombre}}
       </ion-card-title>
       <ion-card-subtitle>
         {{servicio?.fechaRealizacion.dayOfMonth}}/{{servicio?.fechaRealizacion.monthValue}}/{{servicio?.fechaRealizacion.year}} - {{servicio?.horario.hour}}:{{servicio?.horario.minute}}

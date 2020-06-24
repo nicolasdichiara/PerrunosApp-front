@@ -52,14 +52,14 @@ export class CalificarPage implements OnInit {
       this.postDataCalificacion.calificacion = this.calificacionSeleccionada;
       try {
         if (this.authUser.tipoPerfil == 'Duenio'){
-          await this.serviciosService.calificarServicioDuenio(this.postDataCalificacion);
-        }else{
           await this.serviciosService.calificarServicioPrestador(this.postDataCalificacion);
+        }else{
+          await this.serviciosService.calificarServicioDuenio(this.postDataCalificacion);
         }
         this.toastService.presentToast('Gracias!');
         this.router.navigate(['home']);
       } catch (error) {
-        this.toastService.presentToast('Ha ocurrido un error obteniendo avisos' + error);
+        this.toastService.presentToast('Ha ocurrido un error calificando');
       }
     }else{
       this.toastService.presentToast('Seleccione una calificación por favor');

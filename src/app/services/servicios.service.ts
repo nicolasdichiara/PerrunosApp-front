@@ -67,6 +67,7 @@ export class ServiciosService {
   }
 
   async calificarServicioDuenio(postData: any) {
+    console.log(postData);
     return this.http.post(environment.apiUrl + 'servicios/calificarAlDuenio', postData).toPromise();
   }
 
