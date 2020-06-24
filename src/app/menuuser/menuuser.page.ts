@@ -3,6 +3,8 @@ import { UsuariosService } from '../services/usuarios.service';
 import { Mascota } from 'src/domain/mascota';
 import { MascotasService } from '../services/mascotas.service';
 import { ToastService } from '../services/toast.service';
+import { Servicio } from 'src/domain/servicio';
+import { ServiciosService } from '../services/servicios.service';
 
 @Component({
   selector: 'app-menuuser',
@@ -14,9 +16,11 @@ export class MenuuserPage implements OnInit {
   mascotas: Array<Mascota> = [];
   public authUser: any;
   userStats: any;
+  servicios: Array<Servicio> = [];
 
   constructor(
     private auth: UsuariosService,
+    private serviciosService: ServiciosService,
     private mascotasService: MascotasService,
     private toastService: ToastService
   ) { }
@@ -55,6 +59,11 @@ export class MenuuserPage implements OnInit {
           this.userStats = await this.auth.getUserById(this.authUser.id);
         } catch (error) {
           this.toastService.presentToast('No se ha podido actualizar calificacion');
+        }
+        try {
+          this.servicios = await this.serviciosService.getHistorialServiciosUser(this.authUser.id);
+        } catch (error) {
+          this.toastService.presentToast('No se ha podido actualizar historico');
         }
         if (this.authUser.tipoPerfil != 'Paseador'){
           try {

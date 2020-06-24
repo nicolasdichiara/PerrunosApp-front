@@ -52,6 +52,11 @@ export class Mascota {
         console.log(newDate);
         return {
             ...this,
+            desparasitado: this.desparasitado == 1 ? 'true' : 'false',
+            paseaFrecuente: this.paseaFrecuente == 1 ? 'true' : 'false',
+            paseoAlgunaVez: this.paseoAlgunaVez == 1 ? 'true' : 'false',
+            paseoConUnPaseador: this.paseoConUnPaseador == 1 ? 'true' : 'false',
+            paseoConOtrosPerros: this.paseoConOtrosPerros == 1 ? 'true' : 'false',
             fechaNacimiento: this.dosDigitosDia(newDate) + '/' +
             this.dosDigitosMes(newDate) + '/' + newDate.getFullYear()
         };

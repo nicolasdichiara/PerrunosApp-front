@@ -73,8 +73,8 @@ export class AvisosPage implements OnInit {
     // this.router.navigate(['home/avisos/aviso-detail', idAviso]);
   }
 
-  editar(idAviso){
-    // this.router.navigate(['home/avisos/aviso-edit', idAviso]);
+  verMascota(idMascota){
+    this.router.navigate(['home/mascota-detail', idMascota]);
   }
 
   async eliminar(idAviso, index){
