@@ -174,7 +174,8 @@
       </ng-container>
     </div>
   </ion-list>
-    <ion-button [disabled]="!registrationForm.valid" expand="block" type="submit" class="add"><ion-icon name="add-outline"></ion-icon> Agregar Mascota</ion-button>
+  <ion-button [disabled]="!registrationForm.valid" expand="block" type="submit" class="add">Aceptar</ion-button>
+  <ion-button [routerLink]="'/home/mascotas'" expand="block" color="danger">Cancelar</ion-button>
 
   </form>
 </ion-content>
