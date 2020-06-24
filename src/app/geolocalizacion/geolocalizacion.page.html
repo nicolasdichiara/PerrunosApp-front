@@ -10,9 +10,9 @@
 <ion-content>
   <div #mapElement class="map"></div>
   <div style="height:25%;padding:15px;">
-    <ion-title>Servicio # {{servicio?.idServicio}} </ion-title>
     <ion-list>
       <ion-item>
+        <ion-label><strong>Servicio # {{servicio?.idServicio}} </strong></ion-label>
         <ion-label>{{servicio?.fechaRealizacion.dayOfMonth}}/{{servicio?.fechaRealizacion.monthValue}}/{{servicio?.fechaRealizacion.year}} - {{servicio?.horario.hour}}:{{servicio?.horario.minute}}</ion-label>
       </ion-item>
       <ion-item-sliding class="ion-no-border">

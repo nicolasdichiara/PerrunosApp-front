@@ -29,6 +29,11 @@ export class GeolocalizacionPage implements OnInit, OnDestroy {
     lat: '',
     lng: ''
   };
+  usuarioMarker: any;
+  paseadorMarker: any;
+
+  updatePosPrestador: any;
+  updatePosDuenio: any;
 
   constructor(
     private router: Router,
@@ -58,11 +63,7 @@ export class GeolocalizacionPage implements OnInit, OnDestroy {
         }
       }
     });
-    // Suscripción para actualización automatica
-    const source = interval(10000);
-    this.subscription = source.subscribe(val => {
-      console.log('dale');
-    });
+
   }
 
   ngOnDestroy() {
@@ -107,17 +108,17 @@ export class GeolocalizacionPage implements OnInit, OnDestroy {
         // actualizo localizacion nube
         this.enviarLocalizacionDuenio(this.servicio.idServicio, pos.lat, pos.lng);
         // config marker
-        const usuarioMarker = new google.maps.Marker({
+        this.usuarioMarker = new google.maps.Marker({
           position: pos,
           map: map,
           title: 'Usuario',
           icon: icon
         });
-        usuarioMarker.addListener('click', () => {
-          infowindow.open(map, usuarioMarker);
+        this.usuarioMarker.addListener('click', () => {
+          infowindow.open(map, this.usuarioMarker);
         });
       }else{
-        const usuarioMarker = new google.maps.Marker({
+        this.usuarioMarker = new google.maps.Marker({
           position: {
             lat: this.servicio.latitudDuenio ? +this.servicio.latitudDuenio : pos.lat,
             lng: this.servicio.longitudDuenio ? +this.servicio.longitudDuenio : pos.lng
@@ -133,17 +134,17 @@ export class GeolocalizacionPage implements OnInit, OnDestroy {
         // actualizo localizacion nube
         this.enviarLocalizacionPrestador(this.servicio.idServicio, pos.lat, pos.lng);
         // config marker
-        const paseadorMarker = new google.maps.Marker({
+        this.paseadorMarker = new google.maps.Marker({
           position: pos,
           map: map,
           title: 'Usuario',
           icon: icon
         });
-        paseadorMarker.addListener('click', () => {
-          infowindow.open(map, paseadorMarker);
+        this.paseadorMarker.addListener('click', () => {
+          infowindow.open(map, this.paseadorMarker);
         });
       } else {
-        const paseadorMarker = new google.maps.Marker({
+        this.paseadorMarker = new google.maps.Marker({
           position: {
             lat: this.servicio.latitudPrestador ? +this.servicio.latitudPrestador : pos.lat,
             lng: this.servicio.longitudPrestador ? +this.servicio.longitudPrestador : pos.lng
@@ -160,6 +161,69 @@ export class GeolocalizacionPage implements OnInit, OnDestroy {
       this.toastService.presentToast('No se puede obtener localizacion, reintente');
       console.log('Error localizacion', error);
     });
+
+
+    // Suscripción para actualización automatica
+    const source = interval(10000);
+    this.subscription = source.subscribe(val => {
+      console.log('dale');
+      if (this.authUser.tipoPerfil == 'Duenio'){
+        this.geolocation.getCurrentPosition().then((resp) => {
+          this.latitude = resp.coords.latitude;
+          this.longitude = resp.coords.longitude;
+          const pos = {
+            lat: this.latitude,
+            lng: this.longitude
+          };
+          // actualizo localizacion nube
+          this.enviarLocalizacionDuenio(this.servicio.idServicio, pos.lat, pos.lng);
+          const latlng = new google.maps.LatLng(pos.lat, pos.lng);
+          this.usuarioMarker.setPosition(latlng);
+        }).catch((error) => {
+          this.toastService.presentToast('No se puede obtener localizacion, reintente');
+          console.log('Error localizacion', error);
+        });
+        // traigo localizacion de paseador
+        try {
+          this.getLocalizacionPrestador(this.servicio.idServicio).then(() => {
+            const latlng = new google.maps.LatLng(+this.updatePosPrestador.lat, +this.updatePosPrestador.lng);
+            this.paseadorMarker.setPosition(latlng);
+          });
+        } catch (error) {
+          this.toastService.presentToast('No se puede obtener localizacion prestador');
+        }
+
+      }else{
+        this.geolocation.getCurrentPosition().then((resp) => {
+          this.latitude = resp.coords.latitude;
+          this.longitude = resp.coords.longitude;
+          const pos = {
+            lat: this.latitude,
+            lng: this.longitude
+          };
+          // actualizo localizacion nube
+          this.enviarLocalizacionPrestador(this.servicio.idServicio, pos.lat, pos.lng);
+          const latlng = new google.maps.LatLng(pos.lat, pos.lng);
+          this.paseadorMarker.setPosition(latlng);
+        }).catch((error) => {
+          this.toastService.presentToast('No se puede obtener localizacion, reintente');
+          console.log('Error localizacion', error);
+        });
+        // traigo localizacion de dueño
+        try {
+          console.log('trayendo info dueño actualizada');
+          this.getLocalizacionDuenio(this.servicio.idServicio).then(() => {
+            console.log(+this.updatePosDuenio.lat);
+            console.log(+this.updatePosDuenio.lng);
+            const latlng2 = new google.maps.LatLng(+this.updatePosDuenio.lat, +this.updatePosDuenio.lng);
+            this.usuarioMarker.setPosition(latlng2);
+          });
+        } catch (error) {
+          this.toastService.presentToast('No se puede obtener localizacion dueño');
+        }
+      }
+    });
+
   }
 
 
@@ -187,6 +251,23 @@ export class GeolocalizacionPage implements OnInit, OnDestroy {
     }
   }
 
+  async getLocalizacionPrestador(idServicio){
+    try {
+      this.updatePosPrestador = await this.serviciosService.getUbicacionPrestador(idServicio);
+      console.log('traigo ubicacion prestador');
+    } catch (error) {
+      this.toastService.presentToast('No se ha podido actualizar ubicacion prestador desde nube');
+    }
+  }
+
+  async getLocalizacionDuenio(idServicio){
+    try {
+      this.updatePosDuenio = await this.serviciosService.getUbicacionDuenio(idServicio);
+      console.log('traigo ubicacion duenio');
+    } catch (error) {
+      this.toastService.presentToast('No se ha podido actualizar ubicacion dueño desde nube');
+    }
+  }
 
   async finalizarServicio(idServicio) {
     const alert = await this.alertController.create({

@@ -53,6 +53,14 @@ export class ServiciosService {
     return this.http.post(environment.apiUrl + 'servicios/geolocalizacionDuenio', postData).toPromise();
   }
 
+  async getUbicacionPrestador(id) {
+    return this.http.get(environment.apiUrl + 'servicios/getGPSPrestador/' + id).toPromise();
+  }
+
+  async getUbicacionDuenio(id) {
+    return this.http.get(environment.apiUrl + 'servicios/getGPSDuenio/' + id).toPromise();
+  }
+
   // Calificaciones
   async calificarServicioPrestador(postData: any) {
     return this.http.post(environment.apiUrl + 'servicios/calificarAlPrestador', postData).toPromise();
