@@ -16,16 +16,19 @@ export class PerfilEditPage implements OnInit {
   apodoEdit: string;
   fechaNacimientoEdit: Date;
   dniEdit: string;
+  direccionEdit: string;
   telefonoEdit: string;
   today: any;
   edad = 0;
+
   postData = {
     // nombre: '',
     // apellido: '',
     apodo: '',
     fechaNacimiento: '',
     dni: '',
-    telefono: ''
+    telefono: '',
+    direccion: ''
   };
 
   // get nombre() {
@@ -52,6 +55,10 @@ export class PerfilEditPage implements OnInit {
     return this.registrationForm.get('telefono');
   }
 
+  get direccion() {
+    return this.registrationForm.get('direccion');
+  }
+
   public errorMessages = {
     // nombre: [
     //   { type: 'required', message: 'Nombre es requerido' },
@@ -75,6 +82,10 @@ export class PerfilEditPage implements OnInit {
     telefono: [
       { type: 'required', message: 'Teléfono es requerido' },
       { type: 'maxlength', message: 'Teléfono no puede ser mayor que 50 caracteres' },
+    ],
+    direccion: [
+      { type: 'required', message: 'direccion es requerido' },
+      { type: 'maxlength', message: 'direccion no puede ser mayor que 50 caracteres' },
     ]
   };
 
@@ -84,7 +95,8 @@ export class PerfilEditPage implements OnInit {
     apodo: ['', [Validators.required, Validators.maxLength(50)]],
     fechaNacimiento: ['', [Validators.required]],
     dni: ['', [Validators.required, Validators.maxLength(11)]],
-    telefono: ['', [Validators.required, Validators.maxLength(50)]]
+    telefono: ['', [Validators.required, Validators.maxLength(50)]],
+    direccion: ['', [Validators.required, Validators.maxLength(50)]]
   });
 
   constructor(
@@ -103,6 +115,7 @@ export class PerfilEditPage implements OnInit {
         //this.fechaNacimientoEdit = this.authUser.fechaNacimiento
         this.dniEdit = this.authUser.dni
         this.telefonoEdit = this.authUser.telefono
+        this.direccionEdit = this.authUser.direccion
       }
     });
   }
@@ -124,8 +137,9 @@ export class PerfilEditPage implements OnInit {
     this.postData.fechaNacimiento = this.dosDigitosDia(fecha) + '/' +this.dosDigitosMes(fecha) + '/' + fecha.getFullYear()
     this.postData.dni = this.registrationForm.get('dni').value;
     this.postData.telefono = this.registrationForm.get('telefono').value;
+    this.postData.direccion = this.registrationForm.get('direccion').value;
     try {
-        await this.auth.editProfile(this.postData, this.authUser.id);
+      await this.auth.editProfile(this.postData, this.authUser.id);
       this.router.navigate(['/home/menuuser']);
       this.toastService.presentToast('Perfil Modificado Correctamente!');
     } catch (error) {
@@ -160,6 +174,7 @@ export class PerfilEditPage implements OnInit {
         //this.fechaNacimientoEdit = this.authUser.fechaNacimiento
         this.dniEdit = this.authUser.dni
         this.telefonoEdit = this.authUser.telefono
+        this.direccionEdit = this.authUser.direccion
       }
     });
   }

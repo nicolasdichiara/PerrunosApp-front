@@ -8,7 +8,9 @@ import { ToastService } from '../services/toast.service';
   styleUrls: ['./perfil.page.scss'],
 })
 export class PerfilPage implements OnInit {
+
   public authUser: any;
+  userStats: any;
 
   constructor(
     private auth: UsuariosService,
@@ -23,6 +25,14 @@ export class PerfilPage implements OnInit {
       }
 
     });
+  }
+
+  async ionViewWillEnter() {
+    try {
+      this.userStats = await this.auth.getUserById(this.authUser.id);
+    } catch (error) {
+      this.toastService.presentToast('No se ha podido actualizar calificacion');
+    }
   }
 
   parseTipoPerfil(valor:string){

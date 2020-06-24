@@ -60,6 +60,15 @@
       </ng-container>
     </div>
     <ion-item>
+      <ion-label>Direccion</ion-label>
+      <ion-input formControlName="direccion" name="direccion" type="text" [(ngModel)]="direccionEdit"></ion-input>
+    </ion-item>
+    <div *ngFor="let error of errorMessages.direccion">
+      <ng-container *ngIf="direccion.hasError(error.type) && (direccion.dirty || direccion.touched)">
+        <small class="error-message">{{ error.message }}</small>
+      </ng-container>
+    </div>
+    <ion-item>
       <ion-label>Teléfono</ion-label>
       <ion-input formControlName="telefono" name="telefono" type="text" [(ngModel)]="telefonoEdit"></ion-input>
     </ion-item>
