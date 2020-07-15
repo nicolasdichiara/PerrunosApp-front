@@ -3,18 +3,16 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="home"></ion-back-button>
     </ion-buttons>
-    <ion-title>Editar Mascota</ion-title>
+    <ion-title><ion-text color="secondary">Editar Mascota</ion-text></ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <form [formGroup]="registrationForm" (ngSubmit)="submit()" >
   <ion-list>
-      <ion-list-header>
-        <ion-label class="titulo">Editar Mascota</ion-label>
-      </ion-list-header>
+      
     <ion-item>
-      <ion-label>Nombre</ion-label>
+      <ion-label color="secondary">Nombre</ion-label>
       <ion-input formControlName="nombre" type="text" name="nombre" value="{{mascota?.nombre}}"></ion-input>
     </ion-item>
     <div *ngFor="let error of errorMessages.nombre">
@@ -23,19 +21,21 @@
       </ng-container>
     </div>
     <ion-item>
-      <ion-label>Raza</ion-label>
-      <ion-select placeholder="Seleccione raza por favor" formControlName="raza" type="text" name="raza">
+      <ion-label color="secondary">Raza</ion-label>
+     <!-- <ion-select placeholder="Seleccione raza por favor" formControlName="raza" type="text" name="raza">
         <ion-select-option value="{{mascota?.raza}}" *ngFor="let raza of razas">{{raza.nombre}}</ion-select-option>
-      </ion-select>
+      </ion-select>-->
+      <ion-input formControlName="raza" type="text" name="raza" value="{{mascota?.raza}}"></ion-input>
+
     </ion-item>
     <div *ngFor="let error of errorMessages.raza">
       <ng-container *ngIf="raza.hasError(error.type) && (raza.dirty || raza.touched)">
         <small class="error-message">{{ error.message }}</small>
       </ng-container>
     </div>
-    <ion-item>Descripción</ion-item>
     <ion-item>
-      <ion-textarea formControlName="descripcion" value="{{mascota?.descripcion}}"></ion-textarea>
+    <ion-label color="secondary">Descripción</ion-label>
+      <ion-input formControlName="descripcion" value="{{mascota?.descripcion}}"></ion-input>
     </ion-item>
     <div *ngFor="let error of errorMessages.descripcion">
       <ng-container *ngIf="descripcion.hasError(error.type) && (descripcion.dirty || descripcion.touched)">
@@ -43,7 +43,7 @@
       </ng-container>
     </div>
     <ion-item lines="none">
-      <ion-label>Fecha Nacimiento</ion-label>
+      <ion-label color="secondary">Fecha Nacimiento</ion-label>
       <ion-datetime name="fechaNacimiento" placeholder="Seleccione una fecha" [max]="today" (ionChange)="calcEdad()" formControlName="fechaNacimiento" ></ion-datetime>
     </ion-item>
     <div *ngFor="let error of errorMessages.fechaNacimiento">
@@ -53,21 +53,23 @@
     </div>
   </ion-list>
   <ion-list>
-    <ion-list-header>
-      <ion-label class="titulo">Cuidados</ion-label>
-    </ion-list-header>
-    <ion-item>Cuidados Especiales</ion-item>
+   
+      <ion-item color="secondary" class="titulo">Cuidados</ion-item>
+    
+    
     <ion-item>
-      <ion-textarea formControlName="cuidadosEspeciales" value="{{mascota?.cuidadosEspeciales}}" ></ion-textarea>
+      <ion-label color="secondary">Cuidados Especiales</ion-label>
+      <ion-input formControlName="cuidadosEspeciales" value="{{mascota?.cuidadosEspeciales}}" ></ion-input>
     </ion-item>
     <div *ngFor="let error of errorMessages.cuidadosEspeciales">
       <ng-container *ngIf="cuidadosEspeciales.hasError(error.type) && (cuidadosEspeciales.dirty || cuidadosEspeciales.touched)">
         <small class="error-message">{{ error.message }}</small>
       </ng-container>
     </div>
-    <ion-item>Enfermedades Previas</ion-item>
+    
     <ion-item>
-      <ion-textarea formControlName="enfermedadesPrevias" value="{{mascota?.enfermedadesPrevias}}"></ion-textarea>
+      <ion-label color="secondary">Enfermedades Previas</ion-label>
+      <ion-input formControlName="enfermedadesPrevias" value="{{mascota?.enfermedadesPrevias}}"></ion-input>
     </ion-item>
     <div *ngFor="let error of errorMessages.enfermedadesPrevias">
       <ng-container *ngIf="enfermedadesPrevias.hasError(error.type) && (enfermedadesPrevias.dirty || enfermedadesPrevias.touched)">
@@ -76,7 +78,7 @@
     </div>
     <ion-radio-group name="desparasitado" formControlName="desparasitado" value="{{mascota?.desparasitado}}" >
       <ion-list-header>
-        <ion-label>Está desparasitado?</ion-label>
+        <ion-label color="secondary">Está desparasitado?</ion-label>
       </ion-list-header>
       <ion-item>
         <ion-label>Si</ion-label>
@@ -94,12 +96,12 @@
     </div>
   </ion-list>
   <ion-list>
-    <ion-list-header>
-      <ion-label class="titulo">Conozcamonos</ion-label>
-    </ion-list-header>
+   
+      <ion-item color="secondary" class="titulo">Conozcamonos</ion-item>
+    
     <ion-radio-group name="paseoAlgunaVez" formControlName="paseoAlgunaVez" value="1">
       <ion-list-header>
-        <ion-label>Paseó alguna vez?</ion-label>
+        <ion-label color="secondary">Paseó alguna vez?</ion-label>
       </ion-list-header>
       <ion-item>
         <ion-label>Si</ion-label>
@@ -117,7 +119,7 @@
     </div>
     <ion-radio-group name="paseoConUnPaseador" formControlName="paseoConUnPaseador" value="1">
       <ion-list-header>
-        <ion-label>En caso de haber paseado, solo con su dueño o con paseador?</ion-label>
+        <ion-label color="secondary">En caso de haber paseado, solo con su dueño o con paseador?</ion-label>
       </ion-list-header>
       <ion-item>
         <ion-label>Solo dueño</ion-label>
@@ -135,7 +137,7 @@
     </div>
     <ion-radio-group name="paseaFrecuente" formControlName="paseaFrecuente" value="1">
       <ion-list-header>
-        <ion-label>Interactúa con otros perros y animales frecuentemente?</ion-label>
+        <ion-label color="secondary">Interactúa con otros perros y animales frecuentemente?</ion-label>
       </ion-list-header>
       <ion-item>
         <ion-label>Si</ion-label>
@@ -153,7 +155,7 @@
     </div>
     <ion-radio-group name="paseoConOtrosPerros" formControlName="paseoConOtrosPerros" value="1">
       <ion-list-header>
-        <ion-label>Compartió paseos o momentos con otros perros?</ion-label>
+        <ion-label color="secondary">Compartió paseos o momentos con otros perros?</ion-label>
       </ion-list-header>
       <ion-item>
         <ion-label>Si</ion-label>
