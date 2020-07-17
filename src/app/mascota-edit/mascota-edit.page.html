@@ -21,12 +21,12 @@
       </ng-container>
     </div>
     <ion-item>
-      <ion-label color="secondary">Raza</ion-label>
-     <!-- <ion-select placeholder="Seleccione raza por favor" formControlName="raza" type="text" name="raza">
-        <ion-select-option value="{{mascota?.raza}}" *ngFor="let raza of razas">{{raza.nombre}}</ion-select-option>
-      </ion-select>-->
-      <ion-input formControlName="raza" type="text" name="raza" value="{{mascota?.raza}}"></ion-input>
-
+      <ion-label color="secondary" class="tamanio">Raza</ion-label>
+      <!-- <ion-select placeholder="Seleccione raza por favor" formControlName="raza" type="text" name="raza" >
+        <ion-select-option value="{{mascota?.raza.nombre}}" *ngFor="let raza of razas">{{raza.nombre}}</ion-select-option>
+      </ion-select> 
+      <ion-input formControlName="raza" type="text" name="raza" value="{{mascota?.raza.nombre}}"></ion-input>-->
+      <ion-label> {{mascota?.raza.nombre}}</ion-label>
     </ion-item>
     <div *ngFor="let error of errorMessages.raza">
       <ng-container *ngIf="raza.hasError(error.type) && (raza.dirty || raza.touched)">
@@ -44,7 +44,8 @@
     </div>
     <ion-item lines="none">
       <ion-label color="secondary">Fecha Nacimiento</ion-label>
-      <ion-datetime name="fechaNacimiento" placeholder="Seleccione una fecha" [max]="today" (ionChange)="calcEdad()" formControlName="fechaNacimiento" ></ion-datetime>
+       <!--{{mascota?.fechaNacimiento.dayOfMonth}}/{{mascota?.fechaNacimiento.monthValue}}/{{mascota?.fechaNacimiento.year}}-->
+      <ion-datetime name="fechaNacimiento" displayFormat="DD/MM/YYYY" placeholder="Seleccione" formControlName="fechaNacimiento"  value="{{mascota?.fechaNacimiento.monthValue}}/{{mascota?.fechaNacimiento.dayOfMonth}}/{{mascota?.fechaNacimiento.year}}"></ion-datetime>
     </ion-item>
     <div *ngFor="let error of errorMessages.fechaNacimiento">
       <ng-container *ngIf="fechaNacimiento.hasError(error.type) && (fechaNacimiento.dirty || fechaNacimiento.touched)">

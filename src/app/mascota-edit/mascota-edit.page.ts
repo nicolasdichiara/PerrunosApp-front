@@ -132,7 +132,7 @@ export class MascotaEditPage implements OnInit {
     });
   }
 
-  public async submit(){
+  public async submit(){    //se ejecuta cunado apretas editar
     console.log(this.registrationForm.value);
     //this.mascota = new Mascota();
     this.mascota.nombre = this.registrationForm.get('nombre').value;
@@ -162,16 +162,16 @@ export class MascotaEditPage implements OnInit {
 
   }
 
-  async ngOnInit() {
-    try {
+  async ngOnInit() {  //cuando tenes que carga la vista se carga
+    try {   //busca las razas en el back y las guarda en this. razas
       this.razas = await this.mascotasService.getTodasLasRazas();
       console.log(this.razas);
     } catch (error) {
       this.toastService.presentToast('Ha ocurrido un error, reintente.' + error);
     }
     this.route.params.subscribe(async params => {
-      this.idMascota = params['id'];
-      if (this.idMascota){
+      this.idMascota = params['id'];  //toma la id del url del navegador 
+      if (this.idMascota){  //esto busca los datos actuales de la mascota que lo va a editar y lo guarda en mascota
         try {
           this.mascota = await this.mascotasService.getMascotaById(this.idMascota);
           console.log(this.mascota);
