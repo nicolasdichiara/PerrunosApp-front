@@ -14,6 +14,9 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { firebaseConfig } from '../environments/firebaseConfig';
+import { AngularFireModule } from '@angular/fire';
+
 
 
 @NgModule({
@@ -28,7 +31,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     BrowserAnimationsModule,
     DragDropModule,
-    ScrollingModule
+    ScrollingModule,
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
   providers: [
     StatusBar,
