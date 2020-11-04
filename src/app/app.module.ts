@@ -14,13 +14,22 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { firebaseConfig } from '../environments/firebaseConfig';
-import { AngularFireModule } from '@angular/fire';
 
+import { AngularFireModule } from '@angular/fire';
+import { SubidaImagenPage } from './subidaImagen/subidaImagen.page';
+
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+
+
+
+import { firebaseConfig } from '../environments/firebaseConfig';
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [	AppComponent,
+    SubidaImagenPage
+   ],
   entryComponents: [],
   imports: [
     BrowserModule,
@@ -32,7 +41,9 @@ import { AngularFireModule } from '@angular/fire';
     BrowserAnimationsModule,
     DragDropModule,
     ScrollingModule,
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
+    AngularFireStorageModule // imports firebase/storage only needed for storage features
   ],
   providers: [
     StatusBar,
