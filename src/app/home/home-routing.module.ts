@@ -43,7 +43,12 @@ const routes: Routes = [
             path: 'perfil-edit',
             loadChildren: () =>
               import('../perfil-edit/perfil-edit.module').then(m => m.PerfilEditPageModule)
-          }
+          },
+          {
+            path: 'subir-imagen',
+            loadChildren: () =>
+              import('../subidaImagen/subidaImagen.module').then(m => m.SubidaImagenPageModule)
+          },
         ]
       },
       {

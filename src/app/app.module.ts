@@ -27,8 +27,8 @@ import { firebaseConfig } from '../environments/firebaseConfig';
 
 
 @NgModule({
-  declarations: [	AppComponent,
-    SubidaImagenPage
+  declarations: [	AppComponent
+    
    ],
   entryComponents: [],
   imports: [

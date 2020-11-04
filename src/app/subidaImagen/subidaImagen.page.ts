@@ -69,7 +69,7 @@ private imageCollection: AngularFirestoreCollection<MyData>;
     this.fileName = file.name;
 
     // The storage path
-    const path = `freakyStorage/${new Date().getTime()}_${file.name}`;
+    const path = `perrunosApp/${new Date().getTime()}_${file.name}`;
 
     // Totally optional metadata
     const customMetadata = { app: 'Freaky Image Upload Demo' };
@@ -87,8 +87,11 @@ private imageCollection: AngularFirestoreCollection<MyData>;
       finalize(() => {
         // Get uploaded file storage path
         this.UploadedFileURL = fileRef.getDownloadURL();
-
+        
+        //ACA ESTA EL LINK POSTA PARA LLEVAR AL BACK
         this.UploadedFileURL.subscribe(resp => {
+          console.log('este capas es el link 2')
+        console.log(resp)
           this.addImagetoDB({
             name: file.name,
             filepath: resp,
