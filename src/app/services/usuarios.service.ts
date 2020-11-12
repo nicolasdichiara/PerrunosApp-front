@@ -62,6 +62,17 @@ export class UsuariosService {
     return this.http.post(environment.apiUrl + 'usuario/perfil/completarPerfil/' + idUser, postData).toPromise();
   }
 
+  subirImagen(postData: any, idUser: any) {
+    // return this.httpService.post('usuario/createDuenio', postData);
+    //lo mismo que en el back
+    let imagenjson = {
+      imagen:postData
+    }
+    console.log("aca")
+    console.log(imagenjson)
+    return this.http.post(environment.apiUrl + 'usuario/perfil/cargarImagen/' + idUser, imagenjson).toPromise();
+  }
+
   async getUserById(id) {
     const user = await this.http.get<Usuario>(environment.apiUrl + 'usuario/' + id).toPromise();
     return Usuario.fromJson(user);

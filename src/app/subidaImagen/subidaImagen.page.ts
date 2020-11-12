@@ -3,6 +3,7 @@ import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
+import { UsuariosService } from '../services/usuarios.service';
 
 export interface MyData {
   name: string;
@@ -16,6 +17,8 @@ export interface MyData {
   styleUrls: ['./subidaImagen.page.css']
 })
 export class SubidaImagenPage  {
+  public authUser: any;
+
 // Upload Task 
 task: AngularFireUploadTask;
 
@@ -41,12 +44,16 @@ isUploaded: boolean;
 
 private imageCollection: AngularFirestoreCollection<MyData>;
 
-  constructor(private storage: AngularFireStorage, private database: AngularFirestore) { 
+  constructor(private storage: AngularFireStorage, private database: AngularFirestore, private usuario: UsuariosService,) { 
     this.isUploading = false;
     this.isUploaded = false;
     //Set collection where our documents/ images info will save
     this.imageCollection = database.collection<MyData>('freakyImages');
     this.images = this.imageCollection.valueChanges();
+
+    this.usuario.userData$.subscribe((res: any) => {
+      this.authUser = res;
+    });
   
   }
 
@@ -92,6 +99,8 @@ private imageCollection: AngularFirestoreCollection<MyData>;
         this.UploadedFileURL.subscribe(resp => {
           console.log('este capas es el link 2')
         console.log(resp)
+        this.usuario.subirImagen(resp,this.authUser.id);
+        this.authUser.imagenPerfil = resp;
           this.addImagetoDB({
             name: file.name,
             filepath: resp,
@@ -109,16 +118,17 @@ private imageCollection: AngularFirestoreCollection<MyData>;
     )
   }
 
-  addImagetoDB(image: MyData) {
+   addImagetoDB(image: MyData) {
     //Create an ID for document
     const id = this.database.createId();
 
     //Set document id with value in database
-    this.imageCollection.doc(id).set(image).then(resp => {
-      console.log(resp);
+    this.imageCollection.doc(id).set(image).then( resp => {      
     }).catch(error => {
       console.log("error " + error);
     });
   }
+
+
 
 }

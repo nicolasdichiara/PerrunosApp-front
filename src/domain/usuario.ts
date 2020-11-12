@@ -11,6 +11,7 @@ export class Usuario {
     telefono: string;
     direccion: string;
     tipoPerfil: string;
+    imagenPerfil: string;
 
     static fromJson(individuoJSON): Usuario {
         return Object.assign(new Usuario(), individuoJSON);
@@ -21,7 +22,7 @@ export class Usuario {
         _dni?: string,
         _telefono?: string,
         _direccion?: string,
-        _tipoPerfil?: string) {
+        _tipoPerfil?: string, _imagenPerfil?: string) {
       this.nombre = _nombre;
       this.email = _email;
       this.apellido = _apellido;
@@ -32,7 +33,7 @@ export class Usuario {
       this.telefono = _telefono;
       this.direccion = _direccion;
       this.tipoPerfil = _tipoPerfil;
-
+      this.imagenPerfil = _imagenPerfil;
     }
 
 }

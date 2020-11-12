@@ -53,6 +53,7 @@ export class MenuuserPage implements OnInit {
     console.log('cargando view');
     this.auth.userData$.subscribe(async (res: any) => {
       this.authUser = res;
+      console.log(this.authUser)
 
       if (this.authUser.id){
         try {
