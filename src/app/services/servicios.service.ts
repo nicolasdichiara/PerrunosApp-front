@@ -44,6 +44,18 @@ export class ServiciosService {
     return servicios.map((servicio) => Servicio.fromJson(servicio));
   }
 
+  // Pago
+  async obtenerPreferenciaParaPago(postData: any) {
+    postData = {
+      titulo: 'Paseo',
+      cantidad: 1,
+      precio_unitario: 500.00
+    };
+    console.log(postData)
+// environment.apiUrl +
+    return this.http.post('https://still-ocean-56684.herokuapp.com/', postData).toPromise();
+  }
+
   // Localizacion
   async establecerUbicacionPrestador(postData: any) {
     return this.http.post(environment.apiUrl + 'servicios/geolocalizacionPrestador', postData).toPromise();

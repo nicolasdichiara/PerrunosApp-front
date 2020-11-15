@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Pagar Servicio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+
+  
+<p style="margin-top:30px;">
+  Desde aquí podrás abonar tu servicio y dejar que tu compañero favorito disfrute en buenas manos! <br><br><b>Gracias por elegir perrunosApp.</b>
+</p>
+<ion-card *ngIf="preferencia != null">
+  <ion-text color="dark">
+    <h3>Medios de Pago</h3>
+  </ion-text>
+    <ion-button color="success" expand="block" class="btn-inicio" href="{{ preferencia }}" >
+      <div>
+          <ion-icon name="cash-outline" class="icon-menu"></ion-icon><br>
+          <label>Pagar con Mercado Pago</label>
+      </div>
+    </ion-button>
+    <ion-button expand="block" class="btn-inicio" href="#">
+      <div>
+          <ion-icon name="cash-outline" class="icon-menu"></ion-icon><br>
+          <label>Proximamente más..</label>
+      </div>
+    </ion-button>
+</ion-card>
+<ion-card>
+  <ion-text color="dark">
+    <h3>Tu pago se ha aprobado!</h3>
+  </ion-text>
+    <ion-button color="success" expand="block" class="btn-inicio" >
+      <div>
+          <ion-icon name="happy-outline" class="icon-menu"></ion-icon><br>
+          <label>Continuar</label>
+      </div>
+    </ion-button>
+</ion-card>
+</ion-content>

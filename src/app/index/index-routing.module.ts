@@ -10,11 +10,11 @@ const routes: Routes = [
   canActivate: [IndexGuard],
   children: [
     {
-    path: '',
-    loadChildren: () =>
-    import('../welcome/welcome.module').then(
-    m => m.WelcomePageModule
-    )
+      path: '',
+      loadChildren: () =>
+      import('../welcome/welcome.module').then(
+      m => m.WelcomePageModule
+      )
     },
     {
     path: 'login',
@@ -25,6 +25,10 @@ const routes: Routes = [
     path: 'register',
     loadChildren: () =>
     import('../register/register.module').then(m => m.RegisterPageModule)
+    },
+    {
+      path: 'pagar',
+      loadChildren: () => import('../pagar/pagar.module').then( m => m.PagarPageModule)
     }
   ]
 }
