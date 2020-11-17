@@ -8,10 +8,17 @@
 </ion-header>
 
 <ion-content>
+  <ion-item  >
+    <ion-item>
+      <ion-avatar class="imagen"  slot="start" [routerLink]="'/home/menuuser/subir-imagen'">
+        <img src= "{{ authUser?.imagenPerfil }}">
+      </ion-avatar>
+    </ion-item>
+    
+    
+  </ion-item>
   <ion-item>
-    <ion-avatar style="width: 60px;height: auto;" slot="start" [routerLink]="'/home/menuuser/subir-imagen'">
-      <img src= "{{ authUser?.imagenPerfil }}">
-    </ion-avatar>
+    
     <ion-label>
       <h3>Bienvenido, {{ authUser?.nombre }}</h3>
       <p>
