@@ -1,19 +1,22 @@
-<ion-header>
-  <ion-toolbar color="tertiary">
-    <ion-title>
-      
-    </ion-title>
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Imagen</ion-title>
   </ion-toolbar>
 </ion-header>
+
+
 
 <ion-content class="ion-padding">
   <ion-card class="ion-text-center" *ngIf="!isUploading && !isUploaded">
     <ion-card-header>
-      <ion-card-title>Elegi imagen para cargar</ion-card-title>
+      <ion-card-title>Elegi una imagen para cargar</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <ion-button color="success" shape="round" size="large">
-        <span>Selecciona Imagen</span>
+        <span>Seleccione</span>
         <input id="uploadBtn" type="file" class="upload" (change)="uploadFile($event.target.files)" />
       </ion-button>
     </ion-card-content>
@@ -41,23 +44,21 @@
   </ion-card>
   <ion-card class="ion-text-center" *ngIf="!isUploading && isUploaded">
     <ion-card-header>
-      <ion-card-title>
-        <b>{{ fileName }}</b> Subir!
-      </ion-card-title>
+      
     </ion-card-header>
 
     <ion-card-content>
       <div *ngIf="UploadedFileURL | async as url">
         <img [src]="url" />
-        <a [href]="url" target="_blank" rel="noopener">Descargar</a>
+        
       </div>
       File Size: {{ fileSize | fileSizePipe }}
-      <ion-button expand="full" color="success" (click)="isUploading = isUploaded = false">Cargar mas</ion-button>
+      <ion-button expand="full" color="success" (click)="isUploading = isUploaded = false">Cargar otra</ion-button>
     </ion-card-content>
   </ion-card>
 
-  <h2 class="ion-text-center">Carga de imagen</h2>
-
+  <!--<h2 class="ion-text-center">Carga de imagen</h2>-->
+  <!--
   <ion-card color="light" class="ion-text-center" *ngFor="let item of images | async">
     <ion-card-header>
       <ion-card-title>
@@ -69,5 +70,5 @@
       <img [src]="item.filepath" />
       <a [href]="item.filepath" target="_blank" rel="noopener">Descargar</a>
     </ion-card-content>
-  </ion-card>
+  </ion-card> -->
 </ion-content>

@@ -7,16 +7,20 @@
   </ion-toolbar>
 </ion-header>
 
+
+
 <ion-content>
-  <ion-item  >
     <ion-item>
-      <ion-avatar class="imagen"  slot="start" [routerLink]="'/home/menuuser/subir-imagen'">
-        <img src= "{{ authUser?.imagenPerfil }}">
-      </ion-avatar>
+      
+      <ion-item >
+        <ion-avatar  slot="start" style="height:10em ;width: auto;"  [routerLink]="'/home/menuuser/subir-imagen'">
+          <img src= "{{ authUser?.imagenPerfil }}">
+        </ion-avatar>
+      </ion-item>
     </ion-item>
     
     
-  </ion-item>
+  
   <ion-item>
     
     <ion-label>
