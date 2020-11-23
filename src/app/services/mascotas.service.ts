@@ -51,6 +51,17 @@ export class MascotasService {
     return this.http.delete(environment.apiUrl + 'perros/deshabilitarPerro/' + id).toPromise();
   }
 
+  subirImagenMascota(postData: any, idUser: any) {
+    // return this.httpService.post('usuario/createDuenio', postData);
+    //lo mismo que en el back
+    let imagenjson = {
+      imagen:postData
+    }
+    console.log("aca")
+    console.log(imagenjson)
+    return this.http.post(environment.apiUrl + 'perros/cargarImagen/' + idUser, imagenjson).toPromise();
+  }
+
 /*
 
   async actualizarMascota(tarea: Mascota) {

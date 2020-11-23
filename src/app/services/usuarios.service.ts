@@ -73,6 +73,8 @@ export class UsuariosService {
     return this.http.post(environment.apiUrl + 'usuario/perfil/cargarImagen/' + idUser, imagenjson).toPromise();
   }
 
+  
+
   async getUserById(id) {
     const user = await this.http.get<Usuario>(environment.apiUrl + 'usuario/' + id).toPromise();
     return Usuario.fromJson(user);

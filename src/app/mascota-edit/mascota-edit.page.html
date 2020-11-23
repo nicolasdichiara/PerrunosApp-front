@@ -10,8 +10,13 @@
 <ion-content>
   <form [formGroup]="registrationForm" (ngSubmit)="submit()" >
   <ion-list>
-      
+      <ion-avatar  slot="start" style="height:10em ;width: auto;"  [routerLink]="'/home/menuuser/subir-imagen'">
+        
+        <img src="../../assets/img/{{mascota?.raza.nombre}}.jpg" />
+      </ion-avatar>
     <ion-item>
+      
+      
       <ion-label color="secondary">Nombre</ion-label>
       <ion-input formControlName="nombre" type="text" name="nombre" value="{{mascota?.nombre}}"></ion-input>
     </ion-item>

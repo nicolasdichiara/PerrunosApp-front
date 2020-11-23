@@ -107,6 +107,11 @@ const routes: Routes = [
         loadChildren: () => import('../mascotas/mascotas.module').then(m => m.MascotasPageModule)
       },
       {
+        path: 'subir-imagen-mascota',
+        loadChildren: () =>
+          import('../subidaImagen-mascota/subidaImagen-mascota.module').then(m => m.SubidaImagenPageModule)
+      },   
+      {
         path: '',
         redirectTo: '/home/menuuser',
         pathMatch: 'full'

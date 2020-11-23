@@ -13,10 +13,10 @@ export interface MyData {
 
 @Component({
   selector: 'app-subidaImagen',
-  templateUrl: './subidaImagen.page.html',
-  styleUrls: ['./subidaImagen.page.css']
+  templateUrl: './subidaImagen-mascota.page.html',
+  styleUrls: ['./subidaImagen-mascota.page.css']
 })
-export class SubidaImagenPage  {
+export class SubidaImagenMascotaPage  {
   public authUser: any;
 
 // Upload Task 
@@ -76,7 +76,7 @@ private imageCollection: AngularFirestoreCollection<MyData>;
     this.fileName = file.name;
 
     // The storage path
-    const path = `imagenesDePerfil/${new Date().getTime()}_${file.name}`;
+    const path = `imagenesDeMascotas/${new Date().getTime()}_${file.name}`;
 
     // Totally optional metadata
     const customMetadata = { app: 'Freaky Image Upload Demo' };

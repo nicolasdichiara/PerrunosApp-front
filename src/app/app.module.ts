@@ -20,14 +20,15 @@ import { SubidaImagenPage } from './subidaImagen/subidaImagen.page';
 
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
-
+import { SubidaImagenMascotaPage } from './subidaImagen-mascota/subidaImagenMascota.page';
 
 
 import { firebaseConfig } from '../environments/firebaseConfig';
 
 
+
 @NgModule({
-  declarations: [	AppComponent
+  declarations: [		AppComponent
     
    ],
   entryComponents: [],
