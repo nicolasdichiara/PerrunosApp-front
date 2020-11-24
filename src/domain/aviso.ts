@@ -10,20 +10,21 @@ export class Aviso {
     detalle: string;
     fecha: Date;
     horario: string;
+    precio: number
 
     static fromJson(avisoJSON): Aviso {
         return Object.assign(new Aviso(), avisoJSON);
     }
 
     constructor(_idPerro?: number, _detalle?: string, _tipoServicio?: number, _fechaParticular?: string,
-        _fecha?: Date, _horario?: string) {
+        _fecha?: Date, _horario?: string, _precio?: number) {
       this.idPerro = _idPerro;
       this.detalle = _detalle;
       this.tipoServicio = _tipoServicio;
       this.fecha = _fecha;
       this.fechaParticular = _fechaParticular;
       this.horario = _horario;
-
+      this.precio = _precio
     }
 
     toJSON(): any {

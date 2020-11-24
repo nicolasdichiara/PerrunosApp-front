@@ -62,6 +62,16 @@
           <small class="error-message">{{ error.message }}</small>
         </ng-container>
       </div>
+      <ion-item *ngIf="this.authUser.tipoPerfil != 'Duenio'">
+        <ion-label>Precio</ion-label>
+        <ion-input formControlName="precio" type="number" name="precio"></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.precio">
+        <ng-container *ngIf="precio.hasError(error.type) && (precio.dirty || precio.touched)">
+          <small class="error-message">{{ error.message }}</small>
+        </ng-container>
+      </div>
+      
 
     </ion-list>
 
