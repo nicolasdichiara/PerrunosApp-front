@@ -20,7 +20,7 @@ export class AvisosAddPage implements OnInit {
   aviso: Aviso;
   mascotas: Array<Mascota> = [];
   fechaParticular = '1'; // fijo hasta que se implemente recurrencia y dias semana
-  tipos: Array<{id: number, nombre: string}> = [{id: 4, nombre: 'Paseo'}, {id: 5, nombre: 'Guarderia'}];
+  tipos: Array<{id: number, nombre: string}> = [{id: 6, nombre: 'Paseo'}, {id: 7, nombre: 'Guarderia'}];
 
 
   get tipoServicio() {
@@ -43,6 +43,10 @@ export class AvisosAddPage implements OnInit {
     return this.avisoForm.get('fecha');
   }
 
+  get precio() {
+    return this.avisoForm.get('precio');
+  }
+
   public errorMessages = {
     detalle: [
       { type: 'required', message: 'detalle es requerido'},
@@ -59,6 +63,9 @@ export class AvisosAddPage implements OnInit {
     ],
     fecha: [
       { type: 'required', message: 'Fecha es requerido'},
+    ],
+    precio: [
+      { type: 'required', message: 'Precio es requerido'},
     ]
   };
 
@@ -68,6 +75,7 @@ export class AvisosAddPage implements OnInit {
     perro: ['', [Validators.required]],
     fecha: ['', [Validators.required]],
     horario: ['', [Validators.required]],
+    precio: ['', []],
   });
   constructor(
     private router: Router,
