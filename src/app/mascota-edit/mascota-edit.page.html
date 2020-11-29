@@ -10,9 +10,9 @@
 <ion-content>
   <form [formGroup]="registrationForm" (ngSubmit)="submit()" >
   <ion-list>
-      <ion-avatar  slot="start" style="height:10em ;width: auto;"  [routerLink]="'/home/menuuser/subir-imagen'">
-        
-        <img src="../../assets/img/{{mascota?.raza.nombre}}.jpg" />
+      <ion-avatar  slot="start" style="height:10em ;width: auto;"  (click)="subirImagen(mascota?.idPerro)">
+  
+        <img src= {{mascota?.imagen}}>
       </ion-avatar>
     <ion-item>
       

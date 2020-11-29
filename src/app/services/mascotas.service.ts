@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { Raza } from 'src/domain/raza';
 import { HttpService } from './http.service';
 import { UsuariosService } from './usuarios.service';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 
 @Injectable({
@@ -14,6 +15,8 @@ import { UsuariosService } from './usuarios.service';
 })
 
 export class MascotasService {
+  userData$ = new BehaviorSubject<any>([]);
+
 
   constructor(
     private http: HttpClient,
@@ -51,7 +54,7 @@ export class MascotasService {
     return this.http.delete(environment.apiUrl + 'perros/deshabilitarPerro/' + id).toPromise();
   }
 
-  subirImagenMascota(postData: any, idUser: any) {
+  subirImagenMascota(postData: any, idMascota: number) {
     // return this.httpService.post('usuario/createDuenio', postData);
     //lo mismo que en el back
     let imagenjson = {
@@ -59,7 +62,7 @@ export class MascotasService {
     }
     console.log("aca")
     console.log(imagenjson)
-    return this.http.post(environment.apiUrl + 'perros/cargarImagen/' + idUser, imagenjson).toPromise();
+    return this.http.post(environment.apiUrl + 'perros/cargarImagen/' + idMascota, imagenjson).toPromise();
   }
 
 /*

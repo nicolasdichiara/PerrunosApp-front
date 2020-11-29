@@ -66,6 +66,11 @@ export class MascotaEditPage implements OnInit {
     return this.registrationForm.get('paseoConOtrosPerros');
   }
 
+  get imagen() {
+    return this.registrationForm.get('imagen');
+  }
+  
+
   public errorMessages = {
     nombre: [
       { type: 'required', message: 'Nombre es requerido'},
@@ -137,7 +142,7 @@ export class MascotaEditPage implements OnInit {
     //this.mascota = new Mascota();
     this.mascota.nombre = this.registrationForm.get('nombre').value;
     this.mascota.raza = this.registrationForm.get('raza').value;
-    this.mascota.imagen = 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y';
+    this.mascota.imagen = this.registrationForm.get('imagen').value;
     this.mascota.fechaNacimiento = this.registrationForm.get('fechaNacimiento').value;
     this.mascota.poseeLibretaSanitaria = this.registrationForm.get('poseeLibretaSanitaria').value;
     this.mascota.imagenLibretaVacunacion = 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y';
@@ -190,6 +195,10 @@ export class MascotaEditPage implements OnInit {
     let edad = Math.round((Math.abs(selectedDate - today) / (24 * 60 * 60 * 1000)) / 365);
 
     this.edad = edad;
+  }
+
+  subirImagen(idMascota){
+    this.router.navigate(['/home/subir-imagen-mascota', idMascota]);
   }
 
 }

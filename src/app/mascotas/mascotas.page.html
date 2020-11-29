@@ -13,7 +13,7 @@
         <ion-label class="titulo">Mis Mascotas</ion-label>
       </ion-list-header>
     <ion-card *ngFor="let mascota of mascotas; let i = index ">
-      <img src="../../assets/img/{{mascota?.raza.nombre}}.jpg" />  
+      <img src="{{mascota?.imagen}}" />  
       <ion-card-header>
         <ion-card-title>
           {{mascota.nombre}}

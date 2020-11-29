@@ -3,7 +3,8 @@ import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
-import { UsuariosService } from '../services/usuarios.service';
+import { MascotasService } from '../services/mascotas.service';
+import { ActivatedRoute } from '@angular/router';
 
 export interface MyData {
   name: string;
@@ -12,49 +13,75 @@ export interface MyData {
 }
 
 @Component({
-  selector: 'app-subidaImagen',
+  selector: 'app-subidaImagenMascota',
   templateUrl: './subidaImagen-mascota.page.html',
   styleUrls: ['./subidaImagen-mascota.page.css']
 })
-export class SubidaImagenMascotaPage  {
+export class SubidaImagenMascotaPage {
   public authUser: any;
+  idMascota: number;
+  
 
-// Upload Task 
-task: AngularFireUploadTask;
+  // Upload Task 
+  task: AngularFireUploadTask;
 
-// Progress in percentage
-percentage: Observable<number>;
+  // Progress in percentage
+  percentage: Observable<number>;
 
-// Snapshot of uploading file
-snapshot: Observable<any>;
+  // Snapshot of uploading file
+  snapshot: Observable<any>;
 
-// Uploaded File URL
-UploadedFileURL: Observable<string>;
+  // Uploaded File URL
+  UploadedFileURL: Observable<string>;
 
-//Uploaded Image List
-images: Observable<MyData[]>;
+  //Uploaded Image List
+  images: Observable<MyData[]>;
 
-//File details  
-fileName: string;
-fileSize: number;
+  //File details  
+  fileName: string;
+  fileSize: number;
 
-//Status check 
-isUploading: boolean;
-isUploaded: boolean;
+  //Status check 
+  isUploading: boolean;
+  isUploaded: boolean;
 
-private imageCollection: AngularFirestoreCollection<MyData>;
 
-  constructor(private storage: AngularFireStorage, private database: AngularFirestore, private usuario: UsuariosService,) { 
+
+  private imageCollection: AngularFirestoreCollection<MyData>;
+
+
+  // constructor(
+  //   private route: ActivatedRoute,
+  //   private router: Router,
+  //   private formBuilder: FormBuilder,
+  //   private mascotasService: MascotasService,
+  //   private auth: UsuariosService,
+  //   private toastService: ToastService) {
+  //   this.today = new Date().toISOString();
+  //   this.auth.userData$.subscribe((res: any) => {
+  //     this.authUser = res;
+  //     console.log(res);
+  //   });
+  // }
+
+
+
+  constructor(private storage: AngularFireStorage, private database: AngularFirestore, private auth: MascotasService,
+    private route: ActivatedRoute,
+  ) {
+
     this.isUploading = false;
     this.isUploaded = false;
     //Set collection where our documents/ images info will save
     this.imageCollection = database.collection<MyData>('freakyImages');
     this.images = this.imageCollection.valueChanges();
 
-    this.usuario.userData$.subscribe((res: any) => {
+    this.auth.userData$.subscribe((res: any) => {
       this.authUser = res;
     });
-  
+
+    
+
   }
 
   uploadFile(event: FileList) {
@@ -94,13 +121,16 @@ private imageCollection: AngularFirestoreCollection<MyData>;
       finalize(() => {
         // Get uploaded file storage path
         this.UploadedFileURL = fileRef.getDownloadURL();
-        
+
         //ACA ESTA EL LINK POSTA PARA LLEVAR AL BACK
         this.UploadedFileURL.subscribe(resp => {
           console.log('este capas es el link 2')
-        console.log(resp)
-        this.usuario.subirImagen(resp,this.authUser.id);
-        this.authUser.imagenPerfil = resp;
+          console.log(resp)
+          console.log('este seria el id')
+          console.log(this.idMascota)
+          console.log('aca paso')
+          this.auth.subirImagenMascota(resp, this.idMascota);
+          //this.authUser.imagen = resp;
           this.addImagetoDB({
             name: file.name,
             filepath: resp,
@@ -118,17 +148,25 @@ private imageCollection: AngularFirestoreCollection<MyData>;
     )
   }
 
-   addImagetoDB(image: MyData) {
+  addImagetoDB(image: MyData) {
     //Create an ID for document
     const id = this.database.createId();
 
     //Set document id with value in database
-    this.imageCollection.doc(id).set(image).then( resp => {      
+    this.imageCollection.doc(id).set(image).then(resp => {
     }).catch(error => {
       console.log("error " + error);
     });
   }
 
+  async ngOnInit() {  //cuando tenes que carga la vista se carga
+
+    this.route.params.subscribe(async params => {
+      this.idMascota = params['id'];  //toma la id del url del navegador 
+      
+    });
 
 
+
+  }
 }

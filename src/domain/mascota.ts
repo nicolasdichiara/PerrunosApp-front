@@ -18,6 +18,7 @@ export class Mascota {
     raza: Raza;
     poseeLibretaSanitaria: number;
     vacunaDeLaRabia: number;
+    
 
     static fromJson(individuoJSON): Mascota {
         return Object.assign(new Mascota(), individuoJSON, {

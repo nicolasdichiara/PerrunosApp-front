@@ -103,14 +103,15 @@ const routes: Routes = [
         loadChildren: () => import('../mascota-edit/mascota-edit.module').then(m => m.MascotaEditPageModule)
       },
       {
-        path: 'mascotas',
-        loadChildren: () => import('../mascotas/mascotas.module').then(m => m.MascotasPageModule)
-      },
-      {
-        path: 'subir-imagen-mascota',
+        path: 'subir-imagen-mascota/:id',
         loadChildren: () =>
           import('../subidaImagen-mascota/subidaImagen-mascota.module').then(m => m.SubidaImagenPageModule)
       },   
+      {
+        path: 'mascotas',
+        loadChildren: () => import('../mascotas/mascotas.module').then(m => m.MascotasPageModule)
+      },
+      
       {
         path: '',
         redirectTo: '/home/menuuser',
