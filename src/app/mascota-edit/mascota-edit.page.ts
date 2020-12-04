@@ -34,11 +34,11 @@ export class MascotaEditPage implements OnInit {
     return this.registrationForm.get('descripcion');
   }
 
-  get cuidadosEsp() {
+  get cuidadosEspeciales() {
     return this.registrationForm.get('cuidadosEspeciales');
   }
 
-  get enfermedadesPrev() {
+  get enfermedadesPrevias() {
     return this.registrationForm.get('enfermedadesPrevias');
   }
 
@@ -83,10 +83,10 @@ export class MascotaEditPage implements OnInit {
       { type: 'required', message: 'descripcion es requerido'},
       { type: 'maxlength', message: 'descripcion no puede ser mayor que 100 caracteres'},
     ],
-    cuidadosEsp: [
+    cuidadosEspeciales: [
       { type: 'maxlength', message: 'Cuidados Esp no puede ser mayor que 100 caracteres'},
     ],
-    enfermedadesPrev: [
+    enfermedadesPrevias: [
       { type: 'maxlength', message: 'Enfermedades Previas no puede ser mayor que 100 caracteres'},
     ],
     fechaNacimiento: [
