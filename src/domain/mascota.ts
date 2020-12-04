@@ -1,7 +1,7 @@
 import { Raza } from './raza';
 
 export class Mascota {
-//se declaran los mismos nombres que hay en el back
+    //se declaran los mismos nombres que hay en el back
     idPerro: number;
     nombre: string;
     cuidadosEspeciales: string;
@@ -18,33 +18,33 @@ export class Mascota {
     raza: Raza;
     poseeLibretaSanitaria: number;
     vacunaDeLaRabia: number;
-    
+
 
     static fromJson(individuoJSON): Mascota {
         return Object.assign(new Mascota(), individuoJSON, {
             raza: Raza.fromJson(individuoJSON.raza)
-           });
+        });
     }
-//el constructor lo armas como quieras pero cuando lo invocas, se declaran los mismos nombres que hay en el back
+    //el constructor lo armas como quieras pero cuando lo invocas, se declaran los mismos nombres que hay en el back
     constructor(_idPerro?: number, _nombre?: string, _cuidadosEsp?: string, _descripcion?: string, _enfermedadesPrev?: string, _imagenLibretaVacunacion?: string, _imagen?: string,
         _paseoConOtrosPerros?: number, _fechaNacimiento?: Date, _desparasitado?: number, _paseoAlgunaVez?: number, _paseoConUnPaseador?: number, _paseaFrecuente?: number, _raza?: Raza,
-        _poseeLibretaSanitaria?: number,_vacunaDeLaRabia?: number) {
-      this.idPerro = _idPerro;
-      this.nombre = _nombre;
-      this.cuidadosEspeciales = _cuidadosEsp;
-      this.descripcion = _descripcion;
-      this.enfermedadesPrevias = _enfermedadesPrev;
-      this.imagenLibretaVacunacion = _imagenLibretaVacunacion;
-      this.imagen = _imagen;
-      this.paseoConOtrosPerros = _paseoConOtrosPerros;
-      this.fechaNacimiento = _fechaNacimiento;
-      this.desparasitado = _desparasitado;
-      this.paseoAlgunaVez = _paseoAlgunaVez;
-      this.paseoConUnPaseador = _paseoConUnPaseador;
-      this.paseaFrecuente = _paseaFrecuente;
-      this.raza = _raza;
-      this.poseeLibretaSanitaria = _poseeLibretaSanitaria;
-      this.vacunaDeLaRabia = _vacunaDeLaRabia;
+        _poseeLibretaSanitaria?: number, _vacunaDeLaRabia?: number) {
+        this.idPerro = _idPerro;
+        this.nombre = _nombre;
+        this.cuidadosEspeciales = _cuidadosEsp;
+        this.descripcion = _descripcion;
+        this.enfermedadesPrevias = _enfermedadesPrev;
+        this.imagenLibretaVacunacion = _imagenLibretaVacunacion;
+        this.imagen = _imagen;
+        this.paseoConOtrosPerros = _paseoConOtrosPerros;
+        this.fechaNacimiento = _fechaNacimiento;
+        this.desparasitado = _desparasitado;
+        this.paseoAlgunaVez = _paseoAlgunaVez;
+        this.paseoConUnPaseador = _paseoConUnPaseador;
+        this.paseaFrecuente = _paseaFrecuente;
+        this.raza = _raza;
+        this.poseeLibretaSanitaria = _poseeLibretaSanitaria;
+        this.vacunaDeLaRabia = _vacunaDeLaRabia;
     }
 
     toJSON(): any {
@@ -59,16 +59,24 @@ export class Mascota {
             paseoConUnPaseador: this.paseoConUnPaseador == 1 ? 'true' : 'false',
             paseoConOtrosPerros: this.paseoConOtrosPerros == 1 ? 'true' : 'false',
             fechaNacimiento: this.dosDigitosDia(newDate) + '/' +
-            this.dosDigitosMes(newDate) + '/' + newDate.getFullYear()
+                this.dosDigitosMes(newDate) + '/' + newDate.getFullYear()
         };
     }
 
-    dosDigitosMes(fecha: Date){
+    dosDigitosMes(fecha: Date) {
         return ('0' + (fecha.getMonth() + 1)).slice(-2);
     }
 
-    dosDigitosDia(fecha: Date){
+    dosDigitosDia(fecha: Date) {
         return ('0' + fecha.getDate()).slice(-2);
+    }
+
+    muestroImagen() {
+        if (this.imagen == null) {
+            return "../../assets/img/" + this.raza.nombre + ".jpg"
+        } else {
+            return this.imagen
+        }
     }
 
 }
