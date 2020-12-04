@@ -29,7 +29,7 @@ export class UsuariosService {
     return this.isUserLoggedIn;
   }
 
-  public loguear(){
+  public loguear() {
     this.isUserLoggedIn = true;
   }
 
@@ -37,9 +37,9 @@ export class UsuariosService {
 
   getUserData() {
     this.storageService.get(AuthConstants.AUTH).then(res => {
-    this.userData$.next(res);
+      this.userData$.next(res);
     });
-    }
+  }
 
   login(postData: any): Observable<any> {
     console.log(postData);
@@ -58,7 +58,7 @@ export class UsuariosService {
     return this.http.post(environment.apiUrl + 'usuario/createPaseador', postData).toPromise();
   }
 
-  editProfile(postData: any, idUser: any){
+  editProfile(postData: any, idUser: any) {
     return this.http.post(environment.apiUrl + 'usuario/perfil/completarPerfil/' + idUser, postData).toPromise();
   }
 
@@ -66,14 +66,14 @@ export class UsuariosService {
     // return this.httpService.post('usuario/createDuenio', postData);
     //lo mismo que en el back
     let imagenjson = {
-      imagen:postData
+      imagen: postData
     }
     console.log("aca")
     console.log(imagenjson)
     return this.http.post(environment.apiUrl + 'usuario/perfil/cargarImagen/' + idUser, imagenjson).toPromise();
   }
 
-  
+
 
   async getUserById(id) {
     const user = await this.http.get<Usuario>(environment.apiUrl + 'usuario/' + id).toPromise();
@@ -82,9 +82,9 @@ export class UsuariosService {
 
   logout() {
     this.storageService.removeStorageItem(AuthConstants.AUTH).then(res => {
-    this.userData$.next('');
-    this.isUserLoggedIn = false;
-    this.router.navigate(['/login']);
+      this.userData$.next('');
+      this.isUserLoggedIn = false;
+      this.router.navigate(['/login']);
     });
   }
 
