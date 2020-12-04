@@ -3,183 +3,193 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="home"></ion-back-button>
     </ion-buttons>
-    <ion-title><ion-text color="secondary">Editar Mascota</ion-text></ion-title>
+    <ion-title>
+      <ion-text color="secondary">Editar Mascota</ion-text>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="registrationForm" (ngSubmit)="submit()" >
-  <ion-list>
-      <ion-avatar  slot="start" style="height:10em ;width: auto;"  (click)="subirImagen(mascota?.idPerro)">
-  
-        <img src= {{mascota?.imagen}}>
-      </ion-avatar>
-    <ion-item>
-      
-      
-      <ion-label color="secondary">Nombre</ion-label>
-      <ion-input formControlName="nombre" type="text" name="nombre" value="{{mascota?.nombre}}"></ion-input>
-    </ion-item>
-    <div *ngFor="let error of errorMessages.nombre">
-      <ng-container *ngIf="nombre.hasError(error.type) && (nombre.dirty || nombre.touched)">
-        <small class="error-message">{{ error.message }}</small>
-      </ng-container>
-    </div>
-    <ion-item>
-      <ion-label color="secondary" class="tamanio">Raza</ion-label>
-      <!-- <ion-select placeholder="Seleccione raza por favor" formControlName="raza" type="text" name="raza" >
+  <form [formGroup]="registrationForm" (ngSubmit)="submit()">
+    <ion-list>
+      <!-- <ion-avatar slot="start" style="height:10em ;width: auto;" (click)="subirImagen(mascota?.idPerro)"> -->
+      <!-- <img src="../../assets/img/{{mascota?.raza.nombre}}.jpg"> -->
+      <img (click)="subirImagen(mascota?.idPerro)" class="profile-image" src={{muestraImagen()}}>
+      <!-- </ion-avatar> -->
+      <ion-item>
+
+
+        <ion-label color="secondary">Nombre</ion-label>
+        <ion-input formControlName="nombre" type="text" name="nombre" value="{{mascota?.nombre}}"></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.nombre">
+        <ng-container *ngIf="nombre.hasError(error.type) && (nombre.dirty || nombre.touched)">
+          <small class="error-message">{{ error.message }}</small>
+        </ng-container>
+      </div>
+      <ion-item>
+        <ion-label color="secondary" class="tamanio">Raza</ion-label>
+        <!-- <ion-select placeholder="Seleccione raza por favor" formControlName="raza" type="text" name="raza" >
         <ion-select-option value="{{mascota?.raza.nombre}}" *ngFor="let raza of razas">{{raza.nombre}}</ion-select-option>
       </ion-select> 
       <ion-input formControlName="raza" type="text" name="raza" value="{{mascota?.raza.nombre}}"></ion-input>-->
-      <ion-label> {{mascota?.raza.nombre}}</ion-label>
-    </ion-item>
-    <div *ngFor="let error of errorMessages.raza">
-      <ng-container *ngIf="raza.hasError(error.type) && (raza.dirty || raza.touched)">
-        <small class="error-message">{{ error.message }}</small>
-      </ng-container>
-    </div>
-    <ion-item>
-    <ion-label color="secondary">Descripción</ion-label>
-      <ion-input formControlName="descripcion" value="{{mascota?.descripcion}}"></ion-input>
-    </ion-item>
-    <div *ngFor="let error of errorMessages.descripcion">
-      <ng-container *ngIf="descripcion.hasError(error.type) && (descripcion.dirty || descripcion.touched)">
-        <small class="error-message">{{ error.message }}</small>
-      </ng-container>
-    </div>
-    <ion-item lines="none">
-      <ion-label color="secondary">Fecha Nacimiento</ion-label>
-       <!--{{mascota?.fechaNacimiento.dayOfMonth}}/{{mascota?.fechaNacimiento.monthValue}}/{{mascota?.fechaNacimiento.year}}-->
-      <ion-datetime name="fechaNacimiento" displayFormat="DD/MM/YYYY" placeholder="Seleccione" formControlName="fechaNacimiento"  value="{{mascota?.fechaNacimiento.monthValue}}/{{mascota?.fechaNacimiento.dayOfMonth}}/{{mascota?.fechaNacimiento.year}}"></ion-datetime>
-    </ion-item>
-    <div *ngFor="let error of errorMessages.fechaNacimiento">
-      <ng-container *ngIf="fechaNacimiento.hasError(error.type) && (fechaNacimiento.dirty || fechaNacimiento.touched)">
-        <small class="error-message">{{ error.message }}</small>
-      </ng-container>
-    </div>
-  </ion-list>
-  <ion-list>
-   
+        <ion-label> {{mascota?.raza.nombre}}</ion-label>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.raza">
+        <ng-container *ngIf="raza.hasError(error.type) && (raza.dirty || raza.touched)">
+          <small class="error-message">{{ error.message }}</small>
+        </ng-container>
+      </div>
+      <ion-item>
+        <ion-label color="secondary">Descripción</ion-label>
+        <ion-input formControlName="descripcion" value="{{mascota?.descripcion}}"></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.descripcion">
+        <ng-container *ngIf="descripcion.hasError(error.type) && (descripcion.dirty || descripcion.touched)">
+          <small class="error-message">{{ error.message }}</small>
+        </ng-container>
+      </div>
+      <ion-item lines="none">
+        <ion-label color="secondary">Fecha Nacimiento</ion-label>
+        <!--{{mascota?.fechaNacimiento.dayOfMonth}}/{{mascota?.fechaNacimiento.monthValue}}/{{mascota?.fechaNacimiento.year}}-->
+        <ion-datetime name="fechaNacimiento" displayFormat="DD/MM/YYYY" placeholder="Seleccione"
+          formControlName="fechaNacimiento"
+          value="{{mascota?.fechaNacimiento.monthValue}}/{{mascota?.fechaNacimiento.dayOfMonth}}/{{mascota?.fechaNacimiento.year}}">
+        </ion-datetime>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.fechaNacimiento">
+        <ng-container
+          *ngIf="fechaNacimiento.hasError(error.type) && (fechaNacimiento.dirty || fechaNacimiento.touched)">
+          <small class="error-message">{{ error.message }}</small>
+        </ng-container>
+      </div>
+    </ion-list>
+    <ion-list>
+
       <ion-item color="secondary" class="titulo">Cuidados</ion-item>
-    
-    
-    <ion-item>
-      <ion-label color="secondary">Cuidados Especiales</ion-label>
-      <ion-input formControlName="cuidadosEspeciales" value="{{mascota?.cuidadosEspeciales}}" ></ion-input>
-    </ion-item>
-    <div *ngFor="let error of errorMessages.cuidadosEspeciales">
-      <ng-container *ngIf="cuidadosEspeciales.hasError(error.type) && (cuidadosEspeciales.dirty || cuidadosEspeciales.touched)">
-        <small class="error-message">{{ error.message }}</small>
-      </ng-container>
-    </div>
-    
-    <ion-item>
-      <ion-label color="secondary">Enfermedades Previas</ion-label>
-      <ion-input formControlName="enfermedadesPrevias" value="{{mascota?.enfermedadesPrevias}}"></ion-input>
-    </ion-item>
-    <div *ngFor="let error of errorMessages.enfermedadesPrevias">
-      <ng-container *ngIf="enfermedadesPrevias.hasError(error.type) && (enfermedadesPrevias.dirty || enfermedadesPrevias.touched)">
-        <small class="error-message">{{ error.message }}</small>
-      </ng-container>
-    </div>
-    <ion-radio-group name="desparasitado" formControlName="desparasitado" value="{{mascota?.desparasitado}}" >
-      <ion-list-header>
-        <ion-label color="secondary">Está desparasitado?</ion-label>
-      </ion-list-header>
+
+
       <ion-item>
-        <ion-label>Si</ion-label>
-        <ion-radio slot="start" value="1"></ion-radio>
+        <ion-label color="secondary">Cuidados Especiales</ion-label>
+        <ion-input formControlName="cuidadosEspeciales" value="{{mascota?.cuidadosEspeciales}}"></ion-input>
       </ion-item>
+      <div *ngFor="let error of errorMessages.cuidadosEspeciales">
+        <ng-container
+          *ngIf="cuidadosEspeciales.hasError(error.type) && (cuidadosEspeciales.dirty || cuidadosEspeciales.touched)">
+          <small class="error-message">{{ error.message }}</small>
+        </ng-container>
+      </div>
+
       <ion-item>
-        <ion-label>No</ion-label>
-        <ion-radio slot="start" value="0"></ion-radio>
+        <ion-label color="secondary">Enfermedades Previas</ion-label>
+        <ion-input formControlName="enfermedadesPrevias" value="{{mascota?.enfermedadesPrevias}}"></ion-input>
       </ion-item>
-    </ion-radio-group>
-    <div *ngFor="let error of errorMessages.desparasitado">
-      <ng-container *ngIf="desparasitado.hasError(error.type) && (desparasitado.dirty || desparasitado.touched)">
-        <small class="error-message">{{ error.message }}</small>
-      </ng-container>
-    </div>
-  </ion-list>
-  <ion-list>
-   
+      <div *ngFor="let error of errorMessages.enfermedadesPrevias">
+        <ng-container
+          *ngIf="enfermedadesPrevias.hasError(error.type) && (enfermedadesPrevias.dirty || enfermedadesPrevias.touched)">
+          <small class="error-message">{{ error.message }}</small>
+        </ng-container>
+      </div>
+      <ion-radio-group name="desparasitado" formControlName="desparasitado" value="{{mascota?.desparasitado}}">
+        <ion-list-header>
+          <ion-label color="secondary">Está desparasitado?</ion-label>
+        </ion-list-header>
+        <ion-item>
+          <ion-label>Si</ion-label>
+          <ion-radio slot="start" value="1"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>No</ion-label>
+          <ion-radio slot="start" value="0"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+      <div *ngFor="let error of errorMessages.desparasitado">
+        <ng-container *ngIf="desparasitado.hasError(error.type) && (desparasitado.dirty || desparasitado.touched)">
+          <small class="error-message">{{ error.message }}</small>
+        </ng-container>
+      </div>
+    </ion-list>
+    <ion-list>
+
       <ion-item color="secondary" class="titulo">Conozcamonos</ion-item>
-    
-    <ion-radio-group name="paseoAlgunaVez" formControlName="paseoAlgunaVez" value="1">
-      <ion-list-header>
-        <ion-label color="secondary">Paseó alguna vez?</ion-label>
-      </ion-list-header>
-      <ion-item>
-        <ion-label>Si</ion-label>
-        <ion-radio slot="start" value="1"></ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-label>No</ion-label>
-        <ion-radio slot="start" value="0"></ion-radio>
-      </ion-item>
-    </ion-radio-group>
-    <div *ngFor="let error of errorMessages.paseoAlgunaVez">
-      <ng-container *ngIf="paseoAlgunaVez.hasError(error.type) && (paseoAlgunaVez.dirty || paseoAlgunaVez.touched)">
-        <small class="error-message">{{ error.message }}</small>
-      </ng-container>
-    </div>
-    <ion-radio-group name="paseoConUnPaseador" formControlName="paseoConUnPaseador" value="1">
-      <ion-list-header>
-        <ion-label color="secondary">En caso de haber paseado, solo con su dueño o con paseador?</ion-label>
-      </ion-list-header>
-      <ion-item>
-        <ion-label>Solo dueño</ion-label>
-        <ion-radio slot="start" value="0"></ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-label>Paseador también</ion-label>
-        <ion-radio slot="start" value="1"></ion-radio>
-      </ion-item>
-    </ion-radio-group>
-    <div *ngFor="let error of errorMessages.paseoConUnPaseador">
-      <ng-container *ngIf="paseoConUnPaseador.hasError(error.type) && (paseoConUnPaseador.dirty || paseoConUnPaseador.touched)">
-        <small class="error-message">{{ error.message }}</small>
-      </ng-container>
-    </div>
-    <ion-radio-group name="paseaFrecuente" formControlName="paseaFrecuente" value="1">
-      <ion-list-header>
-        <ion-label color="secondary">Interactúa con otros perros y animales frecuentemente?</ion-label>
-      </ion-list-header>
-      <ion-item>
-        <ion-label>Si</ion-label>
-        <ion-radio slot="start" value="1"></ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-label>No</ion-label>
-        <ion-radio slot="start" value="0"></ion-radio>
-      </ion-item>
-    </ion-radio-group>
-    <div *ngFor="let error of errorMessages.paseaFrecuente">
-      <ng-container *ngIf="paseaFrecuente.hasError(error.type) && (paseaFrecuente.dirty || paseaFrecuente.touched)">
-        <small class="error-message">{{ error.message }}</small>
-      </ng-container>
-    </div>
-    <ion-radio-group name="paseoConOtrosPerros" formControlName="paseoConOtrosPerros" value="1">
-      <ion-list-header>
-        <ion-label color="secondary">Compartió paseos o momentos con otros perros?</ion-label>
-      </ion-list-header>
-      <ion-item>
-        <ion-label>Si</ion-label>
-        <ion-radio slot="start" value="1"></ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-label>No</ion-label>
-        <ion-radio slot="start" value="0"></ion-radio>
-      </ion-item>
-    </ion-radio-group>
-    <div *ngFor="let error of errorMessages.paseoConOtrosPerros">
-      <ng-container *ngIf="paseoConOtrosPerros.hasError(error.type) && (paseoConOtrosPerros.dirty || paseoConOtrosPerros.touched)">
-        <small class="error-message">{{ error.message }}</small>
-      </ng-container>
-    </div>
-  </ion-list>
-  <ion-button [disabled]="!registrationForm.valid" expand="block" type="submit" class="add">Aceptar</ion-button>
-  <ion-button [routerLink]="'/home/mascotas'" expand="block" color="danger">Cancelar</ion-button>
+
+      <ion-radio-group name="paseoAlgunaVez" formControlName="paseoAlgunaVez" value="1">
+        <ion-list-header>
+          <ion-label color="secondary">Paseó alguna vez?</ion-label>
+        </ion-list-header>
+        <ion-item>
+          <ion-label>Si</ion-label>
+          <ion-radio slot="start" value="1"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>No</ion-label>
+          <ion-radio slot="start" value="0"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+      <div *ngFor="let error of errorMessages.paseoAlgunaVez">
+        <ng-container *ngIf="paseoAlgunaVez.hasError(error.type) && (paseoAlgunaVez.dirty || paseoAlgunaVez.touched)">
+          <small class="error-message">{{ error.message }}</small>
+        </ng-container>
+      </div>
+      <ion-radio-group name="paseoConUnPaseador" formControlName="paseoConUnPaseador" value="1">
+        <ion-list-header>
+          <ion-label color="secondary">En caso de haber paseado, solo con su dueño o con paseador?</ion-label>
+        </ion-list-header>
+        <ion-item>
+          <ion-label>Solo dueño</ion-label>
+          <ion-radio slot="start" value="0"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>Paseador también</ion-label>
+          <ion-radio slot="start" value="1"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+      <div *ngFor="let error of errorMessages.paseoConUnPaseador">
+        <ng-container
+          *ngIf="paseoConUnPaseador.hasError(error.type) && (paseoConUnPaseador.dirty || paseoConUnPaseador.touched)">
+          <small class="error-message">{{ error.message }}</small>
+        </ng-container>
+      </div>
+      <ion-radio-group name="paseaFrecuente" formControlName="paseaFrecuente" value="1">
+        <ion-list-header>
+          <ion-label color="secondary">Interactúa con otros perros y animales frecuentemente?</ion-label>
+        </ion-list-header>
+        <ion-item>
+          <ion-label>Si</ion-label>
+          <ion-radio slot="start" value="1"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>No</ion-label>
+          <ion-radio slot="start" value="0"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+      <div *ngFor="let error of errorMessages.paseaFrecuente">
+        <ng-container *ngIf="paseaFrecuente.hasError(error.type) && (paseaFrecuente.dirty || paseaFrecuente.touched)">
+          <small class="error-message">{{ error.message }}</small>
+        </ng-container>
+      </div>
+      <ion-radio-group name="paseoConOtrosPerros" formControlName="paseoConOtrosPerros" value="1">
+        <ion-list-header>
+          <ion-label color="secondary">Compartió paseos o momentos con otros perros?</ion-label>
+        </ion-list-header>
+        <ion-item>
+          <ion-label>Si</ion-label>
+          <ion-radio slot="start" value="1"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>No</ion-label>
+          <ion-radio slot="start" value="0"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+      <div *ngFor="let error of errorMessages.paseoConOtrosPerros">
+        <ng-container
+          *ngIf="paseoConOtrosPerros.hasError(error.type) && (paseoConOtrosPerros.dirty || paseoConOtrosPerros.touched)">
+          <small class="error-message">{{ error.message }}</small>
+        </ng-container>
+      </div>
+    </ion-list>
+    <ion-button [disabled]="!registrationForm.valid" expand="block" type="submit" class="add">Aceptar</ion-button>
+    <ion-button [routerLink]="'/home/mascotas'" expand="block" color="danger">Cancelar</ion-button>
 
   </form>
 </ion-content>
