@@ -87,6 +87,10 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'promociones',
+        loadChildren: () => import('../promociones/promociones.module').then( m => m.PromocionesPageModule)
+      },
+      {
         path: 'geolocalizacion/:id',
         loadChildren: () => import('../geolocalizacion/geolocalizacion.module').then(m => m.GeolocalizacionPageModule)
       },
