@@ -52,4 +52,13 @@ export class MascotaDetailPage implements OnInit {
     }
   }
 
+  muestraImagen(){
+    console.log("../../assets/img/" + this.mascota?.raza.nombre + ".jpg")
+    if(this.mascota?.imagen==null){
+      return "../../assets/img/" + this.mascota?.raza.nombre + ".jpg"
+    }else {
+      return this.mascota?.imagen
+    }
+  }
+
 }

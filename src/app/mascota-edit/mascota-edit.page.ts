@@ -34,11 +34,11 @@ export class MascotaEditPage implements OnInit {
     return this.registrationForm.get('descripcion');
   }
 
-  get cuidadosEsp() {
+  get cuidadosEspeciales() {
     return this.registrationForm.get('cuidadosEspeciales');
   }
 
-  get enfermedadesPrev() {
+  get enfermedadesPrevias() {
     return this.registrationForm.get('enfermedadesPrevias');
   }
 
@@ -83,10 +83,10 @@ export class MascotaEditPage implements OnInit {
       { type: 'required', message: 'descripcion es requerido'},
       { type: 'maxlength', message: 'descripcion no puede ser mayor que 100 caracteres'},
     ],
-    cuidadosEsp: [
+    cuidadosEspeciales: [
       { type: 'maxlength', message: 'Cuidados Esp no puede ser mayor que 100 caracteres'},
     ],
-    enfermedadesPrev: [
+    enfermedadesPrevias: [
       { type: 'maxlength', message: 'Enfermedades Previas no puede ser mayor que 100 caracteres'},
     ],
     fechaNacimiento: [
@@ -199,6 +199,19 @@ export class MascotaEditPage implements OnInit {
 
   subirImagen(idMascota){
     this.router.navigate(['/home/subir-imagen-mascota', idMascota]);
+  }
+
+  tieneImagen(){
+    return !!this.mascota.imagen
+  }
+
+  muestraImagen(){
+    console.log("../../assets/img/" + this.mascota?.raza.nombre + ".jpg")
+    if(this.mascota?.imagen==null){
+      return "../../assets/img/" + this.mascota?.raza.nombre + ".jpg"
+    }else {
+      return this.mascota?.imagen
+    }
   }
 
 }

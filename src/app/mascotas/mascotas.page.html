@@ -13,7 +13,8 @@
         <ion-label class="titulo">Mis Mascotas</ion-label>
       </ion-list-header>
     <ion-card *ngFor="let mascota of mascotas; let i = index ">
-      <img src="{{mascota?.imagen}}" />  
+      <img style="height:20em ;width: auto;" class="profile-image" src="{{mascota?.muestroImagen()}}" />  
+      <!-- <img style="height:20em ;width: auto;" class="center profile-image" src={{muestraImagen()}} />  -->
       <ion-card-header>
         <ion-card-title>
           {{mascota.nombre}}

@@ -9,49 +9,50 @@
 
 <ion-content>
   <div align="center">
-          
+
     <h1> {{mascota?.nombre}}</h1>
-    <img class="profile-image" src="../../assets/img/{{mascota?.raza.nombre}}.jpg">
-      <h4>{{mascota?.raza.nombre}}</h4>
-      <h5>Tiene {{(today.getFullYear()-mascota?.fechaNacimiento.year)}} años</h5>
+    <!-- <img class="profile-image" src="../../assets/img/{{mascota?.raza.nombre}}.jpg"> -->
+    <img style="height:20em ;width: auto;" class="center profile-image" src={{muestraImagen()}}>
+    <h4>{{mascota?.raza.nombre}}</h4>
+    <h5>Tiene {{(today.getFullYear()-mascota?.fechaNacimiento.year)}} años</h5>
   </div>
-<ion-list>
-  <ion-item>
-    <ion-label floating>Nombre</ion-label>
-    <ion-text type="text" name="name" required>{{mascota?.nombre}}</ion-text>
-  </ion-item>
-  <ion-item>
-    <ion-label floating>Descripcion</ion-label>
-    <ion-text type="text" name="name" required>{{mascota?.descripcion}}</ion-text>
-  </ion-item>
-  <ion-item>
-    <ion-label floating>Cuidados Especiales</ion-label>
-    <ion-text type="text" name="name" required>{{mascota?.cuidadosEspeciales}}</ion-text>
-  </ion-item>
-  <ion-item>
-    <ion-label floating>Enfermedades Previas</ion-label>
-    <ion-text type="text" name="name" required>{{mascota?.enfermedadesPrevias}}</ion-text>
-  </ion-item>
-  <ion-item>
-    <ion-label floating>Desparasitado</ion-label>
-    <ion-text type="text" name="name" required>{{parseTrue(mascota?.desparasitado)}}</ion-text>
-  </ion-item> 
-  <ion-item>
-    <ion-label floating>Paseo alguna vez?</ion-label>
-    <ion-text type="text" name="name" required>{{parseTrue(mascota?.paseoAlgunaVez)}}</ion-text>
-  </ion-item>
-  <ion-item>
-    <ion-label floating>Paseo con duenio o paseador?</ion-label>
-    <ion-text type="text" name="name" required>{{parsePaseo(mascota?.paseoConUnPaseador)}}</ion-text>
-  </ion-item>
-  <ion-item>
-    <ion-label floating>Interactua con otros animales?</ion-label>
-    <ion-text type="text" name="name" required>{{parseTrue(mascota?.paseaFrecuente)}}</ion-text>
-  </ion-item>
-  <ion-item>
-    <ion-label floating>Compartio paseos con otros perros?</ion-label>
-    <ion-text type="text" name="name" required>{{parseTrue(mascota?.paseoConOtrosPerros)}}</ion-text>
-  </ion-item> 
- 
-</ion-list>
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Nombre</ion-label>
+      <ion-text type="text" name="name" required>{{mascota?.nombre}}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Descripcion</ion-label>
+      <ion-text type="text" name="name" required>{{mascota?.descripcion}}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Cuidados Especiales</ion-label>
+      <ion-text type="text" name="name" required>{{mascota?.cuidadosEspeciales}}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Enfermedades Previas</ion-label>
+      <ion-text type="text" name="name" required>{{mascota?.enfermedadesPrevias}}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Desparasitado</ion-label>
+      <ion-text type="text" name="name" required>{{parseTrue(mascota?.desparasitado)}}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Paseo alguna vez?</ion-label>
+      <ion-text type="text" name="name" required>{{parseTrue(mascota?.paseoAlgunaVez)}}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Paseo con duenio o paseador?</ion-label>
+      <ion-text type="text" name="name" required>{{parsePaseo(mascota?.paseoConUnPaseador)}}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Interactua con otros animales?</ion-label>
+      <ion-text type="text" name="name" required>{{parseTrue(mascota?.paseaFrecuente)}}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Compartio paseos con otros perros?</ion-label>
+      <ion-text type="text" name="name" required>{{parseTrue(mascota?.paseoConOtrosPerros)}}</ion-text>
+    </ion-item>
+
+  </ion-list>
 </ion-content>

@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-   apiUrl: 'http://localhost:16000/'
-  // apiUrl: 'http://190.192.186.29:16000/'
-  };
+  //apiUrl: 'http://localhost:16000/'
+  apiUrl: 'http://perrunosapp.ddns.net:16000/'
+};
 
 /*
  * For easier debugging in development mode, you can import the following file

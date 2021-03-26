@@ -5,7 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { SubidaImagenMascotaPage } from './subidaImagenMascota.page';
 
 import { SubidaImagenMascotaPageRoutingModule } from './subidaImagenMascota-routing.module';
-import { FileSizeFormatPipe } from '../subidaImagen/file-size-format.pipe';
+import { FileSizeFormatPipeMascota } from './file-size-format.pipe';
+
 
 
 @NgModule({
@@ -15,6 +16,6 @@ import { FileSizeFormatPipe } from '../subidaImagen/file-size-format.pipe';
     IonicModule,
     SubidaImagenMascotaPageRoutingModule
   ],
-  declarations: [SubidaImagenMascotaPage, FileSizeFormatPipe]
+  declarations: [SubidaImagenMascotaPage, FileSizeFormatPipeMascota]
 })
 export class SubidaImagenPageModule { }

@@ -16,35 +16,35 @@ export interface MyData {
   templateUrl: './subidaImagen.page.html',
   styleUrls: ['./subidaImagen.page.css']
 })
-export class SubidaImagenPage  {
+export class SubidaImagenPage {
   public authUser: any;
 
-// Upload Task 
-task: AngularFireUploadTask;
+  // Upload Task 
+  task: AngularFireUploadTask;
 
-// Progress in percentage
-percentage: Observable<number>;
+  // Progress in percentage
+  percentage: Observable<number>;
 
-// Snapshot of uploading file
-snapshot: Observable<any>;
+  // Snapshot of uploading file
+  snapshot: Observable<any>;
 
-// Uploaded File URL
-UploadedFileURL: Observable<string>;
+  // Uploaded File URL
+  UploadedFileURL: Observable<string>;
 
-//Uploaded Image List
-images: Observable<MyData[]>;
+  //Uploaded Image List
+  images: Observable<MyData[]>;
 
-//File details  
-fileName: string;
-fileSize: number;
+  //File details  
+  fileName: string;
+  fileSize: number;
 
-//Status check 
-isUploading: boolean;
-isUploaded: boolean;
+  //Status check 
+  isUploading: boolean;
+  isUploaded: boolean;
 
-private imageCollection: AngularFirestoreCollection<MyData>;
+  private imageCollection: AngularFirestoreCollection<MyData>;
 
-  constructor(private storage: AngularFireStorage, private database: AngularFirestore, private usuario: UsuariosService,) { 
+  constructor(private storage: AngularFireStorage, private database: AngularFirestore, private usuario: UsuariosService,) {
     this.isUploading = false;
     this.isUploaded = false;
     //Set collection where our documents/ images info will save
@@ -54,7 +54,7 @@ private imageCollection: AngularFirestoreCollection<MyData>;
     this.usuario.userData$.subscribe((res: any) => {
       this.authUser = res;
     });
-  
+
   }
 
   uploadFile(event: FileList) {
@@ -94,13 +94,13 @@ private imageCollection: AngularFirestoreCollection<MyData>;
       finalize(() => {
         // Get uploaded file storage path
         this.UploadedFileURL = fileRef.getDownloadURL();
-        
+
         //ACA ESTA EL LINK POSTA PARA LLEVAR AL BACK
         this.UploadedFileURL.subscribe(resp => {
           console.log('este capas es el link 2')
-        console.log(resp)
-        this.usuario.subirImagen(resp,this.authUser.id);
-        this.authUser.imagenPerfil = resp;
+          console.log(resp)
+          this.usuario.subirImagen(resp, this.authUser.id);
+          this.authUser.imagenPerfil = resp;
           this.addImagetoDB({
             name: file.name,
             filepath: resp,
@@ -118,12 +118,12 @@ private imageCollection: AngularFirestoreCollection<MyData>;
     )
   }
 
-   addImagetoDB(image: MyData) {
+  addImagetoDB(image: MyData) {
     //Create an ID for document
     const id = this.database.createId();
 
     //Set document id with value in database
-    this.imageCollection.doc(id).set(image).then( resp => {      
+    this.imageCollection.doc(id).set(image).then(resp => {
     }).catch(error => {
       console.log("error " + error);
     });
