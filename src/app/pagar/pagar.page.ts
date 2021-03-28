@@ -1,10 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastService } from '../services/toast.service';
 import { UsuariosService } from '../services/usuarios.service';
 import { AlertController } from '@ionic/angular';
 import { AvisosService } from '../services/avisos.service';
 import { ServiciosService } from '../services/servicios.service';
+import { fromEvent } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
+import { ICreatePaymentCharge } from '@vyconsulting/ionic-stripe-checkout/lib/models/ipayment-charge';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-pagar',
@@ -15,7 +19,9 @@ export class PagarPage implements OnInit {
 
   public authUser: any;
   preferencia: any;
-
+  checkout: EventEmitter<ICreatePaymentCharge | HttpErrorResponse>
+  buttonSubscription
+ 
   constructor(
     private router: Router,
     private alertController: AlertController,
@@ -38,6 +44,7 @@ export class PagarPage implements OnInit {
   }
 
   async obtenerPreferencia(){
+    /*
     try {
       this.preferencia = await this.serviciosService.obtenerPreferenciaParaPago(1);
       this.preferencia = this.preferencia.preferencia;
@@ -46,6 +53,16 @@ export class PagarPage implements OnInit {
       this.toastService.presentToast('Ha ocurrido un error obteniendo datos para pago');
       console.log(error);
     }
+    */
+  }
+
+  onPay(e){
+
+
+    console.log(e)
+    console.log(e.error)
+    this.toastService.presentToast(e.error.error.message)
+
   }
 
 }

@@ -7,13 +7,17 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  
-
-  
-<p style="margin-top:30px;">
+<ion-content>  
+<p style="margin-top:20px;">
   Desde aquí podrás abonar tu servicio y dejar que tu compañero favorito disfrute en buenas manos! <br><br><b>Gracias por elegir perrunosApp.</b>
 </p>
+<ion-stripe-checkout
+    [amount]="300"
+    [currency]="'ARS'"
+    (checkout)="onPay($event)"
+  >
+  </ion-stripe-checkout>
+<!--
 <ion-card *ngIf="preferencia != null">
   <ion-text color="dark">
     <h3>Medios de Pago</h3>
@@ -42,4 +46,5 @@
       </div>
     </ion-button>
 </ion-card>
+-->
 </ion-content>

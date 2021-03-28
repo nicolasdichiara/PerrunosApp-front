@@ -24,6 +24,8 @@ import { SubidaImagenMascotaPage } from './subidaImagen-mascota/subidaImagenMasc
 
 
 import { firebaseConfig } from '../environments/firebaseConfig';
+import { IonicStripeCheckoutModule } from '@vyconsulting/ionic-stripe-checkout';
+import { environment } from '../environments/environment';
 
 
 
@@ -42,6 +44,10 @@ import { firebaseConfig } from '../environments/firebaseConfig';
     BrowserAnimationsModule,
     DragDropModule,
     ScrollingModule,
+    IonicStripeCheckoutModule.forRoot({
+      stripe_secret_key: environment.str_key,
+      language: "en"
+    }),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireStorageModule // imports firebase/storage only needed for storage features

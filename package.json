@@ -38,6 +38,7 @@
     "@ionic-native/status-bar": "^5.0.0",
     "@ionic/angular": "^5.0.0",
     "@ionic/pwa-elements": "^1.5.2",
+    "@vyconsulting/ionic-stripe-checkout": "^0.2.17",
     "cordova-plugin-geolocation": "^4.0.2",
     "firebase": "^8.0.0",
     "ionic": "^5.4.16",
