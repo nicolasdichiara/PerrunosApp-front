@@ -58,6 +58,11 @@ export class UsuariosService {
     return this.http.post(environment.apiUrl + 'usuario/createPaseador', postData).toPromise();
   }
 
+  signUpUser(postData: any) {
+    // return this.httpService.post('usuario/createPaseador', postData);
+    return this.http.post(environment.apiUrl + 'usuario/createUsuario', postData).toPromise();
+  }
+
   editProfile(postData: any, idUser: any) {
     return this.http.post(environment.apiUrl + 'usuario/perfil/completarPerfil/' + idUser, postData).toPromise();
   }

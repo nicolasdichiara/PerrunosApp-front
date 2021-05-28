@@ -4,6 +4,8 @@ import { ToastService } from '../services/toast.service';
 import { UsuariosService } from '../services/usuarios.service';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/domain/usuario';
+import { Perfil } from 'src/domain/perfil';
+import { PerfilesService } from '../services/perfiles.service';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +21,9 @@ export class RegisterPage implements OnInit {
     email: '',
     password: '',
     fechaAlta: '',
-    };
+    tipo: ''
+  };
+  perfiles: Array<Perfil> = []
 
   get email() {
     return this.registrationForm.get('email');
@@ -43,22 +47,22 @@ export class RegisterPage implements OnInit {
 
   public errorMessages = {
     nombre: [
-      { type: 'required', message: 'Nombre es requerido'},
-      { type: 'maxlength', message: 'Nombre no puede ser mayor que 50 caracteres'},
+      { type: 'required', message: 'Nombre es requerido' },
+      { type: 'maxlength', message: 'Nombre no puede ser mayor que 50 caracteres' },
     ],
     apellido: [
-      { type: 'required', message: 'Nombre es requerido'},
-      { type: 'maxlength', message: 'Nombre no puede ser mayor que 50 caracteres'},
+      { type: 'required', message: 'Nombre es requerido' },
+      { type: 'maxlength', message: 'Nombre no puede ser mayor que 50 caracteres' },
     ],
     email: [
-      { type: 'required', message: 'descripcion es requerido'},
+      { type: 'required', message: 'descripcion es requerido' },
     ],
     tipo: [
-      { type: 'required', message: 'Tipo es requerido'},
+      { type: 'required', message: 'Tipo es requerido' },
     ],
     password: [
-      { type: 'required', message: 'Contraseña es requerido'},
-      { type: 'minlength', message: 'Contraseña debe ser mayor a 8 caracteres'},
+      { type: 'required', message: 'Contraseña es requerido' },
+      { type: 'minlength', message: 'Contraseña debe ser mayor a 8 caracteres' },
     ]
   };
 
@@ -74,43 +78,67 @@ export class RegisterPage implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private auth: UsuariosService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private perfilesService: PerfilesService
   ) {
     this.today = new Date();
   }
 
-  public async submit(){
+  public async submit() {
     console.log(this.registrationForm.value);
     this.postData.nombre = this.registrationForm.get('nombre').value;
     this.postData.apellido = this.registrationForm.get('apellido').value;
     this.postData.email = this.registrationForm.get('email').value;
     this.postData.password = this.registrationForm.get('password').value;
     this.postData.fechaAlta = this.dosDigitosDia(this.today) + '/' + this.dosDigitosMes(this.today) + '/' + this.today.getFullYear();
+
     const tipo = this.registrationForm.get('tipo').value;
-    try {
-      if (tipo === '1'){
+
+    this.postData.tipo = tipo
+
+    /*try {
+      if (tipo === '1') {
         console.log('entrando');
-        await this.auth.signupDuenio(this.postData);
-      }else{
         await this.auth.signupPaseador(this.postData);
+      } else {
+        if(tipo==='2'){
+          await this.auth.signupGuarderia(this.postData);
+        } else {
+          if(tipo==='3'){
+            await this.auth.signupDuenio(this.postData);
+          } else {
+            if(tipo==='4'){
+              await this.auth.signupEspecialista(this.postData);
+            }
+          }
+        }
+        
       }
       this.router.navigate(['login']);
       this.toastService.presentToast('Registro exitoso!');
     } catch (error) {
       this.toastService.presentToast('Ha ocurrido un error creando usuario, reintente.');
+    }*/
+    try {
+      await this.auth.signUpUser(this.postData)
+      this.router.navigate(['login']);
+      this.toastService.presentToast('Registro exitoso!');
+    } catch (error) {
+      this.toastService.presentToast('Ha ocurrido un error creando usuario, reintente.');
     }
-
   }
 
-  dosDigitosMes(fecha: Date){
+  dosDigitosMes(fecha: Date) {
     return ('0' + (fecha.getMonth() + 1)).slice(-2);
   }
 
-  dosDigitosDia(fecha: Date){
+  dosDigitosDia(fecha: Date) {
     return ('0' + fecha.getDate()).slice(-2);
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.perfiles = await this.perfilesService.getTodosLosPerfiles();
+    console.log(this.perfiles)
   }
 
 }
