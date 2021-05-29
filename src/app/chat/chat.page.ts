@@ -38,10 +38,10 @@ export class ChatPage implements OnInit {
         this.currentUser = name;
         this.selectedRoom = 'room_' + this.currentUser;
 
-        await this.chats.getMensajesRoom(this.selectedRoom).then((data)=>{
+        /*await this.chats.getMensajesRoom(this.selectedRoom).then((data)=>{
           this.messages = data;
           console.log(this.messages);
-        });
+        });*/
 
         this.socket.emit('set-name', { name: name, room: null });
     
@@ -90,11 +90,11 @@ export class ChatPage implements OnInit {
   }
  
   async ingresarARoom(room){
-    this.socket.emit('set-name', { name: this.currentUser, room: room });
+    /*this.socket.emit('set-name', { name: this.currentUser, room: room });
     await this.chats.getMensajesRoom(room).then((data)=>{
       this.messages = data;
       console.log(this.messages);
-    });
+    });*/
   }
 
   ionViewWillLeave() {

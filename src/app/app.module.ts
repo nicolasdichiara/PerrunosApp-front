@@ -44,10 +44,10 @@ import { environment } from '../environments/environment';
     BrowserAnimationsModule,
     DragDropModule,
     ScrollingModule,
-    IonicStripeCheckoutModule.forRoot({
+    /*IonicStripeCheckoutModule.forRoot({
       stripe_secret_key: environment.str_key,
       language: "en"
-    }),
+    }),*/
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireStorageModule // imports firebase/storage only needed for storage features

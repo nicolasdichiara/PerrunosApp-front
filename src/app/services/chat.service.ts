@@ -14,9 +14,9 @@ export class ChatService {
     private httpService: HttpService
   ) { }
 
-  async getMensajesRoom(room) {
+  /*async getMensajesRoom(room) {
     const mensajes: Mensaje[] = await this.http.get<any>(environment.apiRealTimeUrl + 'api/mensajes/room/' + room).toPromise();
     return mensajes.map((cat) => Mensaje.fromJson(cat));
-  }
+  }*/
 
 }

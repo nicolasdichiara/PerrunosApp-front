@@ -11,10 +11,11 @@ export class FileSizeFormatPipe implements PipeTransform {
     static forRoot() {
         throw new Error("Method not implemented.");
     }
-    transform(sizeInBytes: number, longForm: boolean): string {
-        const units = longForm
+    transform(sizeInBytes: number/*, longForm: boolean*/): string {
+        /*const units = longForm
             ? FILE_SIZE_UNITS_LONG
-            : FILE_SIZE_UNITS;
+            : FILE_SIZE_UNITS;*/
+        const units = FILE_SIZE_UNITS
         let power = Math.round(Math.log(sizeInBytes) / Math.log(1024));
         power = Math.min(power, units.length - 1);
         const size = sizeInBytes / Math.pow(1024, power); // size in new units

@@ -10,85 +10,86 @@
 
 
 <ion-content>
-    <ion-item>
-      
-      <ion-item >
-        <ion-avatar  slot="start" style="height:10em ;width: auto;"  [routerLink]="'/home/menuuser/subir-imagen'">
-          <img src= {{userStats?.imagenPerfil}}>
-        </ion-avatar>
-      </ion-item>
-    </ion-item>
-    
-    
-  
   <ion-item>
-    
+
+    <ion-item>
+      <ion-avatar slot="start" style="height:10em ;width: auto;" [routerLink]="'/home/menuuser/subir-imagen'">
+        <img src={{userStats?.imagenPerfil}}>
+      </ion-avatar>
+    </ion-item>
+  </ion-item>
+
+
+
+  <ion-item>
+
     <ion-label>
       <h3>Bienvenido, {{ authUser?.nombre }}</h3>
       <p>
-        Viajes realizados: {{servicios?.length}}<br><br>  Calificación: {{this.userStats?.calificacion}}
-         <ion-icon name="star" item-right></ion-icon>
+        Viajes realizados: {{servicios?.length}}<br><br> Calificación: {{this.userStats?.calificacion}}
+        <ion-icon name="star" item-right></ion-icon>
       </p>
     </ion-label>
   </ion-item>
   <ion-item *ngIf="authUser?.tipoPerfil == 'Duenio'">
     <ion-label>Mascota</ion-label>
     <ion-select interface="popover" placeholder="Seleccione una mascota" name="mascotaSeleccionada">
-      <ion-select-option value="{{mascota.idPerro}}" *ngFor="let mascota of mascotas">{{mascota.nombre}}</ion-select-option>
+      <ion-select-option value="{{mascota.idPerro}}" *ngFor="let mascota of mascotas">{{mascota.nombre}}
+      </ion-select-option>
     </ion-select>
   </ion-item>
 
   <ion-grid *ngIf="authUser?.tipoPerfil == 'Duenio'">
     <ion-row>
       <ion-col>
-          <ion-button expand="block" class="btn-inicio" [routerLink]="'/home/servicios'">
-            <div>
-                <ion-icon name="flash" class="icon-menu"></ion-icon><br>
-                <label>Servicios Actuales</label>
-            </div>
-          </ion-button>
+        <ion-button expand="block" class="btn-inicio" [routerLink]="'/home/servicios'">
+          <div>
+            <ion-icon name="flash" class="icon-menu"></ion-icon><br>
+            <label class="ion-text-wrap">Servicios Actuales</label>
+          </div>
+        </ion-button>
       </ion-col>
       <ion-col>
         <ion-button expand="block" class="btn-inicio" [routerLink]="'/home/servicios/historial'">
           <div>
-              <ion-icon name="time" class="icon-menu"></ion-icon><br>
-              <label>Historial</label>
+            <ion-icon name="time" class="icon-menu"></ion-icon><br>
+            <label>Historial</label>
           </div>
         </ion-button>
       </ion-col>
     </ion-row>
     <ion-row>
+      <!-- <ion-col>
+        <ion-button expand="block" class="btn-inicio" [routerLink]="'/home/avisos/avisos-add'">
+          <div>
+            <ion-icon name="send" class="icon-menu"></ion-icon><br>
+            <label>Publicar Aviso</label>
+          </div>
+        </ion-button>
+      </ion-col> -->
       <ion-col>
-          <ion-button expand="block" class="btn-inicio" [routerLink]="'/home/avisos/avisos-add'">
-            <div>
-                <ion-icon name="send" class="icon-menu"></ion-icon><br>
-                <label>Publicar Aviso</label>
-            </div>
-          </ion-button>
+        <ion-button expand="block" class="btn-inicio" [routerLink]="'/home/avisos'">
+          <div>
+            <ion-icon name="search" class="icon-menu"></ion-icon><br>
+            <label>Publicaciones</label>
+          </div>
+        </ion-button>
       </ion-col>
       <ion-col>
         <ion-button expand="block" class="btn-inicio" disabled="true">
           <div>
-              <ion-icon name="mail" class="icon-menu"></ion-icon><br>
-              <label>Especialista</label>
+            <ion-icon name="mail" class="icon-menu"></ion-icon><br>
+            <label>Especialista</label>
           </div>
         </ion-button>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-          <ion-button expand="block" class="btn-inicio" disabled="true">
-            <div>
-                <ion-icon name="warning" class="icon-menu"></ion-icon><br>
-                <label>Reportar</label>
-            </div>
-          </ion-button>
-      </ion-col>
-      <ion-col>
-        <ion-button expand="block" class="btn-inicio" [routerLink]="'/home/avisos'">
+        <ion-button expand="block" class="btn-inicio" disabled="true">
           <div>
-              <ion-icon name="search" class="icon-menu"></ion-icon><br>
-              <label>Publicaciones</label>
+            <ion-icon name="warning" class="icon-menu"></ion-icon><br>
+            <label>Reportar</label>
           </div>
         </ion-button>
       </ion-col>
@@ -99,57 +100,57 @@
   <ion-grid *ngIf="authUser?.tipoPerfil == 'Paseador'">
     <ion-row>
       <ion-col>
-          <ion-button color="secondary" expand="block" class="btn-inicio" [routerLink]="'/home/servicios'">
-            <div>
-                <ion-icon name="flash" class="icon-menu"></ion-icon><br>
-                <label>Servicios Actuales</label>
-            </div>
-          </ion-button>
+        <ion-button color="secondary" expand="block" class="btn-inicio" [routerLink]="'/home/servicios'">
+          <div>
+            <ion-icon name="flash" class="icon-menu"></ion-icon><br>
+            <label class="ion-text-wrap">Servicios Actuales</label>
+          </div>
+        </ion-button>
       </ion-col>
       <ion-col>
         <ion-button color="secondary" expand="block" class="btn-inicio" [routerLink]="'/home/servicios/historial'">
           <div>
-              <ion-icon name="time" class="icon-menu"></ion-icon><br>
-              <label>Historial</label>
+            <ion-icon name="time" class="icon-menu"></ion-icon><br>
+            <label>Historial</label>
           </div>
         </ion-button>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-          <ion-button color="secondary" expand="block" class="btn-inicio" [routerLink]="'/home/avisos/avisos-add'">
-            <div>
-                <ion-icon name="send" class="icon-menu"></ion-icon><br>
-                <label>Publicar Aviso</label>
-            </div>
-          </ion-button>
+        <ion-button color="secondary" expand="block" class="btn-inicio" [routerLink]="'/home/avisos/avisos-add'">
+          <div>
+            <ion-icon name="send" class="icon-menu"></ion-icon><br>
+            <label class="ion-text-wrap">Publicar Aviso</label>
+          </div>
+        </ion-button>
       </ion-col>
+      <!-- <ion-col>
+        <ion-button color="secondary" expand="block" class="btn-inicio" disabled="true">
+          <div>
+            <ion-icon name="mail" class="icon-menu"></ion-icon><br>
+            <label>Especialista</label>
+          </div>
+        </ion-button>
+      </ion-col> -->
+    </ion-row>
+    <ion-row>
       <ion-col>
         <ion-button color="secondary" expand="block" class="btn-inicio" disabled="true">
           <div>
-              <ion-icon name="mail" class="icon-menu"></ion-icon><br>
-              <label>Especialista</label>
+            <ion-icon name="warning" class="icon-menu"></ion-icon><br>
+            <label>Reportar</label>
           </div>
         </ion-button>
       </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-          <ion-button color="secondary" expand="block" class="btn-inicio" disabled="true">
-            <div>
-                <ion-icon name="warning" class="icon-menu"></ion-icon><br>
-                <label>Reportar</label>
-            </div>
-          </ion-button>
-      </ion-col>
-      <ion-col>
+      <!-- <ion-col>
         <ion-button color="secondary" expand="block" class="btn-inicio" [routerLink]="'/home/avisos'">
           <div>
-              <ion-icon name="search" class="icon-menu"></ion-icon><br>
-              <label>Publicaciones</label>
+            <ion-icon name="search" class="icon-menu"></ion-icon><br>
+            <label>Publicaciones</label>
           </div>
         </ion-button>
-      </ion-col>
+      </ion-col> -->
     </ion-row>
   </ion-grid>
 </ion-content>
@@ -158,8 +159,10 @@
 <ion-footer class="ion-no-border">
   <ion-toolbar>
     <ion-item>
-        <ion-label item-start>Perrunos App © 2020</ion-label>
-      <ion-button fill="clear" (click)="logout()" item-end><ion-icon name="power" style="font-size: 25px;padding:5px;"></ion-icon></ion-button>
+      <ion-label item-start>Perrunos App © 2020</ion-label>
+      <ion-button fill="clear" (click)="logout()" item-end>
+        <ion-icon name="power" style="font-size: 25px;padding:5px;"></ion-icon>
+      </ion-button>
     </ion-item>
   </ion-toolbar>
 </ion-footer>
