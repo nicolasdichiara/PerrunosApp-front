@@ -14,7 +14,8 @@
     <ion-list>
       <!-- <ion-avatar slot="start" style="height:10em ;width: auto;" (click)="subirImagen(mascota?.idPerro)"> -->
       <!-- <img src="../../assets/img/{{mascota?.raza.nombre}}.jpg"> -->
-      <img style="height:20em ;width: auto;" (click)="subirImagen(mascota?.idPerro)" class="center profile-image" src={{muestraImagen()}}>
+      <img style="height:20em ;width: auto;" (click)="subirImagen(mascota?.idPerro)" class="center profile-image"
+        src={{muestraImagen()}}>
       <!-- </ion-avatar> -->
       <ion-item>
 
@@ -29,11 +30,9 @@
       </div>
       <ion-item>
         <ion-label color="secondary" class="tamanio">Raza</ion-label>
-        <!-- <ion-select placeholder="Seleccione raza por favor" formControlName="raza" type="text" name="raza" >
-        <ion-select-option value="{{mascota?.raza.nombre}}" *ngFor="let raza of razas">{{raza.nombre}}</ion-select-option>
-      </ion-select> 
-      <ion-input formControlName="raza" type="text" name="raza" value="{{mascota?.raza.nombre}}"></ion-input>-->
-        <ion-label> {{mascota?.raza.nombre}}</ion-label>
+        <ion-select value="{{mascota?.raza.idRaza}}" placeholder="Seleccione raza por favor" formControlName="raza" type="text" name="raza">
+          <ion-select-option value="{{raza.idRaza}}" *ngFor="let raza of razas">{{raza.nombre}}</ion-select-option>
+        </ion-select>
       </ion-item>
       <div *ngFor="let error of errorMessages.raza">
         <ng-container *ngIf="raza.hasError(error.type) && (raza.dirty || raza.touched)">

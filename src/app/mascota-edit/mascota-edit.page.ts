@@ -142,11 +142,11 @@ export class MascotaEditPage implements OnInit {
     //this.mascota = new Mascota();
     this.mascota.nombre = this.registrationForm.get('nombre').value;
     this.mascota.raza = this.registrationForm.get('raza').value;
-    this.mascota.imagen = this.registrationForm.get('imagen').value;
+    //this.mascota.imagen = this.registrationForm.get('imagen').value;
     this.mascota.fechaNacimiento = this.registrationForm.get('fechaNacimiento').value;
-    this.mascota.poseeLibretaSanitaria = this.registrationForm.get('poseeLibretaSanitaria').value;
+    //this.mascota.poseeLibretaSanitaria = this.registrationForm.get('poseeLibretaSanitaria').value;
     this.mascota.imagenLibretaVacunacion = 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y';
-    this.mascota.vacunaDeLaRabia = this.registrationForm.get('vacunaDeLaRabia').value;
+    //this.mascota.vacunaDeLaRabia = this.registrationForm.get('vacunaDeLaRabia').value;
     this.mascota.desparasitado = this.registrationForm.get('desparasitado').value;
     this.mascota.enfermedadesPrevias = this.registrationForm.get('enfermedadesPrevias').value;
     this.mascota.paseaFrecuente = this.registrationForm.get('paseaFrecuente').value;
