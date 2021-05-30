@@ -22,11 +22,13 @@
 
 
   <ion-item>
-
     <ion-label>
       <h3>Bienvenido, {{ authUser?.nombre }}</h3>
+      <p *ngIf="authUser?.tipoPerfil !== 'Especialista'">
+        Viajes realizados: {{servicios?.length}}
+      </p>
       <p>
-        Viajes realizados: {{servicios?.length}}<br><br> Calificación: {{this.userStats?.calificacion}}
+        Calificación: {{this.userStats?.calificacion}}
         <ion-icon name="star" item-right></ion-icon>
       </p>
     </ion-label>
@@ -97,8 +99,8 @@
   </ion-grid>
 
 
-  <ion-grid *ngIf="authUser?.tipoPerfil == 'Paseador'">
-    <ion-row>
+  <ion-grid *ngIf="authUser?.tipoPerfil !== 'Duenio'">
+    <ion-row *ngIf="authUser?.tipoPerfil !== 'Especialista'">
       <ion-col>
         <ion-button color="secondary" expand="block" class="btn-inicio" [routerLink]="'/home/servicios'">
           <div>
