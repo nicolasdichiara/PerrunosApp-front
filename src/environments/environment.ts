@@ -7,7 +7,7 @@ export const environment = {
   str_key: 'sk_test_51IXwNOLNcgfMjKGZ80TRxOOo4rLIanSjO2Cj8bveXVxPvGKvvqY0lthFJR4JDmJFp0ujkKDaLJNV5qBu2dIMGZ0P00M9gCVThB',
   //apiUrl: 'http://localhost:16000/',
   apiRealTimeUrl: 'http://localhost:3001/',
-  apiUrl: 'http://perrunosapp.ddns.net/'
+  apiUrl: 'http://perrunosapp.ddns.net:16000/'
 };
 
 /*

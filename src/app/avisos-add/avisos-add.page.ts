@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Aviso } from 'src/domain/aviso';
 import { Mascota } from 'src/domain/mascota';
 import { AvisosService } from '../services/avisos.service';
+import { TipoServicio } from 'src/domain/tipoServicio';
 
 @Component({
   selector: 'app-avisos-add',
@@ -18,9 +19,9 @@ export class AvisosAddPage implements OnInit {
   public authUser: any;
   today: any;
   aviso: Aviso;
-  mascotas: Array<Mascota> = [];
+  // mascotas: Array<Mascota> = [];
   fechaParticular = '1'; // fijo hasta que se implemente recurrencia y dias semana
-  tipos: Array<{id: number, nombre: string}> = [{id: 6, nombre: 'Paseo'}, {id: 7, nombre: 'Guarderia'}];
+  tipos: Array<TipoServicio> = [];
 
 
   get tipoServicio() {
@@ -31,9 +32,9 @@ export class AvisosAddPage implements OnInit {
     return this.avisoForm.get('detalle');
   }
 
-  get perro() {
-    return this.avisoForm.get('perro');
-  }
+  // get perro() {
+  //   return this.avisoForm.get('perro');
+  // }
 
   get horario() {
     return this.avisoForm.get('horario');
@@ -49,30 +50,30 @@ export class AvisosAddPage implements OnInit {
 
   public errorMessages = {
     detalle: [
-      { type: 'required', message: 'detalle es requerido'},
-      { type: 'maxlength', message: 'detalle no puede ser mayor que 50 caracteres'},
+      { type: 'required', message: 'detalle es requerido' },
+      { type: 'maxlength', message: 'detalle no puede ser mayor que 50 caracteres' },
     ],
     tipoServicio: [
-      { type: 'required', message: 'tipoServicio es requerido'},
+      { type: 'required', message: 'tipoServicio es requerido' },
     ],
     horario: [
-      { type: 'required', message: 'horario es requerido'},
+      { type: 'required', message: 'horario es requerido' },
     ],
     perro: [
-      { type: 'required', message: 'perro es requerido'},
+      // { type: 'required', message: 'perro es requerido'},
     ],
     fecha: [
-      { type: 'required', message: 'Fecha es requerido'},
+      { type: 'required', message: 'Fecha es requerido' },
     ],
     precio: [
-      { type: 'required', message: 'Precio es requerido'},
+      { type: 'required', message: 'Precio es requerido' },
     ]
   };
 
   avisoForm = this.formBuilder.group({
     detalle: ['', [Validators.required, Validators.maxLength(50)]],
     tipoServicio: ['', [Validators.required]],
-    perro: ['', [Validators.required]],
+    // perro: ['', [Validators.required]],
     fecha: ['', [Validators.required]],
     horario: ['', [Validators.required]],
     precio: ['', []],
@@ -88,26 +89,26 @@ export class AvisosAddPage implements OnInit {
     this.today = new Date().toISOString();
     this.auth.userData$.subscribe(async (res: any) => {
       this.authUser = res;
-      if (this.authUser.id){
-        if (this.authUser.tipoPerfil == 'Paseador') {
-          this.toastService.presentToast('Momentaneamente los paseadores no pueden generar avisos');
-          this.router.navigate(['home']);
-        }
-        try {
-          this.mascotas = await this.mascotasService.getMascotasUser(this.authUser.id);
-        } catch (error) {
-          this.toastService.presentToast('No se han podido cargar sus mascotas, reintente.' + error);
-        }
-      }
+      // if (this.authUser.id){
+      //   if (this.authUser.tipoPerfil == 'Paseador') {
+      //     this.toastService.presentToast('Momentaneamente los paseadores no pueden generar avisos');
+      //     this.router.navigate(['home']);
+      //   }
+      //   try {
+      //     this.mascotas = await this.mascotasService.getMascotasUser(this.authUser.id);
+      //   } catch (error) {
+      //     this.toastService.presentToast('No se han podido cargar sus mascotas, reintente.' + error);
+      //   }
+      // }
 
     });
   }
 
-  public async submit(){
+  public async submit() {
     console.log(this.avisoForm.value);
     this.aviso = new Aviso();
     this.aviso.detalle = this.avisoForm.get('detalle').value;
-    this.aviso.idPerro = this.avisoForm.get('perro').value;
+    // this.aviso.idPerro = this.avisoForm.get('perro').value;
     this.aviso.tipoServicio = this.avisoForm.get('tipoServicio').value;
     this.aviso.fecha = this.avisoForm.get('fecha').value;
     this.aviso.horario = this.avisoForm.get('horario').value;
@@ -123,6 +124,8 @@ export class AvisosAddPage implements OnInit {
 
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.tipos = await this.auth.getTiposDeServicioDelUsuario(this.authUser.id);
+    console.log(this.tipos)
   }
 }

@@ -36,7 +36,7 @@ export class AvisosPage implements OnInit {
       this.authUser = res;
       if (this.authUser.id){
         this.obtenerAvisos();
-        if (this.authUser.tipoPerfil == 'Paseador'){
+        if (this.authUser.tipoPerfil == 'Duenio'){
           this.obtenerAvisosActivos();
         }
       }
@@ -45,7 +45,7 @@ export class AvisosPage implements OnInit {
 
   async obtenerAvisos(){
     console.log(this.authUser.tipoPerfil);
-    if (this.authUser.tipoPerfil == 'Duenio'){
+    if (this.authUser.tipoPerfil !== 'Duenio'){
       try {
         this.avisos = await this.avisosService.getAvisosUser(this.authUser.id);
         console.log(this.avisos);

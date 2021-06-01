@@ -7,6 +7,7 @@ import { AuthConstants } from '../config/auth-constants';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Usuario } from 'src/domain/usuario';
+import { TipoServicio } from 'src/domain/tipoServicio';
 
 @Injectable({
   providedIn: 'root'
@@ -91,6 +92,12 @@ export class UsuariosService {
       this.isUserLoggedIn = false;
       this.router.navigate(['/login']);
     });
+  }
+
+  async getTiposDeServicioDelUsuario(id) {
+    const tiposDeServicio: TipoServicio[] = await this.http.get<any>(environment.apiUrl + 'servicios/tiposDeServicioPorUsuario/' + id).toPromise();
+    //return tiposDeServicio.map((tipoServicio)=> TipoServicio.fromJson(tipoServicio));
+    return [TipoServicio.fromJson(tiposDeServicio)]
   }
 
 }

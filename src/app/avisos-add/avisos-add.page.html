@@ -16,7 +16,7 @@
       <ion-item>
         <ion-label>Tipo de servicio</ion-label>
         <ion-select placeholder="Seleccione tipo" formControlName="tipoServicio" type="text" name="tipoServicio">
-          <ion-select-option value="{{tipo.id}}" *ngFor="let tipo of tipos">{{tipo.nombre}}</ion-select-option>
+          <ion-select-option value="{{tipo.idTipoServicio}}" *ngFor="let tipo of tipos">{{tipo.nombre}}</ion-select-option>
         </ion-select>
       </ion-item>
       <div *ngFor="let error of errorMessages.tipoServicio">
@@ -24,7 +24,7 @@
           <small class="error-message">{{ error.message }}</small>
         </ng-container>
       </div>      
-      <ion-item>
+      <!-- <ion-item>
         <ion-label>Perro</ion-label>
         <ion-select placeholder="Seleccione perro por favor" formControlName="perro" type="text" name="perro">
           <ion-select-option value="{{mascota.idPerro}}" *ngFor="let mascota of mascotas">{{mascota.nombre}}</ion-select-option>
@@ -34,7 +34,7 @@
         <ng-container *ngIf="perro.hasError(error.type) && (perro.dirty || perro.touched)">
           <small class="error-message">{{ error.message }}</small>
         </ng-container>
-      </div>    
+      </div>     -->
       <ion-item>
         <ion-label>Detalle</ion-label>
         <ion-input formControlName="detalle" type="text" name="detalle"></ion-input>

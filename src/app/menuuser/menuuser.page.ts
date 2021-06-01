@@ -17,6 +17,7 @@ export class MenuuserPage implements OnInit {
   public authUser: any;
   userStats: any;
   servicios: Array<Servicio> = [];
+  whatsapp: any = "https://api.whatsapp.com/send?phone=+541166899679&text=Hola"
 
   constructor(
     private auth: UsuariosService,
