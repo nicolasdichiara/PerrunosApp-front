@@ -4,6 +4,9 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { UsuariosService } from './services/usuarios.service';
+import { Deeplinks } from '@ionic-native/deeplinks/ngx/index';
+import { Router } from '@angular/router';
+import { MascotaDetailPageModule } from './mascota-detail/mascota-detail.module';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +19,9 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private loginService: UsuariosService
+    private loginService: UsuariosService,
+    protected deeplinks: Deeplinks,
+    private router: Router
   ) {
     this.initializeApp();
   }
@@ -25,6 +30,22 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.deeplinks.route({
+        ':id': '/home/mascota-detail/'
+      }).subscribe((match) => {
+        // match.$route - the route we matched, which is the matched entry from the arguments to route()
+        // match.$args - the args passed in the link
+        // match.$link - the full link data
+        const internalPath = `${match.$route}/${match.$args['id']}`;
+        this.router.navigate([internalPath])
+        console.log('Match ' + 'Successfully matched route', match);
+      },
+        (nomatch) => {
+          // nomatch.$link - the full link data
+          this.router.navigate(['home'])
+          console.error('Got a deeplink that didn\'t match', nomatch);
+          alert('El link no es correcto')
+        });
     });
   }
 

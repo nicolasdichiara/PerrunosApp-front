@@ -26,13 +26,14 @@ import { SubidaImagenMascotaPage } from './subidaImagen-mascota/subidaImagenMasc
 import { firebaseConfig } from '../environments/firebaseConfig';
 import { IonicStripeCheckoutModule } from '@vyconsulting/ionic-stripe-checkout';
 import { environment } from '../environments/environment';
+import { Deeplinks } from '@ionic-native/deeplinks/ngx/index'
 
 
 
 @NgModule({
-  declarations: [		AppComponent
-    
-   ],
+  declarations: [AppComponent
+
+  ],
   entryComponents: [],
   imports: [
     BrowserModule,
@@ -55,8 +56,9 @@ import { environment } from '../environments/environment';
   providers: [
     StatusBar,
     SplashScreen,
+    Deeplinks,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
