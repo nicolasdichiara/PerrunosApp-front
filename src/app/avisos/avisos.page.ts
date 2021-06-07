@@ -87,7 +87,7 @@ export class AvisosPage implements OnInit {
   }
 
   public filtrarZonasSelect() {
-    this.zonasFiltradas = this.zonas.filter(z => z.nombreZona.toLowerCase().includes(this.zonaEscrita))
+    this.zonasFiltradas = this.zonas.filter(z => z.nombreZona.toLowerCase().includes(this.zonaEscrita.toLowerCase()))
   }
 
   aplicarFiltros() {
