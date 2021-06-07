@@ -83,6 +83,10 @@ const routes: Routes = [
           {
             path: 'avisos-add',
             loadChildren: () => import('../avisos-add/avisos-add.module').then(m => m.AvisosAddPageModule)
+          },
+          {
+            path: 'aviso-detail/:id',
+            loadChildren: () => import('../aviso-detail/aviso-detail.module').then(m => m.AvisoDetailPageModule)
           }
         ]
       },

@@ -83,15 +83,15 @@ export class AvisosPage implements OnInit {
   }
 
   verDetalle(idAviso) {
-    // this.router.navigate(['home/avisos/aviso-detail', idAviso]);
+    this.router.navigate(['home/avisos/aviso-detail', idAviso]);
   }
 
   public filtrarZonasSelect() {
     this.zonasFiltradas = this.zonas.filter(z => z.nombreZona.toLowerCase().includes(this.zonaEscrita))
   }
 
-  aplicarFiltros(){
-    this.avisosActivosFiltrados = this.avisosActivos.filter(avs=>avs.tipoServicio.idTipoServicio==this.idTipoElegido && avs.zona.idZona==this.zonaElegida)
+  aplicarFiltros() {
+    this.avisosActivosFiltrados = this.avisosActivos.filter(avs => avs.tipoServicio.idTipoServicio == this.idTipoElegido && avs.zona.idZona == this.zonaElegida)
   }
 
   // filtrarZonasPosta(){

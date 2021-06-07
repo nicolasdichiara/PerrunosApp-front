@@ -37,4 +37,9 @@ export class AvisosService {
     return this.http.delete(environment.apiUrl + 'usuario/eliminarAviso/' + id).toPromise();
   }
 
+  async getAvisoById(id: number){
+    const aviso = await this.http.get<Aviso>(environment.apiUrl + 'usuario/traerUnAviso/' + id).toPromise();
+    return Aviso.fromJson(aviso);
+  }
+
 }

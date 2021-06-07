@@ -20,6 +20,7 @@ export class Aviso {
     viernes: boolean;
     sabado: boolean;
     domingo: boolean;
+    idUsuario: number
     nombre: string
     apellido: string
     telefono: string
@@ -32,7 +33,7 @@ export class Aviso {
 
     constructor(_detalle?: string, _tipoServicio?: TipoServicio, _horario?: string, _precio?: number, _idZona?: Zona,
         _lunes?: boolean, _martes?: boolean, _miercoles?: boolean, _jueves?: boolean, _viernes?: boolean, _sabado?: boolean,
-        _domingo?: boolean, _nombre?: string, _apellido?: string, _telefono?: string, _tipoPerfil?: string, _calificacion?: number) {
+        _domingo?: boolean, _idUsuario?:number, _nombre?: string, _apellido?: string, _telefono?: string, _tipoPerfil?: string, _calificacion?: number) {
         this.detalle = _detalle;
         this.tipoServicio = _tipoServicio;
         this.horario = _horario;
@@ -45,6 +46,7 @@ export class Aviso {
         this.viernes = _viernes
         this.sabado = _sabado
         this.domingo = _domingo
+        this.idUsuario = _idUsuario
         this.nombre = _nombre
         this.apellido = _apellido
         this.telefono = _telefono

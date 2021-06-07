@@ -30,8 +30,8 @@ import { Deeplinks } from '@ionic-native/deeplinks/ngx/index'
 
 
 @NgModule({
-  declarations: [AppComponent
-
+  declarations: [
+    AppComponent,
   ],
   entryComponents: [],
   imports: [
