@@ -8,6 +8,9 @@ import { AlertController } from '@ionic/angular';
 import { Aviso } from 'src/domain/aviso';
 import { AvisosService } from '../services/avisos.service';
 import { ServiciosService } from '../services/servicios.service';
+import { TipoServicio } from 'src/domain/tipoServicio';
+import { Zona } from 'src/domain/zona';
+import { ZonasService } from '../services/zonas.service';
 
 @Component({
   selector: 'app-avisos',
@@ -20,6 +23,13 @@ export class AvisosPage implements OnInit {
   avisos: Array<Aviso> = [];
   avisosActivos: Array<Aviso> = [];
   msg: number;
+  tipos: Array<TipoServicio> = [];
+  zonas: Array<Zona> = [];
+  zonasFiltradas: Array<Zona> = []
+  zonaEscrita: string = ""
+  zonaElegida: number
+  idTipoElegido: number
+  avisosActivosFiltrados: Array<Aviso> = []
 
   constructor(
     private router: Router,
@@ -27,38 +37,41 @@ export class AvisosPage implements OnInit {
     private auth: UsuariosService,
     private avisosService: AvisosService,
     private serviciosService: ServiciosService,
-    private mascotasService: MascotasService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private zonasService: ZonasService,
   ) { this.msg = 0; }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.auth.userData$.subscribe((res: any) => {
       this.authUser = res;
-      if (this.authUser.id){
+      if (this.authUser.id) {
         this.obtenerAvisos();
-        if (this.authUser.tipoPerfil == 'Duenio'){
+        if (this.authUser.tipoPerfil == 'Duenio') {
           this.obtenerAvisosActivos();
         }
       }
     });
+    this.tipos = await this.serviciosService.getTiposDeServicios();
+    console.log(this.tipos)
+    this.zonas = await this.zonasService.getTodasLasZonas()
   }
 
-  async obtenerAvisos(){
+  async obtenerAvisos() {
     console.log(this.authUser.tipoPerfil);
-    if (this.authUser.tipoPerfil !== 'Duenio'){
+    if (this.authUser.tipoPerfil !== 'Duenio') {
       try {
         this.avisos = await this.avisosService.getAvisosUser(this.authUser.id);
         console.log(this.avisos);
       } catch (error) {
         this.toastService.presentToast('Ha ocurrido un error obteniendo avisos' + error);
       }
-    }else{
+    } else {
       this.msg = 1; // card que indica que paseadores no pueden publicar avisos momentaneamente
     }
   }
 
   /* Este metodo obtendrá avisos publicados por usuarios de la plataforma para ser atendidos por paseador */
-  async obtenerAvisosActivos(){
+  async obtenerAvisosActivos() {
     try {
       this.avisosActivos = await this.avisosService.getAvisosActivos();
       console.log('activos');
@@ -69,15 +82,28 @@ export class AvisosPage implements OnInit {
     this.chequearSiHayAvisosActivos();
   }
 
-  verDetalle(idAviso){
+  verDetalle(idAviso) {
     // this.router.navigate(['home/avisos/aviso-detail', idAviso]);
   }
 
-  verMascota(idMascota){
-    this.router.navigate(['home/mascota-detail', idMascota]);
+  public filtrarZonasSelect() {
+    this.zonasFiltradas = this.zonas.filter(z => z.nombreZona.toLowerCase().includes(this.zonaEscrita))
   }
 
-  async eliminar(idAviso, index){
+  aplicarFiltros(){
+    this.avisosActivosFiltrados = this.avisosActivos.filter(avs=>avs.tipoServicio.idTipoServicio==this.idTipoElegido && avs.zona.idZona==this.zonaElegida)
+  }
+
+  // filtrarZonasPosta(){
+  //   this.avisosActivosFiltrados = this.avisosActivos.filter(avs)
+  // }
+
+  // aplicarFiltros(){
+  //   this.filtrarTipoServicio()
+
+  // }
+
+  async eliminar(idAviso, index) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Confimación',
@@ -106,12 +132,12 @@ export class AvisosPage implements OnInit {
 
   /* En caso de ser paseador, puede presionarse realizar para generar un servicio del aviso
    */
-  async realizar(idAviso, idPerro, index){
+  async realizar(idAviso, idPerro, index) {
     const postData = {
       idAviso: '',
       idPerro: '',
       idContratante: ''
-      };
+    };
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Confimación',
@@ -143,7 +169,7 @@ export class AvisosPage implements OnInit {
     await alert.present();
   }
 
-  async chequearSiHayAvisosActivos(){
+  async chequearSiHayAvisosActivos() {
     /*
     if (this.avisosActivos.length <= 0){
       const alert = await this.alertController.create({

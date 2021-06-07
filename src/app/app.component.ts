@@ -6,7 +6,6 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { UsuariosService } from './services/usuarios.service';
 import { Deeplinks } from '@ionic-native/deeplinks/ngx/index';
 import { Router } from '@angular/router';
-import { MascotaDetailPageModule } from './mascota-detail/mascota-detail.module';
 
 @Component({
   selector: 'app-root',

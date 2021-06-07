@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -27,7 +27,6 @@ import { firebaseConfig } from '../environments/firebaseConfig';
 import { IonicStripeCheckoutModule } from '@vyconsulting/ionic-stripe-checkout';
 import { environment } from '../environments/environment';
 import { Deeplinks } from '@ionic-native/deeplinks/ngx/index'
-
 
 
 @NgModule({

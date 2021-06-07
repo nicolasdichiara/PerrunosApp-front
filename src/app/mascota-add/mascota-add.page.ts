@@ -19,6 +19,7 @@ export class MascotaAddPage implements OnInit {
   mascota: Mascota;
   edad = 0;
   razas: Array<Raza> = [];
+  razasFiltradas: Array<Raza> = []
 
   get nombre() {
     return this.registrationForm.get('nombre');
@@ -62,6 +63,10 @@ export class MascotaAddPage implements OnInit {
 
   get paseoConOtrosPerros() {
     return this.registrationForm.get('paseoConOtrosPerros');
+  }
+
+  get filtroRazas(){
+    return this.registrationForm.get('filtroRazas')
   }
 
   public errorMessages = {
@@ -114,6 +119,7 @@ export class MascotaAddPage implements OnInit {
     paseoConUnPaseador: ['', [Validators.required]],
     paseoConOtrosPerros: ['', [Validators.required]],
     paseaFrecuente: ['', [Validators.required]],
+    filtroRazas: ['',[]],
   });
 
   constructor(
@@ -127,6 +133,10 @@ export class MascotaAddPage implements OnInit {
       this.authUser = res;
       console.log(res);
     });
+  }
+
+  public filtrarRazas(){
+    this.razasFiltradas = this.razas.filter(r=>r.nombre.toLowerCase().includes(this.registrationForm.get('filtroRazas').value.toLowerCase()))
   }
 
   public async submit(){

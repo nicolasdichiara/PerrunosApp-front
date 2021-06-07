@@ -13,14 +13,17 @@
       <ion-label class="titulo">Mis Avisos</ion-label>
     </ion-list-header>
     <ion-card *ngFor="let aviso of avisos; let i = index">
-      <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y" />
+      <!-- <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y" /> -->
       <ion-card-header>
         <ion-card-title>
           {{aviso.tipoServicio.nombre}}
         </ion-card-title>
         <ion-card-subtitle>
-          {{aviso.fecha.dayOfMonth}}/{{aviso.fecha.monthValue}}/{{aviso.fecha.year}} -
-          {{aviso.horario.hour}}:{{aviso.horario.minute}}
+          Publicado el
+          {{aviso.fechaPublicacion.dayOfMonth}}/{{aviso.fechaPublicacion.monthValue}}/{{aviso.fechaPublicacion.year}}
+        </ion-card-subtitle>
+        <ion-card-subtitle>
+          {{aviso.detalle}}
         </ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
@@ -34,27 +37,77 @@
       </ion-card-content>
     </ion-card>
   </ion-list>
+
+
+
   <ion-list *ngIf="authUser?.tipoPerfil == 'Duenio'">
-    <ion-list-header>
-      <ion-label class="titulo">Avisos Publicados</ion-label>
-    </ion-list-header>
-    <ion-card *ngFor="let avisoActivo of avisosActivos; let i = index">
-      <img src="../../assets/img/aviso.png" style="max-width: 40px;" />
+    <ion-item lines="none">Avisos Publicados</ion-item>
+    <ion-item lines="none">
+      <ion-label>Tipo de servicio</ion-label>
+      <ion-select [(ngModel)]="idTipoElegido" placeholder="Seleccione tipo" type="text" name="tipoServicio">
+        <ion-select-option value="{{tipo.idTipoServicio}}" *ngFor="let tipo of tipos">{{tipo.nombre}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item lines="none">Zona</ion-item>
+    <ion-item lines="none">
+      <ion-searchbar [(ngModel)]="zonaEscrita" placeholder="Filtrar Zonas"></ion-searchbar>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-select [(ngModel)]="zonaElegida" (click)="filtrarZonasSelect()" class="ionSelectSize"
+        placeholder="Seleccione zona" type="text" name="zona">
+        <ion-select-option value="{{zona.idZona}}" *ngFor="let zona of zonasFiltradas">{{zona.nombreZona}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-button size="small" slot="end" (click)="aplicarFiltros()">Buscar Avisos</ion-button>
+    </ion-item>
+    <!-- <ion-list-header>
+      <ion-item>
+        <ion-label class="titulo">Avisos Publicados</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label class="titulo">Tipo de Servicio</ion-label>
+      </ion-item>
+    </ion-list-header> -->
+    <ion-card *ngFor="let avisoActivo of avisosActivosFiltrados; let i = index">
+      <!-- <img src="../../assets/img/aviso.png" style="max-width: 40px;" /> -->
       <ion-card-header>
         <ion-card-title>
-          {{avisoActivo.tipoServicio.nombre}}
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <div class="ion-text-start ion-text-nowrap">
+                  <h2>{{avisoActivo.tipoServicio.nombre}}</h2>
+                </div>
+              </ion-col>
+              <ion-col>
+                <div class="ion-text-end ion-text-nowrap">
+                  <h2>${{avisoActivo.precio}}</h2>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
         </ion-card-title>
-        <!-- <ion-card-subtitle>
-          {{avisoActivo.}}
-        </ion-card-subtitle> -->
         <ion-card-subtitle>
-          {{avisoActivo.fecha.dayOfMonth}}/{{avisoActivo.fecha.monthValue}}/{{avisoActivo.fecha.year}} -
-          {{avisoActivo.horario.hour}}:{{avisoActivo.horario.minute}}
+          Publicado el
+          {{avisoActivo.fechaPublicacion.dayOfMonth}}/{{avisoActivo.fechaPublicacion.monthValue}}/{{avisoActivo.fechaPublicacion.year}}
+        </ion-card-subtitle>
+        <ion-card-subtitle>
+          Publicante: {{avisoActivo.nombre}} {{avisoActivo.apellido}}
+        </ion-card-subtitle>
+        <ion-card-subtitle>
+          Calificacion: {{avisoActivo.calificacion}}
+          <ion-icon name="star"></ion-icon>
+        </ion-card-subtitle>
+        <ion-card-subtitle>
+          {{avisoActivo.detalle}}
         </ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
-        <ion-button size="small" color="success" slot="end"
-          (click)="realizar(avisoActivo.idAviso, avisoActivo.idPerro, i)">Realizar</ion-button>
+        <!-- <ion-button size="small" color="success" slot="end"
+          (click)="realizar(avisoActivo.idAviso, avisoActivo.idPerro, i)">Realizar</ion-button> -->
         <!--
     <ion-button size="small" color="warning" slot="end" (click)="editar(aviso.id)">Editar</ion-button>
     -->

@@ -6,6 +6,7 @@ import { UsuariosService } from './usuarios.service';
 import { environment } from '../../environments/environment';
 import { Aviso } from 'src/domain/aviso';
 import { Servicio } from 'src/domain/servicio';
+import { TipoServicio } from 'src/domain/tipoServicio';
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +43,18 @@ export class ServiciosService {
     const servicios: Servicio[] = await this.http.get<any>(environment.apiUrl +
        'usuario/historialDeServicios/' + idUser).toPromise();
     return servicios.map((servicio) => Servicio.fromJson(servicio));
+  }
+
+  async getTiposDeServicios() {
+    const tiposDeServicio: TipoServicio[] = await this.http.get<any>(environment.apiUrl + 'servicios/tiposDeServicio').toPromise();
+    return tiposDeServicio.map((tipoServicio)=> TipoServicio.fromJson(tipoServicio));
+    //return [TipoServicio.fromJson(tiposDeServicio)]
+  }
+
+  async getTipoDeServicioPorId(idTipoServicio) {
+    const tiposDeServicio: TipoServicio[] = await this.http.get<any>(environment.apiUrl + 'servicios/tiposDeServicio/' + idTipoServicio).toPromise();
+    //return tiposDeServicio.map((tipoServicio)=> TipoServicio.fromJson(tipoServicio));
+    return TipoServicio.fromJson(tiposDeServicio)
   }
 
   // Pago

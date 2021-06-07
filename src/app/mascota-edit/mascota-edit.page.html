@@ -18,8 +18,6 @@
         src={{muestraImagen()}}>
       <!-- </ion-avatar> -->
       <ion-item>
-
-
         <ion-label color="secondary">Nombre</ion-label>
         <ion-input formControlName="nombre" type="text" name="nombre" value="{{mascota?.nombre}}"></ion-input>
       </ion-item>
@@ -30,7 +28,8 @@
       </div>
       <ion-item>
         <ion-label color="secondary" class="tamanio">Raza</ion-label>
-        <ion-select value="{{mascota?.raza.idRaza}}" placeholder="Seleccione raza por favor" formControlName="raza" type="text" name="raza">
+        <ion-select value="{{mascota?.raza.idRaza}}" placeholder="Seleccione raza por favor" formControlName="raza"
+          type="text" name="raza">
           <ion-select-option value="{{raza.idRaza}}" *ngFor="let raza of razas">{{raza.nombre}}</ion-select-option>
         </ion-select>
       </ion-item>

@@ -22,10 +22,13 @@
         <small class="error-message">{{ error.message }}</small>
       </ng-container>
     </div>
+    <ion-item>Raza</ion-item>
     <ion-item>
-      <ion-label>Raza</ion-label>
-      <ion-select placeholder="Seleccione raza por favor" formControlName="raza" type="text" name="raza">
-        <ion-select-option value="{{raza.idRaza}}" *ngFor="let raza of razas">{{raza.nombre}}</ion-select-option>
+      <ion-searchbar formControlName="filtroRazas" placeholder="Filtrar Razas"></ion-searchbar>
+    </ion-item>
+    <ion-item>
+      <ion-select (click)="filtrarRazas()" class="ionSelectSize" placeholder="Seleccione raza" formControlName="raza" type="text" name="raza">
+        <ion-select-option value="{{raza.idRaza}}" *ngFor="let raza of razasFiltradas">{{raza.nombre}}</ion-select-option>
       </ion-select>
     </ion-item>
     <div *ngFor="let error of errorMessages.raza">
