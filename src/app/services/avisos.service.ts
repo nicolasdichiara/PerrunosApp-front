@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, JsonpClientBackend } from '@angular/common/http';
 import { Raza } from 'src/domain/raza';
 import { HttpService } from './http.service';
 import { UsuariosService } from './usuarios.service';
@@ -40,6 +40,15 @@ export class AvisosService {
   async getAvisoById(id: number){
     const aviso = await this.http.get<Aviso>(environment.apiUrl + 'usuario/traerUnAviso/' + id).toPromise();
     return Aviso.fromJson(aviso);
+  }
+
+  async contactarAviso(_idAviso: number, _idUser: number){
+    let contactojson = {
+      idAviso:_idAviso,
+      idUser:_idUser
+    }
+    console.log(JSON.stringify(contactojson))
+    return this.http.post(environment.apiUrl + 'usuario/contactarAviso', JSON.stringify(contactojson)).toPromise();
   }
 
 }

@@ -63,7 +63,15 @@
       <ion-text color="medium" type="text" name="name" required>{{aviso?.horario}}</ion-text>
     </ion-item>
   </ion-list>
-  <ion-button *ngIf="authUser?.id!=aviso?.idUsuario" color="success" expand="block" [href]="contactar()">
+
+  <ion-item *ngIf="authUser?.tipoPerfil == 'Duenio'">
+    <ion-label>Mascota</ion-label>
+    <ion-select [(ngModel)]="idMascota" interface="popover" placeholder="Seleccione una mascota" name="mascotaSeleccionada">
+      <ion-select-option value="{{mascota?.idPerro}}" *ngFor="let mascota of mascotas">{{mascota.nombre}}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-button [disabled]="puedoContactar()" *ngIf="authUser?.id!=aviso?.idUsuario" color="success" expand="block" (click)="contactar()">
     <ion-icon name="logo-whatsapp"></ion-icon>
     Contactar
   </ion-button>

@@ -33,13 +33,13 @@
       </p>
     </ion-label>
   </ion-item>
-  <ion-item *ngIf="authUser?.tipoPerfil == 'Duenio'">
+  <!-- <ion-item *ngIf="authUser?.tipoPerfil == 'Duenio'">
     <ion-label>Mascota</ion-label>
     <ion-select interface="popover" placeholder="Seleccione una mascota" name="mascotaSeleccionada">
       <ion-select-option value="{{mascota.idPerro}}" *ngFor="let mascota of mascotas">{{mascota.nombre}}
       </ion-select-option>
     </ion-select>
-  </ion-item>
+  </ion-item> -->
 
   <ion-grid *ngIf="authUser?.tipoPerfil == 'Duenio'">
     <ion-row>
@@ -169,7 +169,7 @@
 <ion-footer class="ion-no-border">
   <ion-toolbar>
     <ion-item>
-      <ion-label item-start>Perrunos App © 2020 - Ver. 0.0.4</ion-label>
+      <ion-label item-start>Perrunos App © 2020 Beta 0.0.11</ion-label>
       <ion-button fill="clear" (click)="logout()" item-end>
         <ion-icon name="power" style="font-size: 25px;padding:5px;"></ion-icon>
       </ion-button>

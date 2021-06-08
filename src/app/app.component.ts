@@ -43,7 +43,7 @@ export class AppComponent {
           // nomatch.$link - the full link data
           this.router.navigate(['home'])
           console.error('Got a deeplink that didn\'t match', nomatch);
-          alert('El link no es correcto')
+          //alert('El link no es correcto')
         });
     });
   }

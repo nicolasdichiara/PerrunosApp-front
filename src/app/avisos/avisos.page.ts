@@ -94,15 +94,6 @@ export class AvisosPage implements OnInit {
     this.avisosActivosFiltrados = this.avisosActivos.filter(avs => avs.tipoServicio.idTipoServicio == this.idTipoElegido && avs.zona.idZona == this.zonaElegida)
   }
 
-  // filtrarZonasPosta(){
-  //   this.avisosActivosFiltrados = this.avisosActivos.filter(avs)
-  // }
-
-  // aplicarFiltros(){
-  //   this.filtrarTipoServicio()
-
-  // }
-
   async eliminar(idAviso, index) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
@@ -130,8 +121,7 @@ export class AvisosPage implements OnInit {
     await alert.present();
   }
 
-  /* En caso de ser paseador, puede presionarse realizar para generar un servicio del aviso
-   */
+  //ESTO TIENE QUE ESTAR EN SERVICIOS GUARDADOS
   async realizar(idAviso, idPerro, index) {
     const postData = {
       idAviso: '',
