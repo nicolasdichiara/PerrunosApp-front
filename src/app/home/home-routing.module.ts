@@ -119,7 +119,10 @@ const routes: Routes = [
         path: 'mascotas',
         loadChildren: () => import('../mascotas/mascotas.module').then(m => m.MascotasPageModule)
       },
-      
+      {
+        path: 'avisos-guardados',
+        loadChildren: () => import('../avisos-guardados/avisos-guardados.module').then(m => m.AvisosGuardadosPageModule)
+      },
       {
         path: '',
         redirectTo: '/home/menuuser',

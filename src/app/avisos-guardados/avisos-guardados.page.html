@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Avisos Contactados</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-item lines="none">
+      <ion-label>Tipo de servicio</ion-label>
+      <ion-select [(ngModel)]="idTipoElegido" placeholder="Seleccione tipo" type="text" name="tipoServicio">
+        <ion-select-option value="{{tipo.idTipoServicio}}" *ngFor="let tipo of tipos">{{tipo.nombre}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-button size="small" slot="end" (click)="aplicarFiltros()">Buscar Avisos</ion-button>
+    </ion-item>
+    <ion-card *ngFor="let aviso of avisosFiltrados; let i = index">
+      <!-- <img src="../../assets/img/aviso.png" style="max-width: 40px;" /> -->
+      <ion-card-header>
+        <ion-card-title>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <div class="ion-text-start ion-text-nowrap">
+                  <h2>{{aviso?.tipoServicio.nombre}}</h2>
+                </div>
+              </ion-col>
+              <ion-col>
+                <div class="ion-text-end ion-text-nowrap">
+                  <h2>${{aviso?.precio}}</h2>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-title>
+        <ion-card-subtitle>
+          Publicado el
+          {{aviso?.fechaPublicacion.dayOfMonth}}/{{aviso?.fechaPublicacion.monthValue}}/{{aviso?.fechaPublicacion.year}}
+        </ion-card-subtitle>
+        <ion-card-subtitle>
+          Publicante: {{aviso?.nombre}} {{aviso?.apellido}}
+        </ion-card-subtitle>
+        <ion-card-subtitle>
+          Calificacion: {{aviso?.calificacion}}
+          <ion-icon name="star"></ion-icon>
+        </ion-card-subtitle>
+        <ion-card-subtitle>
+          {{aviso?.detalle}}
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-button size="small" color="success" slot="end" (click)="realizar(aviso.idAviso, aviso.tipoServicio.idTipoServicio, i)">Comenzar
+          Paseo</ion-button>
+        <ion-button size="small" slot="end" fill="outline" (click)="verDetalle(aviso.idAviso)">Ver Detalle
+        </ion-button>
+        <ion-button size="small" color="danger" fill="outline" slot="end" (click)="eliminar(aviso.idAviso, i)">Quitar
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+</ion-content>

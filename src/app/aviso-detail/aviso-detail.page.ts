@@ -59,6 +59,7 @@ export class AvisoDetailPage implements OnInit {
   }
 
   contactar() {
+    console.log(this.authUser.id)
     this.avisosService.contactarAviso(this.idAviso, this.authUser.id)
     console.log(this.rutaWhatsapp())
     window.location.href = this.rutaWhatsapp()

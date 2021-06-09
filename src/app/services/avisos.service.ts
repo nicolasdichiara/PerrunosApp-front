@@ -28,6 +28,11 @@ export class AvisosService {
     return avisos.map((aviso) => Aviso.fromJson(aviso));
   }
 
+  async getAvisosContactados(idUser) {
+    const avisos: Aviso[] = await this.http.get<any>(environment.apiUrl + 'usuario/avisosContactados/' + idUser).toPromise();
+    return avisos.map((aviso) => Aviso.fromJson(aviso));
+  }
+
   async getAvisosActivos() {
     const avisos: Aviso[] = await this.http.get<any>(environment.apiUrl + 'avisos/traerTodosLosAvisos').toPromise();
     return avisos.map((aviso) => Aviso.fromJson(aviso));
@@ -37,18 +42,26 @@ export class AvisosService {
     return this.http.delete(environment.apiUrl + 'usuario/eliminarAviso/' + id).toPromise();
   }
 
-  async getAvisoById(id: number){
+
+  async getAvisoById(id: number) {
     const aviso = await this.http.get<Aviso>(environment.apiUrl + 'usuario/traerUnAviso/' + id).toPromise();
     return Aviso.fromJson(aviso);
   }
 
-  async contactarAviso(_idAviso: number, _idUser: number){
+  async contactarAviso(_idAviso: number, _idUser: number) {
     let contactojson = {
-      idAviso:_idAviso,
-      idUser:_idUser
+      idAviso: _idAviso,
+      idUser: _idUser
     }
     console.log(JSON.stringify(contactojson))
     return this.http.post(environment.apiUrl + 'usuario/contactarAviso', JSON.stringify(contactojson)).toPromise();
   }
 
+  async eliminarAvisoContactado(_idAviso: number, _idUser: number) {
+    let contactojson = {
+      idAviso: _idAviso,
+      idUser: _idUser
+    }
+    return this.http.post(environment.apiUrl + 'usuario/eliminarAvisoContactado', JSON.stringify(contactojson)).toPromise();
+  }
 }

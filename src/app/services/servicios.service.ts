@@ -21,6 +21,7 @@ export class ServiciosService {
 
 
   async contratarServicio(postData: any) {
+    console.log(JSON.stringify(postData))
     return this.http.post(environment.apiUrl + 'usuario/servicios/contratarPaseo', postData).toPromise();
   }
 
