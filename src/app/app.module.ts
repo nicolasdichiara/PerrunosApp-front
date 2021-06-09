@@ -27,6 +27,9 @@ import { firebaseConfig } from '../environments/firebaseConfig';
 import { IonicStripeCheckoutModule } from '@vyconsulting/ionic-stripe-checkout';
 import { environment } from '../environments/environment';
 import { Deeplinks } from '@ionic-native/deeplinks/ngx/index'
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx'
+import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx'
+import { Geolocation } from '@ionic-native/geolocation/ngx'
 
 
 @NgModule({
@@ -56,6 +59,9 @@ import { Deeplinks } from '@ionic-native/deeplinks/ngx/index'
     StatusBar,
     SplashScreen,
     Deeplinks,
+    AndroidPermissions,
+    Geolocation,
+    LocationAccuracy,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

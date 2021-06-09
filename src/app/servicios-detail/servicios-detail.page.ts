@@ -6,6 +6,7 @@ import { ToastService } from '../services/toast.service';
 import { ServiciosService } from '../services/servicios.service';
 import { Mascota } from 'src/domain/mascota';
 import { AlertController } from '@ionic/angular';
+import { UsuariosService } from '../services/usuarios.service';
 
 @Component({
   selector: 'app-servicios-detail',
@@ -17,6 +18,7 @@ export class ServiciosDetailPage implements OnInit {
   idServicio: number;
   servicio: Servicio;
   mascota: Mascota;
+  public authUser: any;
 
   constructor(
     private router: Router,
@@ -24,24 +26,29 @@ export class ServiciosDetailPage implements OnInit {
     private mascotasService: MascotasService,
     private alertController: AlertController,
     private serviciosService: ServiciosService,
-    private toastService: ToastService
-  ) { }
+    private toastService: ToastService,
+    private auth: UsuariosService
+  ) {
+    this.auth.userData$.subscribe(async (res: any) => {
+      this.authUser = res;
+    });
+  }
 
   ngOnInit() {
     this.route.params.subscribe(async params => {
       this.idServicio = params['id'];
-      if (this.idServicio){
+      if (this.idServicio) {
         try {
           this.servicio = await this.serviciosService.getServicioById(this.idServicio);
           console.log(this.servicio);
-          if (this.servicio.idPerro){
-            try {
-              this.mascota = await this.mascotasService.getMascotaById(this.servicio.idPerro);
-              console.log(this.mascota);
-            } catch (error) {
-              this.toastService.presentToast('Ha ocurrido un error al mostrar mascota');
-            }
-          }
+          // if (this.servicio.idPerro){
+          //   try {
+          //     this.mascota = await this.mascotasService.getMascotaById(this.servicio.idPerro);
+          //     console.log(this.mascota);
+          //   } catch (error) {
+          //     this.toastService.presentToast('Ha ocurrido un error al mostrar mascota');
+          //   }
+          // }
         } catch (error) {
           this.toastService.presentToast('Ha ocurrido un error, reintente.');
         }
@@ -49,7 +56,19 @@ export class ServiciosDetailPage implements OnInit {
     });
   }
 
-  verMapa(){
+  rutaWhatsapp(){
+    if(this.authUser.tipoPerfil == 'Duenio'){
+      return "https://api.whatsapp.com/send?phone=+54" + this.servicio.telefonoPrestador
+    } else {
+      return "https://api.whatsapp.com/send?phone=+54" + this.servicio.telefonoDuenio
+    }
+  }
+
+  contactarContraparte(){
+    window.location.href = this.rutaWhatsapp() 
+  }
+
+  verMapa() {
     this.router.navigate(['home/geolocalizacion', this.servicio.idServicio]);
   }
 
@@ -73,7 +92,7 @@ export class ServiciosDetailPage implements OnInit {
             try {
               this.serviciosService.finalizarServicio(idServicio);
               this.toastService.presentToast('Servicio Finalizado');
-              this.router.navigate(['home/servicios/calificar/' + idServicio ]);
+              this.router.navigate(['home/servicios/calificar/' + idServicio]);
             }
             catch (error) {
               this.toastService.presentToast('Ha ocurrido un error, reintente.');

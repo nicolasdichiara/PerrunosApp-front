@@ -97,7 +97,7 @@ export class AvisosGuardadosPage implements OnInit {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Confimación',
-      message: 'Desea llevar adelante el paseo?',
+      message: 'Desea llevar adelante el paseo? El paseador debe estar de acuerdo',
       buttons: [
         {
           text: 'Cancelar',

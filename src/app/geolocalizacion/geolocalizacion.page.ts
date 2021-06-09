@@ -164,7 +164,7 @@ export class GeolocalizacionPage implements OnInit, OnDestroy {
 
 
     // Suscripción para actualización automatica
-    const source = interval(10000);
+    const source = interval(5000);
     this.subscription = source.subscribe(val => {
       console.log('dale');
       if (this.authUser.tipoPerfil == 'Duenio'){

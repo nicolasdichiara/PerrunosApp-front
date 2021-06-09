@@ -9,27 +9,33 @@
 
 <ion-content>
   <ion-card>
-    <img src="../../assets/img/servicio2.png" style="padding:5px;max-width: 50px;" />  
     <ion-card-header>
       <ion-card-title>
-        {{servicio?.tipoServicio.nombre}}
+        <div align="center">
+          <h1> {{servicio?.tipoServicio.nombre}}</h1>
+          <img src="../../assets/img/servicio2.png" style="padding:5px;max-width: 50px;" />
+        </div>
       </ion-card-title>
-      <ion-card-subtitle>
-        {{servicio?.fechaRealizacion.dayOfMonth}}/{{servicio?.fechaRealizacion.monthValue}}/{{servicio?.fechaRealizacion.year}} - {{servicio?.horario.hour}}:{{servicio?.horario.minute}}
-      </ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
-      <ion-card>
-        <img src="../../assets/img/{{mascota?.raza.nombre}}.jpg" />  
-        <ion-card-header>
-          <ion-card-title>
-            {{mascota?.nombre}}
-          </ion-card-title>
-          <ion-card-subtitle>{{mascota?.raza.nombre}}</ion-card-subtitle>
-        </ion-card-header>
-      </ion-card>
-      <ion-button color="danger" fill="outline" slot="end" (click)="finalizarServicio(servicio.idServicio)">Finalizar</ion-button>
+      <ion-card-header>
+        <ion-card-subtitle>
+          El Paseo inició el
+          {{servicio?.fechaRealizacion.dayOfMonth}}/{{servicio?.fechaRealizacion.monthValue}}/{{servicio?.fechaRealizacion.year}}
+          a las {{servicio?.horario.hour}}:{{servicio?.horario.minute}}
+        </ion-card-subtitle>
+        <ion-card-subtitle *ngIf="authUser?.tipoPerfil == 'Duenio'">Paseador: {{servicio?.nombrePrestador}} {{servicio?.apellidoPrestador}}</ion-card-subtitle>
+        <ion-card-subtitle *ngIf="authUser?.tipoPerfil == 'Duenio'">Teléfono: {{servicio?.telefonoPrestador}}</ion-card-subtitle>
+        <ion-card-subtitle *ngIf="authUser?.tipoPerfil != 'Duenio'">Dueño: {{servicio?.nombreDuenio}} {{servicio?.apellidoDuenio}}</ion-card-subtitle>
+        <ion-card-subtitle *ngIf="authUser?.tipoPerfil != 'Duenio'">Teléfono: {{servicio?.telefonoDuenio}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-button color="danger" fill="outline" slot="end" (click)="finalizarServicio(servicio.idServicio)">Finalizar
+      </ion-button>
       <ion-button slot="end" (click)="verMapa()">Ver Mapa</ion-button>
+      <ion-button color="success" slot="end" (click)="contactarContraparte()">
+        <ion-icon name="logo-whatsapp"></ion-icon>
+        Chat
+      </ion-button>
     </ion-card-content>
   </ion-card>
 </ion-content>

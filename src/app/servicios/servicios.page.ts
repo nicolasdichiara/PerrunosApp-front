@@ -24,9 +24,7 @@ export class ServiciosPage implements OnInit {
     private router: Router,
     private alertController: AlertController,
     private auth: UsuariosService,
-    private avisosService: AvisosService,
     private serviciosService: ServiciosService,
-    private mascotasService: MascotasService,
     private toastService: ToastService
   ) { }
 
