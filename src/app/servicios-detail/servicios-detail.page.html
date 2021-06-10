@@ -29,9 +29,9 @@
         <ion-card-subtitle *ngIf="authUser?.tipoPerfil != 'Duenio'">Dueño: {{servicio?.nombreDuenio}} {{servicio?.apellidoDuenio}}</ion-card-subtitle>
         <ion-card-subtitle *ngIf="authUser?.tipoPerfil != 'Duenio'">Teléfono: {{servicio?.telefonoDuenio}}</ion-card-subtitle>
       </ion-card-header>
-      <ion-button color="danger" fill="outline" slot="end" (click)="finalizarServicio(servicio.idServicio)">Finalizar
+      <ion-button [disabled]="!puedoVerMapa()" color="danger" fill="outline" slot="end" (click)="finalizarServicio(servicio.idServicio)">Finalizar
       </ion-button>
-      <ion-button slot="end" (click)="verMapa()">Ver Mapa</ion-button>
+      <ion-button *ngIf="servicio?.tipoServicio.nombre=='Servicio de Paseo'" [disabled]="!puedoVerMapa()" slot="end" (click)="verMapa()">Ver Mapa</ion-button>
       <ion-button color="success" slot="end" (click)="contactarContraparte()">
         <ion-icon name="logo-whatsapp"></ion-icon>
         Chat

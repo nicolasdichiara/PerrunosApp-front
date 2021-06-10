@@ -68,6 +68,10 @@ export class ServiciosDetailPage implements OnInit {
     window.location.href = this.rutaWhatsapp() 
   }
 
+  puedoVerMapa(){
+    return !!this.servicio?.activo
+  }
+
   verMapa() {
     this.router.navigate(['home/geolocalizacion', this.servicio.idServicio]);
   }

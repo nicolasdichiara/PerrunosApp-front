@@ -32,28 +32,28 @@
     <ion-item>
       <ion-text color="medium" type="text" name="name" required>{{aviso?.detalle}}</ion-text>
     </ion-item>
-    <ion-item lines="none" *ngIf="aviso?.tipoPerfil.nombrePerfil=='Paseador'">
-      <ion-label floating>Qué dias pasea?</ion-label>
+    <ion-item lines="none">
+      <ion-label floating>Qué dias está disponible?</ion-label>
     </ion-item>
-    <ion-item *ngIf="aviso?.tipoPerfil.nombrePerfil=='Paseador' && aviso?.lunes">
+    <ion-item *ngIf="aviso?.lunes">
       <ion-text *ngIf="aviso?.lunes" color="medium" type="text" name="name" required>Lunes</ion-text>
     </ion-item>
-    <ion-item *ngIf="aviso?.tipoPerfil.nombrePerfil=='Paseador' && aviso?.martes">
+    <ion-item *ngIf="aviso?.martes">
       <ion-text *ngIf="aviso?.martes" color="medium" type="text" name="name" required>Martes</ion-text>
     </ion-item>
-    <ion-item *ngIf="aviso?.tipoPerfil.nombrePerfil=='Paseador' && aviso?.miercoles">
+    <ion-item *ngIf="aviso?.miercoles">
       <ion-text *ngIf="aviso?.miercoles" color="medium" type="text" name="name" required>Miércoles</ion-text>
     </ion-item>
-    <ion-item *ngIf="aviso?.tipoPerfil.nombrePerfil=='Paseador' && aviso?.jueves">
+    <ion-item *ngIf="aviso?.jueves">
       <ion-text *ngIf="aviso?.jueves" color="medium" type="text" name="name" required>Jueves</ion-text>
     </ion-item>
-    <ion-item *ngIf="aviso?.tipoPerfil.nombrePerfil=='Paseador' && aviso?.viernes">
+    <ion-item *ngIf="aviso?.viernes">
       <ion-text *ngIf="aviso?.viernes" color="medium" type="text" name="name" required>Viernes</ion-text>
     </ion-item>
-    <ion-item *ngIf="aviso?.tipoPerfil.nombrePerfil=='Paseador' && aviso?.sabado">
+    <ion-item *ngIf="aviso?.sabado">
       <ion-text *ngIf="aviso?.sabado" color="medium" type="text" name="name" required>Sábado</ion-text>
     </ion-item>
-    <ion-item *ngIf="aviso?.tipoPerfil.nombrePerfil=='Paseador' && aviso?.domingo">
+    <ion-item *ngIf="aviso?.domingo">
       <ion-text *ngIf="aviso?.domingo" color="medium" type="text" name="name" required>Domingo</ion-text>
     </ion-item>
     <ion-item lines="none">

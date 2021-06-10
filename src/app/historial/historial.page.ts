@@ -47,4 +47,12 @@ export class HistorialPage implements OnInit {
       }
   }
 
+  calificar(idServ: number){
+    this.router.navigate(['home/servicios/calificar/' + idServ])
+  }
+
+  verDetalle(idServicio){
+    this.router.navigate(['home/servicios/servicios-detail', idServicio]);
+  }
+
 }
