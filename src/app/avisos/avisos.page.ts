@@ -86,6 +86,10 @@ export class AvisosPage implements OnInit {
     this.router.navigate(['home/avisos/aviso-detail', idAviso]);
   }
 
+  editar(idAviso) {
+    this.router.navigate(['home/avisos/aviso-edit', idAviso])
+  }
+
   public filtrarZonasSelect() {
     this.zonasFiltradas = this.zonas.filter(z => z.nombreZona.toLowerCase().includes(this.zonaEscrita.toLowerCase()))
   }

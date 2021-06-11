@@ -1,34 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ToastService } from '../services/toast.service';
-import { UsuariosService } from '../services/usuarios.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Aviso } from 'src/domain/aviso';
-import { AvisosService } from '../services/avisos.service';
 import { TipoServicio } from 'src/domain/tipoServicio';
 import { Zona } from 'src/domain/zona';
+import { AvisosService } from '../services/avisos.service';
+import { ToastService } from '../services/toast.service';
+import { UsuariosService } from '../services/usuarios.service';
 import { ZonasService } from '../services/zonas.service';
 
 @Component({
-  selector: 'app-avisos-add',
-  templateUrl: './avisos-add.page.html',
-  styleUrls: ['./avisos-add.page.scss'],
+  selector: 'app-aviso-edit',
+  templateUrl: './aviso-edit.page.html',
+  styleUrls: ['./aviso-edit.page.scss'],
 })
-export class AvisosAddPage implements OnInit {
+export class AvisoEditPage implements OnInit {
 
   public authUser: any;
   today: any;
-  aviso: Aviso;
+  aviso: Aviso
   tipos: Array<TipoServicio> = [];
   zonas: Array<Zona> = [];
   zonasFiltradas: Array<Zona> = []
-  lunes: boolean
-  martes: boolean
-  miercoles: boolean
-  jueves: boolean
-  viernes: boolean
-  sabado: boolean
-  domingo: boolean
+  idAviso: number
 
   get tipoServicio() {
     return this.avisoForm.get('tipoServicio');
@@ -54,33 +48,33 @@ export class AvisosAddPage implements OnInit {
     return this.avisoForm.get('filtroZonas')
   }
 
-  // get lunes() {
-  //   return this.avisoForm.get('lunes')
-  // }
+  get lunes() {
+    return this.avisoForm.get('lunes')
+  }
 
-  // get martes() {
-  //   return this.avisoForm.get('martes')
-  // }
+  get martes() {
+    return this.avisoForm.get('martes')
+  }
 
-  // get miercoles() {
-  //   return this.avisoForm.get('miercoles')
-  // }
+  get miercoles() {
+    return this.avisoForm.get('miercoles')
+  }
 
-  // get jueves() {
-  //   return this.avisoForm.get('jueves')
-  // }
+  get jueves() {
+    return this.avisoForm.get('jueves')
+  }
 
-  // get viernes() {
-  //   return this.avisoForm.get('viernes')
-  // }
+  get viernes() {
+    return this.avisoForm.get('viernes')
+  }
 
-  // get sabado() {
-  //   return this.avisoForm.get('sabado')
-  // }
+  get sabado() {
+    return this.avisoForm.get('sabado')
+  }
 
-  // get domingo() {
-  //   return this.avisoForm.get('domingo')
-  // }
+  get domingo() {
+    return this.avisoForm.get('domingo')
+  }
 
   public errorMessages = {
     detalle: [
@@ -108,16 +102,18 @@ export class AvisosAddPage implements OnInit {
     horario: ['', [Validators.required]],
     precio: ['', [Validators.required]],
     filtroZonas: ['', []],
-    // lunes: ['', []],
-    // martes: ['', []],
-    // miercoles: ['', []],
-    // jueves: ['', []],
-    // viernes: ['', []],
-    // sabado: ['', []],
-    // domingo: ['', []],
+    lunes: ['', []],
+    martes: ['', []],
+    miercoles: ['', []],
+    jueves: ['', []],
+    viernes: ['', []],
+    sabado: ['', []],
+    domingo: ['', []],
   });
+
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private avisosService: AvisosService,
     private auth: UsuariosService,
@@ -127,18 +123,6 @@ export class AvisosAddPage implements OnInit {
     this.today = new Date().toISOString();
     this.auth.userData$.subscribe(async (res: any) => {
       this.authUser = res;
-      // if (this.authUser.id){
-      //   if (this.authUser.tipoPerfil == 'Paseador') {
-      //     this.toastService.presentToast('Momentaneamente los paseadores no pueden generar avisos');
-      //     this.router.navigate(['home']);
-      //   }
-      //   try {
-      //     this.mascotas = await this.mascotasService.getMascotasUser(this.authUser.id);
-      //   } catch (error) {
-      //     this.toastService.presentToast('No se han podido cargar sus mascotas, reintente.' + error);
-      //   }
-      // }
-
     });
   }
 
@@ -149,7 +133,7 @@ export class AvisosAddPage implements OnInit {
   }
 
   public async submit() {
-    this.aviso = new Aviso();
+    //this.aviso = new Aviso();
     this.aviso.tipoServicio = this.avisoForm.get('tipoServicio').value;
     this.aviso.detalle = this.avisoForm.get('detalle').value;
     this.aviso.horario = this.avisoForm.get('horario').value;
@@ -162,20 +146,15 @@ export class AvisosAddPage implements OnInit {
     // this.aviso.viernes = !!this.avisoForm.get('viernes').value;
     // this.aviso.sabado = !!this.avisoForm.get('sabado').value;
     // this.aviso.domingo = !!this.avisoForm.get('domingo').value;
-    this.aviso.lunes = this.lunes
-    this.aviso.martes = this.martes
-    this.aviso.miercoles = this.miercoles
-    this.aviso.jueves = this.jueves
-    this.aviso.viernes = this.viernes
-    this.aviso.sabado = this.sabado
-    this.aviso.domingo = this.domingo
+    this.aviso.tipoPerfil = null
+    this.aviso.fechaPublicacion = null
 
     try {
-      await this.avisosService.postAviso(this.aviso, this.authUser.id);
+      await this.avisosService.editarAviso(this.aviso, this.idAviso);
       this.router.navigate(['home/avisos']);
     } catch (error) {
-      this.toastService.presentToast('Ha ocurrido un error creando el aviso, reintente.');
-      console.log('Ha ocurrido un error creando el aviso, reintente.', error);
+      this.toastService.presentToast('Ha ocurrido un error editando el aviso, reintente.');
+      console.log('Ha ocurrido un error editando el aviso, reintente.', error);
     }
 
   }
@@ -184,5 +163,17 @@ export class AvisosAddPage implements OnInit {
     this.tipos = await this.auth.getTiposDeServicioDelUsuario(this.authUser.id);
     console.log(this.tipos)
     this.zonas = await this.zonasService.getTodasLasZonas()
+    this.route.params.subscribe(async params => {
+      this.idAviso = params['id'];  //toma la id del url del navegador 
+      if (this.idAviso) {  //esto busca los datos actuales de la mascota que lo va a editar y lo guarda en mascota
+        try {
+          this.aviso = await this.avisosService.getAvisoById(this.idAviso);
+          console.log(this.aviso);
+        } catch (error) {
+          this.toastService.presentToast('Ha ocurrido un error, reintente.' + error);
+        }
+      }
+    });
   }
+
 }

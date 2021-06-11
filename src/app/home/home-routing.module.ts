@@ -87,6 +87,10 @@ const routes: Routes = [
           {
             path: 'aviso-detail/:id',
             loadChildren: () => import('../aviso-detail/aviso-detail.module').then(m => m.AvisoDetailPageModule)
+          },
+          {
+            path: 'aviso-edit/:id',
+            loadChildren: () => import('../aviso-edit/aviso-edit.module').then(m => m.AvisoEditPageModule)
           }
         ]
       },

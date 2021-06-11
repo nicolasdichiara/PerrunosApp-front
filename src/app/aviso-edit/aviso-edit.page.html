@@ -15,7 +15,8 @@
       </ion-list-header> -->
       <ion-item>
         <ion-label>Tipo de servicio</ion-label>
-        <ion-select placeholder="Seleccione tipo" formControlName="tipoServicio" type="text" name="tipoServicio">
+        <ion-select value="{{aviso?.tipoServicio.idTipoServicio}}" placeholder="Seleccione tipo"
+          formControlName="tipoServicio" type="text" name="tipoServicio">
           <ion-select-option value="{{tipo.idTipoServicio}}" *ngFor="let tipo of tipos">{{tipo.nombre}}
           </ion-select-option>
         </ion-select>
@@ -28,43 +29,44 @@
 
       <ion-item lines="none">Detallá un poco tu servicio</ion-item>
       <ion-item>
-        <ion-textarea color="medium" formControlName="detalle" type="text" name="detalle"></ion-textarea>
+        <ion-textarea value="{{aviso?.detalle}}" color="medium" formControlName="detalle" type="text" name="detalle">
+        </ion-textarea>
       </ion-item>
       <div *ngFor="let error of errorMessages.detalle">
         <ng-container *ngIf="detalle.hasError(error.type) && (detalle.dirty || detalle.touched)">
           <small class="error-message">{{ error.message }}</small>
         </ng-container>
       </div>
-      
+
       <ion-item lines="none">Qué días estás diponible?</ion-item>
       <ion-list>
         <ion-item>
           <ion-label color="medium">Lunes</ion-label>
-          <ion-toggle [(ngModel)]="lunes" [ngModelOptions]="{standalone: true}"></ion-toggle>
+          <ion-toggle *ngIf="aviso" [(ngModel)]="aviso.lunes" [ngModelOptions]="{standalone: true}"></ion-toggle>
         </ion-item>
         <ion-item>
           <ion-label color="medium">Martes</ion-label>
-          <ion-toggle [(ngModel)]="martes" [ngModelOptions]="{standalone: true}"></ion-toggle>
+          <ion-toggle *ngIf="aviso" [(ngModel)]="aviso.martes" [ngModelOptions]="{standalone: true}"></ion-toggle>
         </ion-item>
         <ion-item>
           <ion-label color="medium">Miércoles</ion-label>
-          <ion-toggle [(ngModel)]="miercoles" [ngModelOptions]="{standalone: true}"></ion-toggle>
+          <ion-toggle *ngIf="aviso" [(ngModel)]="aviso.miercoles" [ngModelOptions]="{standalone: true}"></ion-toggle>
         </ion-item>
         <ion-item>
           <ion-label color="medium">Jueves</ion-label>
-          <ion-toggle [(ngModel)]="jueves" [ngModelOptions]="{standalone: true}"></ion-toggle>
+          <ion-toggle *ngIf="aviso" [(ngModel)]="aviso.jueves" [ngModelOptions]="{standalone: true}"></ion-toggle>
         </ion-item>
         <ion-item>
           <ion-label color="medium">Viernes</ion-label>
-          <ion-toggle [(ngModel)]="viernes" [ngModelOptions]="{standalone: true}"></ion-toggle>
+          <ion-toggle *ngIf="aviso" [(ngModel)]="aviso.viernes" [ngModelOptions]="{standalone: true}"></ion-toggle>
         </ion-item>
         <ion-item>
           <ion-label color="medium">Sábado</ion-label>
-          <ion-toggle [(ngModel)]="sabado" [ngModelOptions]="{standalone: true}"></ion-toggle>
+          <ion-toggle *ngIf="aviso" [(ngModel)]="aviso.sabado" [ngModelOptions]="{standalone: true}"></ion-toggle>
         </ion-item>
         <ion-item>
           <ion-label color="medium">Domingo</ion-label>
-          <ion-toggle [(ngModel)]="domingo" [ngModelOptions]="{standalone: true}"></ion-toggle>
+          <ion-toggle *ngIf="aviso" [(ngModel)]="aviso.domingo" [ngModelOptions]="{standalone: true}"></ion-toggle>
         </ion-item>
       </ion-list>
 
@@ -72,7 +74,8 @@
 
       <ion-item lines="none">En qué horario</ion-item>
       <ion-item>
-        <ion-textarea color="medium" type="text" formControlName="horario" name="horario"></ion-textarea>
+        <ion-textarea value="{{aviso?.horario}}" color="medium" type="text" formControlName="horario" name="horario">
+        </ion-textarea>
       </ion-item>
       <div *ngFor="let error of errorMessages.horario">
         <ng-container *ngIf="horario.hasError(error.type) && (horario.dirty || horario.touched)">
@@ -82,7 +85,8 @@
 
       <ion-item>
         <ion-label>Precio</ion-label>
-        <ion-input color="medium" formControlName="precio" type="number" name="precio"></ion-input>
+        <ion-input value="{{aviso?.precio}}" color="medium" formControlName="precio" type="number" name="precio">
+        </ion-input>
       </ion-item>
       <div *ngFor="let error of errorMessages.precio">
         <ng-container *ngIf="precio.hasError(error.type) && (precio.dirty || precio.touched)">
@@ -95,8 +99,8 @@
         <ion-searchbar formControlName="filtroZonas" placeholder="Filtrar Zonas"></ion-searchbar>
       </ion-item>
       <ion-item>
-        <ion-select (click)="filtrarZonas()" class="ionSelectSize" placeholder="Seleccione zona" formControlName="zona"
-          type="text" name="zona">
+        <ion-select value="{{aviso?.zona.idZona}}" (click)="filtrarZonas()" class="ionSelectSize"
+          placeholder="Seleccione zona" formControlName="zona" type="text" name="zona">
           <ion-select-option value="{{zona.idZona}}" *ngFor="let zona of zonasFiltradas">{{zona.nombreZona}}
           </ion-select-option>
         </ion-select>
@@ -108,9 +112,19 @@
       </div>
     </ion-list>
 
-
-    <ion-button [disabled]="!avisoForm.valid" expand="block" type="submit" class="add">
-      <ion-icon name="add-outline"></ion-icon> Crear aviso
-    </ion-button>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button [disabled]="!avisoForm.valid" expand="block" type="submit" class="add">
+            Guardar
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button expand="block" color="danger" class="add" [routerLink]="'/home/avisos'">
+            Cancelar
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </form>
 </ion-content>

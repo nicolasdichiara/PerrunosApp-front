@@ -17,6 +17,9 @@ export class AvisosService {
     private httpService: HttpService
   ) { }
 
+  async editarAviso(aviso: Aviso, idAviso){
+    return this.http.post(environment.apiUrl + 'usuario/avisos/modificarAviso/' + idAviso, aviso.toJSON()).toPromise();
+  }
 
   async postAviso(aviso: Aviso, idUser) {
     console.log(aviso.toJSON());
