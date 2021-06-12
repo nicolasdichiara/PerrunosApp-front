@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MascotasService } from '../services/mascotas.service';
-import { ToastService } from '../services/toast.service';
 import { Router } from '@angular/router';
-import { UsuariosService } from '../services/usuarios.service';
-import { AlertController } from '@ionic/angular';
-import { AvisosService } from '../services/avisos.service';
-import { ServiciosService } from '../services/servicios.service';
 import { Servicio } from 'src/domain/servicio';
+import { ServiciosService } from '../services/servicios.service';
+import { ToastService } from '../services/toast.service';
+import { UsuariosService } from '../services/usuarios.service';
 
 @Component({
   selector: 'app-historial',
@@ -17,42 +14,61 @@ export class HistorialPage implements OnInit {
 
   public authUser: any;
   servicios: Array<Servicio> = [];
-
+  serviciosFiltrados: Array<Servicio> = [];
+  fechaDesde: Date
+  fechaHasta: Date
 
   constructor(
     private router: Router,
-    private alertController: AlertController,
     private auth: UsuariosService,
-    private avisosService: AvisosService,
     private serviciosService: ServiciosService,
-    private mascotasService: MascotasService,
     private toastService: ToastService
   ) { }
 
   ngOnInit() {
     this.auth.userData$.subscribe((res: any) => {
       this.authUser = res;
-      if (this.authUser.id){
+      if (this.authUser.id) {
         this.obtenerHistorialServicios();
       }
     });
   }
 
-  async obtenerHistorialServicios(){
-      try {
-        this.servicios = await this.serviciosService.getHistorialServiciosUser(this.authUser.id);
-        console.log(this.servicios);
-      } catch (error) {
-        this.toastService.presentToast('Ha ocurrido un error obteniendo historico');
-      }
+  async obtenerHistorialServicios() {
+    try {
+      this.servicios = await this.serviciosService.getHistorialServiciosUser(this.authUser.id);
+      this.serviciosFiltrados = this.servicios
+      console.log(this.servicios);
+    } catch (error) {
+      this.toastService.presentToast('Ha ocurrido un error obteniendo historico');
+    }
   }
 
-  calificar(idServ: number){
+  calificar(idServ: number) {
     this.router.navigate(['home/servicios/calificar/' + idServ])
   }
 
-  verDetalle(idServicio){
+  verDetalle(idServicio) {
     this.router.navigate(['home/servicios/servicios-detail', idServicio]);
+  }
+
+  filtrar() {
+    if (!!this.fechaDesde && !!this.fechaHasta) {
+      this.serviciosFiltrados = this.servicios.filter(serv => this.parseDate(serv.fechaRealizacion) >= new Date(this.fechaDesde) && this.parseDate(serv.fechaRealizacion) <= new Date(this.fechaHasta))
+    } else {
+      if (!!this.fechaDesde) {
+        this.serviciosFiltrados = this.servicios.filter(serv => this.parseDate(serv.fechaRealizacion) >= new Date(this.fechaDesde))
+      } else {
+        if(!!this.fechaHasta){
+          this.serviciosFiltrados = this.servicios.filter(serv => this.parseDate(serv.fechaRealizacion) <= new Date(this.fechaHasta))
+        }
+      }
+    }
+  }
+
+  parseDate(unaFechaJSON) {
+    //return new Date(unaFechaJSON.year, unaFechaJSON.monthValue, unaFechaJSON.dayOfMonth)
+    return new Date(unaFechaJSON.year, unaFechaJSON.monthValue - 1, unaFechaJSON.dayOfMonth, 23, 59, 59, 59)
   }
 
 }
