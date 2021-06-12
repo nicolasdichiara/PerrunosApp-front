@@ -9,7 +9,7 @@
 
 
 
-<ion-content>
+<ion-content *ngIf="authUser?.tipoPerfil !== 'Administrador'">
   <ion-item>
 
     <ion-item>
@@ -96,7 +96,7 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-button expand="block" class="btn-inicio" disabled="true">
+        <ion-button expand="block" class="btn-inicio" [routerLink]="'/home/reportar'">
           <div>
             <ion-icon name="warning" class="icon-menu"></ion-icon><br>
             <label>Reportar</label>
@@ -154,10 +154,50 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-button color="secondary" expand="block" class="btn-inicio" disabled="true">
+        <ion-button color="secondary" expand="block" class="btn-inicio" [routerLink]="'/home/reportar'">
           <div>
             <ion-icon name="warning" class="icon-menu"></ion-icon><br>
             <label>Reportar</label>
+          </div>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-content *ngIf="authUser?.tipoPerfil == 'Administrador'">
+  <ion-item>
+
+    <ion-item>
+      <ion-avatar slot="start" style="height:10em ;width: auto;">
+        <img src={{userStats?.imagenPerfil}}>
+      </ion-avatar>
+    </ion-item>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>
+      <h3>Bienvenido, {{ authUser?.nombre }}</h3>
+    </ion-label>
+  </ion-item>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button color="secondary" expand="block" class="btn-inicio" [routerLink]="'/home/promociones'">
+          <div>
+            <ion-icon name="logo-usd" class="icon-menu"></ion-icon><br>
+            <label>Promociones</label>
+          </div>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button color="secondary" expand="block" class="btn-inicio" [routerLink]="'/home/reportes'">
+          <div>
+            <ion-icon name="warning" class="icon-menu"></ion-icon><br>
+            <label>Reportes</label>
           </div>
         </ion-button>
       </ion-col>

@@ -52,6 +52,10 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'reportar',
+        loadChildren: () => import('../reportar/reportar.module').then(m => m.ReportarPageModule)
+      },
+      {
         path: 'servicios',
         children: [
           {

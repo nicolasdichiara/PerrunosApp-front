@@ -1,0 +1,47 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Reportar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item lines="none">
+      <ion-label>Usuario a reportar</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-text>
+        <ion-textarea cols="150" required="true" placeholder='Email del usuario...' maxlength="150" inputmode="email" [(ngModel)]="usuario" color="medium" type="text" name="usuario"></ion-textarea>
+      </ion-text>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-label>Por qué reportás al usuario?</ion-label>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-text>
+        <ion-textarea cols="1000" required="true" placeholder='Añade una descripción del motivo...' maxlength="1000" auto-grow="true" [(ngModel)]="detalle" color="medium" type="text" name="usuario"></ion-textarea>
+      </ion-text>
+    </ion-item>
+  </ion-list>
+
+  <div class="button-bottom">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button expand="block" type="submit" class="add" (click)="submit()">
+            Enviar
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button expand="block" color="danger" class="add" [routerLink]="'/home'">
+            Cancelar
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
