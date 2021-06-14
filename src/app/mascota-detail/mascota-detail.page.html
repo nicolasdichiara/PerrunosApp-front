@@ -18,40 +18,42 @@
   </div>
   <ion-list>
     <ion-item>
-      <ion-label floating>Nombre</ion-label>
+      <ion-label color="secondary" floating>Nombre</ion-label>
       <ion-text type="text" name="name" required>{{mascota?.nombre}}</ion-text>
     </ion-item>
-    <ion-item>
-      <ion-label floating>Descripcion</ion-label>
-      <ion-text type="text" name="name" required>{{mascota?.descripcion}}</ion-text>
+    <ion-item lines="none">
+      <ion-label color="secondary" floating>Descripcion</ion-label>
     </ion-item>
     <ion-item>
-      <ion-label floating>Cuidados Especiales</ion-label>
+      <ion-textarea type="text" name="name" required>{{mascota?.descripcion}}</ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label color="secondary" floating>Cuidados Especiales</ion-label>
       <ion-text type="text" name="name" required>{{mascota?.cuidadosEspeciales}}</ion-text>
     </ion-item>
     <ion-item>
-      <ion-label floating>Enfermedades Previas</ion-label>
+      <ion-label color="secondary" floating>Enfermedades Previas</ion-label>
       <ion-text type="text" name="name" required>{{mascota?.enfermedadesPrevias}}</ion-text>
     </ion-item>
     <ion-item>
-      <ion-label floating>Desparasitado</ion-label>
+      <ion-label color="secondary" floating>Desparasitado</ion-label>
       <ion-text type="text" name="name" required>{{parseTrue(mascota?.desparasitado)}}</ion-text>
     </ion-item>
     <ion-item>
-      <ion-label floating>Paseo alguna vez?</ion-label>
+      <ion-label color="secondary" floating>Paseo alguna vez?</ion-label>
       <ion-text type="text" name="name" required>{{parseTrue(mascota?.paseoAlgunaVez)}}</ion-text>
     </ion-item>
-    <ion-item>
-      <ion-label floating>Paseo con duenio o paseador?</ion-label>
+    <ion-item *ngIf="mascota?.paseoAlgunaVez">
+      <ion-label color="secondary" class="ion-text-wrap" floating>Paseo con su dueño o un paseador?</ion-label>
       <ion-text type="text" name="name" required>{{parsePaseo(mascota?.paseoConUnPaseador)}}</ion-text>
     </ion-item>
-    <ion-item>
-      <ion-label floating>Interactua con otros animales?</ion-label>
-      <ion-text type="text" name="name" required>{{parseTrue(mascota?.paseaFrecuente)}}</ion-text>
+    <ion-item *ngIf="mascota?.paseoAlgunaVez">
+      <ion-label color="secondary" class="ion-text-wrap" floating>Compartio paseos con otros perros?</ion-label>
+      <ion-text type="text" name="name" required>{{parseTrue(mascota?.paseoConOtrosPerros)}}</ion-text>
     </ion-item>
     <ion-item>
-      <ion-label floating>Compartio paseos con otros perros?</ion-label>
-      <ion-text type="text" name="name" required>{{parseTrue(mascota?.paseoConOtrosPerros)}}</ion-text>
+      <ion-label color="secondary" floating>Interactua con otros animales?</ion-label>
+      <ion-text type="text" name="name" required>{{parseTrue(mascota?.paseaFrecuente)}}</ion-text>
     </ion-item>
 
   </ion-list>

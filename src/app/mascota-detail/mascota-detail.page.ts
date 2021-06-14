@@ -46,9 +46,9 @@ export class MascotaDetailPage implements OnInit {
 
   parsePaseo(valor: Boolean){
     if(valor){
-      return "Solo"
-    }else{
       return "Paseador"
+    }else{
+      return "Dueño"
     }
   }
 

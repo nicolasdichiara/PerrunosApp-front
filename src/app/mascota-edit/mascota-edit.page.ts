@@ -21,6 +21,7 @@ export class MascotaEditPage implements OnInit {
   mascota: Mascota;
   edad = 0;
   razas: Array<Raza> = [];
+  razasFiltradas: Array<Raza> = []
 
   get nombre() {
     return this.registrationForm.get('nombre');
@@ -46,28 +47,12 @@ export class MascotaEditPage implements OnInit {
     return this.registrationForm.get('fechaNacimiento');
   }
 
-  get desparasitado() {
-    return this.registrationForm.get('desparasitado');
-  }
-
-  get paseoAlgunaVez() {
-    return this.registrationForm.get('paseoAlgunaVez');
-  }
-
-  get paseoConUnPaseador() {
-    return this.registrationForm.get('paseoConUnPaseador');
-  }
-
-  get paseaFrecuente() {
-    return this.registrationForm.get('paseaFrecuente');
-  }
-
-  get paseoConOtrosPerros() {
-    return this.registrationForm.get('paseoConOtrosPerros');
-  }
-
   get imagen() {
     return this.registrationForm.get('imagen');
+  }
+
+  get filtroRazas(){
+    return this.registrationForm.get('filtroRazas')
   }
   
 
@@ -91,21 +76,6 @@ export class MascotaEditPage implements OnInit {
     ],
     fechaNacimiento: [
       { type: 'required', message: 'Fecha de nacimiento es requerido'},
-    ],
-    desparasitado: [
-      { type: 'required', message: 'desparasitado es requerido'},
-    ],
-    paseoAlgunaVez: [
-      { type: 'required', message: 'paseoAlgunaVez es requerido'},
-    ],
-    paseoConUnPaseador: [
-      { type: 'required', message: 'paseoConUnPaseador es requerido'},
-    ],
-    paseaFrecuente: [
-      { type: 'required', message: 'paseaFrecuente es requerido'},
-    ],
-    paseoConOtrosPerros: [
-      { type: 'required', message: 'paseoConOtrosPerros es requerido'},
     ]
   };
 
@@ -116,11 +86,7 @@ export class MascotaEditPage implements OnInit {
     cuidadosEspeciales: ['', [Validators.maxLength(100)]],
     enfermedadesPrevias: ['', [Validators.maxLength(100)]],
     fechaNacimiento: ['', [Validators.required]],
-    desparasitado: ['', [Validators.required]],
-    paseoAlgunaVez: ['', [Validators.required]],
-    paseoConUnPaseador: ['', [Validators.required]],
-    paseoConOtrosPerros: ['', [Validators.required]],
-    paseaFrecuente: ['', [Validators.required]],
+    filtroRazas: ['',[]],
   });
 
   constructor(
@@ -137,6 +103,10 @@ export class MascotaEditPage implements OnInit {
     });
   }
 
+  public filtrarRazas(){
+    this.razasFiltradas = this.razas.filter(r=>r.nombre.toLowerCase().includes(this.registrationForm.get('filtroRazas').value.toLowerCase()))
+  }
+
   public async submit(){    //se ejecuta cunado apretas editar
     console.log(this.registrationForm.value);
     //this.mascota = new Mascota();
@@ -145,14 +115,14 @@ export class MascotaEditPage implements OnInit {
     //this.mascota.imagen = this.registrationForm.get('imagen').value;
     this.mascota.fechaNacimiento = this.registrationForm.get('fechaNacimiento').value;
     //this.mascota.poseeLibretaSanitaria = this.registrationForm.get('poseeLibretaSanitaria').value;
-    this.mascota.imagenLibretaVacunacion = 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y';
+    // this.mascota.imagenLibretaVacunacion = 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y';
     //this.mascota.vacunaDeLaRabia = this.registrationForm.get('vacunaDeLaRabia').value;
-    this.mascota.desparasitado = this.registrationForm.get('desparasitado').value;
+    // this.mascota.desparasitado = this.registrationForm.get('desparasitado').value;
     this.mascota.enfermedadesPrevias = this.registrationForm.get('enfermedadesPrevias').value;
-    this.mascota.paseaFrecuente = this.registrationForm.get('paseaFrecuente').value;
-    this.mascota.paseoAlgunaVez = this.registrationForm.get('paseoAlgunaVez').value;
-    this.mascota.paseoConUnPaseador = this.registrationForm.get('paseoConUnPaseador').value;
-    this.mascota.paseoConOtrosPerros = this.registrationForm.get('paseoConOtrosPerros').value;
+    // this.mascota.paseaFrecuente = this.registrationForm.get('paseaFrecuente').value;
+    // this.mascota.paseoAlgunaVez = this.registrationForm.get('paseoAlgunaVez').value;
+    // this.mascota.paseoConUnPaseador = this.registrationForm.get('paseoConUnPaseador').value;
+    // this.mascota.paseoConOtrosPerros = this.registrationForm.get('paseoConOtrosPerros').value;
     this.mascota.descripcion = this.registrationForm.get('descripcion').value;
     this.mascota.cuidadosEspeciales = this.registrationForm.get('cuidadosEspeciales').value;
     // this.registrationForm.get('imagen').value;
@@ -169,8 +139,7 @@ export class MascotaEditPage implements OnInit {
 
   async ngOnInit() {  //cuando tenes que carga la vista se carga
     try {   //busca las razas en el back y las guarda en this. razas
-      this.razas = await this.mascotasService.getTodasLasRazas();
-      console.log(this.razas);
+      this.razas = (await this.mascotasService.getTodasLasRazas()).sort((a,b) =>  (a.nombre > b.nombre ? 1 : -1))
     } catch (error) {
       this.toastService.presentToast('Ha ocurrido un error, reintente.' + error);
     }
@@ -206,7 +175,6 @@ export class MascotaEditPage implements OnInit {
   }
 
   muestraImagen(){
-    console.log("../../assets/img/" + this.mascota?.raza.nombre + ".jpg")
     if(this.mascota?.imagen==null){
       return "../../assets/img/" + this.mascota?.raza.nombre + ".jpg"
     }else {

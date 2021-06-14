@@ -8,16 +8,16 @@ export class Mascota {
     descripcion: string;
     enfermedadesPrevias: string;
     fechaNacimiento: Date;
-    desparasitado: number;
-    paseoAlgunaVez: number;
+    desparasitado: boolean;
+    paseoAlgunaVez: boolean;
     imagenLibretaVacunacion: string;
     imagen: string;
-    paseoConUnPaseador: number;
-    paseaFrecuente: number;
-    paseoConOtrosPerros: number;
+    paseoConUnPaseador: boolean;
+    paseaFrecuente: boolean;
+    paseoConOtrosPerros: boolean;
     raza: Raza;
-    poseeLibretaSanitaria: number;
-    vacunaDeLaRabia: number;
+    poseeLibretaSanitaria: boolean;
+    vacunaDeLaRabia: boolean;
 
 
     static fromJson(individuoJSON): Mascota {
@@ -27,8 +27,8 @@ export class Mascota {
     }
     //el constructor lo armas como quieras pero cuando lo invocas, se declaran los mismos nombres que hay en el back
     constructor(_idPerro?: number, _nombre?: string, _cuidadosEsp?: string, _descripcion?: string, _enfermedadesPrev?: string, _imagenLibretaVacunacion?: string, _imagen?: string,
-        _paseoConOtrosPerros?: number, _fechaNacimiento?: Date, _desparasitado?: number, _paseoAlgunaVez?: number, _paseoConUnPaseador?: number, _paseaFrecuente?: number, _raza?: Raza,
-        _poseeLibretaSanitaria?: number, _vacunaDeLaRabia?: number) {
+        _paseoConOtrosPerros?: boolean, _fechaNacimiento?: Date, _desparasitado?: boolean, _paseoAlgunaVez?: boolean, _paseoConUnPaseador?: boolean, _paseaFrecuente?: boolean, _raza?: Raza,
+        _poseeLibretaSanitaria?: boolean, _vacunaDeLaRabia?: boolean) {
         this.idPerro = _idPerro;
         this.nombre = _nombre;
         this.cuidadosEspeciales = _cuidadosEsp;
@@ -53,11 +53,11 @@ export class Mascota {
         console.log(newDate);
         return {
             ...this,
-            desparasitado: this.desparasitado == 1 ? 'true' : 'false',
-            paseaFrecuente: this.paseaFrecuente == 1 ? 'true' : 'false',
-            paseoAlgunaVez: this.paseoAlgunaVez == 1 ? 'true' : 'false',
-            paseoConUnPaseador: this.paseoConUnPaseador == 1 ? 'true' : 'false',
-            paseoConOtrosPerros: this.paseoConOtrosPerros == 1 ? 'true' : 'false',
+            // desparasitado: this.desparasitado == 1 ? 'true' : 'false',
+            // paseaFrecuente: this.paseaFrecuente == 1 ? 'true' : 'false',
+            // paseoAlgunaVez: this.paseoAlgunaVez == 1 ? 'true' : 'false',
+            // paseoConUnPaseador: this.paseoConUnPaseador == 1 ? 'true' : 'false',
+            // paseoConOtrosPerros: this.paseoConOtrosPerros == 1 ? 'true' : 'false',
             fechaNacimiento: this.dosDigitosDia(newDate) + '/' +
                 this.dosDigitosMes(newDate) + '/' + newDate.getFullYear()
         };
