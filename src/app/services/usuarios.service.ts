@@ -86,6 +86,10 @@ export class UsuariosService {
     return Usuario.fromJson(user);
   }
 
+  async desactivarPerfil(idUser){
+    return this.http.delete(environment.apiUrl + 'usuario/perfil/deshabilitarPerfil/' + idUser).toPromise()
+  }
+
   logout() {
     this.storageService.removeStorageItem(AuthConstants.AUTH).then(res => {
       this.userData$.next('');

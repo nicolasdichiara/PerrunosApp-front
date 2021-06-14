@@ -3,6 +3,8 @@ import { UsuariosService } from '../services/usuarios.service';
 import { ToastService } from '../services/toast.service';
 import { Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+import { ServiciosService } from '../services/servicios.service';
 
 @Component({
   selector: 'app-perfil-edit',
@@ -103,7 +105,9 @@ export class PerfilEditPage implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private auth: UsuariosService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private alertController: AlertController,
+    private serviciosService: ServiciosService
   ) {
     this.today = new Date().toISOString();
     this.auth.userData$.subscribe(async (res: any) => {
@@ -162,6 +166,43 @@ export class PerfilEditPage implements OnInit {
     let edad = Math.round((Math.abs(selectedDate - today) / (24 * 60 * 60 * 1000)) / 365);
 
     this.edad = edad;
+  }
+
+  logout(){
+    this.auth.logout();
+  }
+
+  async desactivarPerfil(){
+    const serviciosActivos = await this.serviciosService.getServiciosUser(this.authUser.id);
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Confimación',
+      message: 'Desea eliminar su perfil? No debe tener servicios activos',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Cancelado');
+          }
+        }, {
+          text: 'Sí',
+          handler: () => {
+            console.log('Confirmado');
+            if(serviciosActivos.length==0){
+              this.auth.desactivarPerfil(this.authUser.id)
+              this.logout()
+            } else {
+              this.toastService.presentToast("No puede eliminar su perfil porque tiene servicios activos")
+              this.router.navigate(['home'])
+            }
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
   ngOnInit() {
