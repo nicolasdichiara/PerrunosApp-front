@@ -21,6 +21,14 @@
       <ion-label color="secondary" floating>Nombre</ion-label>
       <ion-text type="text" name="name" required>{{mascota?.nombre}}</ion-text>
     </ion-item>
+    <ion-item>
+      <ion-label color="secondary" floating>Raza</ion-label>
+      <ion-text type="text" name="name" required>{{mascota?.raza.nombre}}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label color="secondary" floating>Sexo</ion-label>
+      <ion-text type="text" name="name" required>{{mascota?.sexo}}</ion-text>
+    </ion-item>
     <ion-item lines="none">
       <ion-label color="secondary" floating>Descripcion</ion-label>
     </ion-item>
@@ -38,6 +46,14 @@
     <ion-item>
       <ion-label color="secondary" floating>Desparasitado</ion-label>
       <ion-text type="text" name="name" required>{{parseTrue(mascota?.desparasitado)}}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label color="secondary" floating>Vacuna Antirrábica</ion-label>
+      <ion-text type="text" name="name" required>{{parseTrue(mascota?.vacunaDeLaRabia)}}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label color="secondary" floating>Vacuna Séxtuple</ion-label>
+      <ion-text type="text" name="name" required>{{parseTrue(mascota?.vacunaSextuple)}}</ion-text>
     </ion-item>
     <ion-item>
       <ion-label color="secondary" floating>Paseo alguna vez?</ion-label>

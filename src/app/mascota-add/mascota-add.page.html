@@ -44,6 +44,22 @@
       </div>
 
       <ion-item lines="none">
+        <ion-label color="secondary">Sexo</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-select value="{{mascota?.sexo}}" class="ionSelectSize"
+          placeholder="{{mascota?.sexo}}" formControlName="sexo" type="text" name="sexo">
+          <ion-select-option value="{{sexo.nombreSexo}}" *ngFor="let sexo of sexosDisponibles">{{sexo.nombreSexo}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.sexo">
+        <ng-container *ngIf="sexo.hasError(error.type) && (sexo.dirty || sexo.touched)">
+          <small class="error-message">{{ error.message }}</small>
+        </ng-container>
+      </div>
+
+      <ion-item lines="none">
         <ion-label color="secondary">Fecha Nacimiento</ion-label>
         <ion-datetime name="fechaNacimiento" placeholder="Elija Fecha" [max]="today" (ionChange)="calcEdad()"
           formControlName="fechaNacimiento"></ion-datetime>
@@ -110,6 +126,32 @@
         <ion-label color="medium"></ion-label>
         <ion-label color="medium">No</ion-label>
         <ion-toggle [(ngModel)]="desparasitado" [ngModelOptions]="{standalone: true}">
+        </ion-toggle>
+        <ion-label color="medium"></ion-label>
+        <ion-label color="medium">Si</ion-label>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label color="secondary" lines="none">Posee vacuna Antirrábica?</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label color="medium"></ion-label>
+        <ion-label color="medium"></ion-label>
+        <ion-label color="medium">No</ion-label>
+        <ion-toggle [(ngModel)]="vacunaDeLaRabia" [ngModelOptions]="{standalone: true}">
+        </ion-toggle>
+        <ion-label color="medium"></ion-label>
+        <ion-label color="medium">Si</ion-label>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label color="secondary" lines="none">Posee vacuna Séxtuple?</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label color="medium"></ion-label>
+        <ion-label color="medium"></ion-label>
+        <ion-label color="medium">No</ion-label>
+        <ion-toggle [(ngModel)]="vacunaSextuple" [ngModelOptions]="{standalone: true}">
         </ion-toggle>
         <ion-label color="medium"></ion-label>
         <ion-label color="medium">Si</ion-label>

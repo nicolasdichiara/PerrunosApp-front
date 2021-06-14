@@ -22,6 +22,7 @@ export class MascotaEditPage implements OnInit {
   edad = 0;
   razas: Array<Raza> = [];
   razasFiltradas: Array<Raza> = []
+  sexosDisponibles: Array<any> = [{"nombreSexo":"Macho"},{"nombreSexo":"Hembra"}]
 
   get nombre() {
     return this.registrationForm.get('nombre');
@@ -54,6 +55,10 @@ export class MascotaEditPage implements OnInit {
   get filtroRazas(){
     return this.registrationForm.get('filtroRazas')
   }
+
+  get sexo(){
+    return this.registrationForm.get('sexo')
+  }
   
 
   public errorMessages = {
@@ -76,6 +81,9 @@ export class MascotaEditPage implements OnInit {
     ],
     fechaNacimiento: [
       { type: 'required', message: 'Fecha de nacimiento es requerido'},
+    ],
+    sexo: [
+      { type: 'required', message: 'Sexo es requerido'},
     ]
   };
 
@@ -87,6 +95,7 @@ export class MascotaEditPage implements OnInit {
     enfermedadesPrevias: ['', [Validators.maxLength(100)]],
     fechaNacimiento: ['', [Validators.required]],
     filtroRazas: ['',[]],
+    sexo: ['', [Validators.required]],
   });
 
   constructor(
@@ -107,26 +116,15 @@ export class MascotaEditPage implements OnInit {
     this.razasFiltradas = this.razas.filter(r=>r.nombre.toLowerCase().includes(this.registrationForm.get('filtroRazas').value.toLowerCase()))
   }
 
-  public async submit(){    //se ejecuta cunado apretas editar
+  public async submit(){    //se ejecuta cuando apretas editar
     console.log(this.registrationForm.value);
-    //this.mascota = new Mascota();
     this.mascota.nombre = this.registrationForm.get('nombre').value;
     this.mascota.raza = this.registrationForm.get('raza').value;
-    //this.mascota.imagen = this.registrationForm.get('imagen').value;
     this.mascota.fechaNacimiento = this.registrationForm.get('fechaNacimiento').value;
-    //this.mascota.poseeLibretaSanitaria = this.registrationForm.get('poseeLibretaSanitaria').value;
-    // this.mascota.imagenLibretaVacunacion = 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y';
-    //this.mascota.vacunaDeLaRabia = this.registrationForm.get('vacunaDeLaRabia').value;
-    // this.mascota.desparasitado = this.registrationForm.get('desparasitado').value;
     this.mascota.enfermedadesPrevias = this.registrationForm.get('enfermedadesPrevias').value;
-    // this.mascota.paseaFrecuente = this.registrationForm.get('paseaFrecuente').value;
-    // this.mascota.paseoAlgunaVez = this.registrationForm.get('paseoAlgunaVez').value;
-    // this.mascota.paseoConUnPaseador = this.registrationForm.get('paseoConUnPaseador').value;
-    // this.mascota.paseoConOtrosPerros = this.registrationForm.get('paseoConOtrosPerros').value;
     this.mascota.descripcion = this.registrationForm.get('descripcion').value;
     this.mascota.cuidadosEspeciales = this.registrationForm.get('cuidadosEspeciales').value;
-    // this.registrationForm.get('imagen').value;
-    // this.registrationForm.get('imagenLibretaVacunacion').value;
+    this.mascota.sexo = this.registrationForm.get('sexo').value
 
     try {
       await this.mascotasService.updateMascota(this.mascota, this.mascota.idPerro);

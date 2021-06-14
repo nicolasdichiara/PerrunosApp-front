@@ -25,6 +25,9 @@ export class MascotaAddPage implements OnInit {
   paseoConUnPaseador: boolean
   paseoConOtrosPerros: boolean
   paseaFrecuente: boolean
+  vacunaDeLaRabia: boolean
+  vacunaSextuple: boolean
+  sexosDisponibles: Array<any> = [{"nombreSexo":"Macho"},{"nombreSexo":"Hembra"}]
 
   get nombre() {
     return this.registrationForm.get('nombre');
@@ -54,6 +57,10 @@ export class MascotaAddPage implements OnInit {
     return this.registrationForm.get('filtroRazas')
   }
 
+  get sexo(){
+    return this.registrationForm.get('sexo')
+  }
+
   public errorMessages = {
     nombre: [
       { type: 'required', message: 'Nombre es requerido'},
@@ -74,6 +81,9 @@ export class MascotaAddPage implements OnInit {
     ],
     fechaNacimiento: [
       { type: 'required', message: 'Fecha de nacimiento es requerido'},
+    ],
+    sexo: [
+      { type: 'required', message: 'Sexo es requerido'},
     ]
   };
 
@@ -85,6 +95,7 @@ export class MascotaAddPage implements OnInit {
     enfermedadesPrevias: ['', [Validators.maxLength(100)]],
     fechaNacimiento: ['', [Validators.required]],
     filtroRazas: ['',[]],
+    sexo: ['', [Validators.required]],
   });
 
   constructor(
@@ -119,9 +130,10 @@ export class MascotaAddPage implements OnInit {
     this.mascota.paseoConUnPaseador = this.paseoConUnPaseador;
     this.mascota.paseoConOtrosPerros = this.paseoConOtrosPerros;
     this.mascota.imagen = 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y';
-    // this.registrationForm.get('imagen').value;
     this.mascota.imagenLibretaVacunacion = 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y';
-    // this.registrationForm.get('imagenLibretaVacunacion').value;
+    this.mascota.sexo = this.registrationForm.get('sexo').value
+    this.mascota.vacunaDeLaRabia = this.vacunaDeLaRabia
+    this.mascota.vacunaSextuple = this.vacunaSextuple
     try {
       await this.mascotasService.postMascota(this.mascota, this.authUser.id);
       this.router.navigate(['home']);

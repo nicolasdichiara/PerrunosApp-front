@@ -18,6 +18,8 @@ export class Mascota {
     raza: Raza;
     poseeLibretaSanitaria: boolean;
     vacunaDeLaRabia: boolean;
+    vacunaSextuple: boolean
+    sexo: string
 
 
     static fromJson(individuoJSON): Mascota {
@@ -28,7 +30,7 @@ export class Mascota {
     //el constructor lo armas como quieras pero cuando lo invocas, se declaran los mismos nombres que hay en el back
     constructor(_idPerro?: number, _nombre?: string, _cuidadosEsp?: string, _descripcion?: string, _enfermedadesPrev?: string, _imagenLibretaVacunacion?: string, _imagen?: string,
         _paseoConOtrosPerros?: boolean, _fechaNacimiento?: Date, _desparasitado?: boolean, _paseoAlgunaVez?: boolean, _paseoConUnPaseador?: boolean, _paseaFrecuente?: boolean, _raza?: Raza,
-        _poseeLibretaSanitaria?: boolean, _vacunaDeLaRabia?: boolean) {
+        _poseeLibretaSanitaria?: boolean, _vacunaDeLaRabia?: boolean, _vacunaSextuple?: boolean, _sexo?: string) {
         this.idPerro = _idPerro;
         this.nombre = _nombre;
         this.cuidadosEspeciales = _cuidadosEsp;
@@ -45,6 +47,8 @@ export class Mascota {
         this.raza = _raza;
         this.poseeLibretaSanitaria = _poseeLibretaSanitaria;
         this.vacunaDeLaRabia = _vacunaDeLaRabia;
+        this.vacunaSextuple = _vacunaSextuple
+        this.sexo = _sexo
     }
 
     toJSON(): any {
