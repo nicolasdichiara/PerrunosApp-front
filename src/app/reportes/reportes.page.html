@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Reportes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let reporte of reportes; let i = index">
+    <ion-card-header>
+      <ion-card-title>
+        Reporte #{{reporte.idReporte}}
+      </ion-card-title>
+      <ion-card-subtitle>
+        Datos de usuario reportado
+      </ion-card-subtitle>
+      <ion-card-subtitle>
+        Usuario: {{reporte.email}}
+      </ion-card-subtitle>
+      <ion-card-subtitle>
+        Nombre: {{reporte.nombre}} {{reporte.apellido}}
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-card-subtitle>{{reporte.detalle}}</ion-card-subtitle>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

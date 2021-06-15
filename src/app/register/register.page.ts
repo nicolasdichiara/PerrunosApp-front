@@ -21,7 +21,8 @@ export class RegisterPage implements OnInit {
     email: '',
     password: '',
     fechaAlta: '',
-    tipo: ''
+    tipo: '',
+    telefono: ''
   };
   perfiles: Array<Perfil> = []
 
@@ -45,6 +46,10 @@ export class RegisterPage implements OnInit {
     return this.registrationForm.get('tipo');
   }
 
+  get telefono(){
+    return this.registrationForm.get('telefono')
+  }
+
   public errorMessages = {
     nombre: [
       { type: 'required', message: 'Nombre es requerido' },
@@ -63,7 +68,10 @@ export class RegisterPage implements OnInit {
     password: [
       { type: 'required', message: 'Contraseña es requerido' },
       { type: 'minlength', message: 'Contraseña debe ser mayor a 8 caracteres' },
-    ]
+    ],
+    telefono: [
+      { type: 'required', message: 'Teléfono es requerido' },
+    ],
   };
 
   registrationForm = this.formBuilder.group({
@@ -72,6 +80,7 @@ export class RegisterPage implements OnInit {
     email: ['', [Validators.required]],
     tipo: ['', [Validators.required]],
     password: ['', [Validators.required, Validators.minLength(8)]],
+    telefono: ['', [Validators.required]]
   });
 
   constructor(
@@ -91,6 +100,7 @@ export class RegisterPage implements OnInit {
     this.postData.email = this.registrationForm.get('email').value;
     this.postData.password = this.registrationForm.get('password').value;
     this.postData.fechaAlta = this.dosDigitosDia(this.today) + '/' + this.dosDigitosMes(this.today) + '/' + this.today.getFullYear();
+    this.postData.telefono = this.registrationForm.get('telefono').value
 
     const tipo = this.registrationForm.get('tipo').value;
 

@@ -18,4 +18,14 @@ export class ReportesService {
     return this.http.post(environment.apiUrl + 'usuario/crearReporte/' + idUsuario, JSON.stringify(reporte)).toPromise()
   }
 
+  async getTodosLosReportes() {
+    const reportes: Reporte[] = await this.http.get<any>(environment.apiUrl + 'reportes').toPromise();
+    return reportes.map((reporte)=> Reporte.fromJson(reporte));
+  }
+
+  async getReporteById(id: number) {
+    const reporte = await this.http.get<Reporte>(environment.apiUrl + 'reporte/' + id).toPromise();
+    return Reporte.fromJson(reporte);
+  }
+
 }
