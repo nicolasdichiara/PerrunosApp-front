@@ -109,7 +109,17 @@ const routes: Routes = [
       },
       {
         path: 'promociones',
-        loadChildren: () => import('../promociones/promociones.module').then( m => m.PromocionesPageModule)
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../promociones/promociones.module').then(m => m.PromocionesPageModule)
+          },
+          {
+            path: 'promocion-agregar',
+            loadChildren: () => import('../promocion-agregar/promocion-agregar.module').then(m => m.PromocionAgregarPageModule)
+          }
+        ]
+        
       },
       {
         path: 'geolocalizacion/:id',
