@@ -8,26 +8,28 @@
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="promocionForm" (ngSubmit)="submit()">
-    <ion-list>
-      <ion-list-header>
-        <ion-label class="titulo">Crear una nueva Promocion</ion-label>
-      </ion-list-header>
-      <ion-item>
-        <ion-label>Descripcion</ion-label>
-        <ion-input formControlName="descripcion" type="text" name="descripcion"></ion-input>
-      </ion-item>
-      <div *ngFor="let error of errorMessages.descripcion">
-        <ng-container *ngIf="descripcion.hasError(error.type) && (descripcion.dirty || descripcion.touched)">
-          <small class="error-message">{{ error.message }}</small>
-        </ng-container>
-      </div>
-    </ion-list>
-
-    <ion-button [disabled]="!promocionForm.valid" expand="block" type="submit" class="add">
-      <ion-icon name="add-outline"></ion-icon> Crear promoción
+  <ion-card *ngFor="let promocion of promociones; let i = index">
+    <ion-card-header>
+      <ion-card-title>
+        Promocion #{{promocion.idPromocion}}
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-card-subtitle>Detalle: {{promocion.detalle}}</ion-card-subtitle>
+      <ion-card-subtitle>Valido hasta:
+        {{promocion.fechaVigencia.dayOfMonth}}/{{promocion.fechaVigencia.monthValue}}/{{promocion.fechaVigencia.year}}
+      </ion-card-subtitle>
+      <ion-card-subtitle>Cantidad de servicios para aplicar: {{promocion.cantidadPaseos}}</ion-card-subtitle>
+      <ion-button size="small" slot="end" fill="outline">Ver Detalle</ion-button>
+      <ion-button *ngIf="promocion.activa" size="small" color="danger" fill="outline" slot="end">Desactivar
+      </ion-button>
+      <ion-button *ngIf="!promocion.activa" size="small" color="success" fill="outline" slot="end">Activar
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+  <div class="button-bottom">
+    <ion-button expand="block" type="submit" class="add" [routerLink]="'/home/promociones/promocion-agregar'">
+      Crear Promocion
     </ion-button>
-  </form>
-
-
+  </div>
 </ion-content>
