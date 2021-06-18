@@ -27,4 +27,12 @@ export class PromocionesPage implements OnInit {
     console.log(this.promociones)
   }
 
+  verDetalle(idPromocion){
+    this.router.navigate(['home/promociones/promocion-detail', idPromocion]);
+  }
+
+  editar(idPromocion){
+    this.router.navigate(['home/promociones/promocion-edit', idPromocion]);
+  }
+
 }

@@ -117,6 +117,14 @@ const routes: Routes = [
           {
             path: 'promocion-agregar',
             loadChildren: () => import('../promocion-agregar/promocion-agregar.module').then(m => m.PromocionAgregarPageModule)
+          },
+          {
+            path: 'promocion-detail/:id',
+            loadChildren: () => import('../promocion-detail/promocion-detail.module').then(m => m.PromocionDetailPageModule)
+          },
+          {
+            path: 'promocion-edit/:id',
+            loadChildren: () => import('../promocion-edit/promocion-edit.module').then(m => m.PromocionEditPageModule)
           }
         ]
         

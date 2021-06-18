@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <!-- <ion-title>Promocion</ion-title> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div align="center">
+    <h1>Promoción #{{promocion?.idPromocion}}</h1>
+    <img style="height:20em ;width: auto;" class="center profile-image" src={{this.promocion?.imagenPromo}}>
+  </div>
+
+  <ion-list>
+    <ion-item lines="none">
+      <ion-label color="secondary" floating>Detalle</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-textarea type="text" name="name" required>{{promocion?.detalle}}</ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label color="secondary">Vigencia</ion-label>
+      <ion-text>{{promocion?.fechaVigencia.dayOfMonth}}/{{promocion?.fechaVigencia.monthValue}}/{{promocion?.fechaVigencia.year}}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label color="secondary">Servicios para aplicar</ion-label>
+      <ion-text>{{promocion?.cantidadPaseos}}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label color="secondary">Activa</ion-label>
+      <ion-text>{{parseTrue(promocion?.activa)}}</ion-text>
+    </ion-item>
+  </ion-list>
+</ion-content>

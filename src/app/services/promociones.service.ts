@@ -23,4 +23,14 @@ export class PromocionesService {
     console.log(promocion.toJSON());
     return this.http.post(environment.apiUrl + 'promociones/crearPromocion', promocion.toJSON()).toPromise();
   }
+
+  async getPromocionById(id: number) {
+    const promocion = await this.http.get<Promocion>(environment.apiUrl + 'promociones/getPromocion/' + id).toPromise();
+    return Promocion.fromJson(promocion);
+  }
+
+  async updatePromocion(promocion: Promocion) {
+    console.log(promocion.toJSON());
+    return this.http.post(environment.apiUrl + 'promociones/updatePromocion', promocion.toJSON()).toPromise();
+  }
 }
