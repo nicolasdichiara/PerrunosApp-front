@@ -14,15 +14,79 @@
         <ion-label class="titulo">Crear una nueva Promocion</ion-label>
       </ion-list-header>
       <ion-item>
-        <ion-label>Descripcion</ion-label>
-        <ion-input formControlName="descripcion" type="text" name="descripcion"></ion-input>
+        <ion-label color="secondary">Detalle</ion-label>
+        <ion-input formControlName="detalle" type="text" name="descripcion"></ion-input>
       </ion-item>
-      <!-- <div *ngFor="let error of errorMessages.descripcion">
-        <ng-container *ngIf="descripcion.hasError(error.type) && (descripcion.dirty || descripcion.touched)">
+      <div *ngFor="let error of errorMessages.detalle">
+        <ng-container *ngIf="detalle.hasError(error.type) && (detalle.dirty || detalle.touched)">
           <small class="error-message">{{ error.message }}</small>
         </ng-container>
-      </div> -->
+      </div>
+      <ion-item>
+        <ion-label color="secondary">Cantidad de Servicios</ion-label>
+        <ion-input formControlName="cantidadPaseos" type="number" name="cantidadPaseos"></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.cantidadPaseos">
+        <ng-container *ngIf="cantidadPaseos.hasError(error.type) && (cantidadPaseos.dirty || cantidadPaseos.touched)">
+          <small class="error-message">{{ error.message }}</small>
+        </ng-container>
+      </div>
+      <ion-item lines="none">
+        <ion-label color="secondary">Fecha Vigencia</ion-label>
+        <ion-datetime name="fechaVigencia" placeholder="Elija Fecha" max="2100-12-31" min="{{this.hoy}}" formControlName="fechaVigencia">
+        </ion-datetime>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.fechaVigencia">
+        <ng-container
+          *ngIf="fechaVigencia.hasError(error.type) && (fechaVigencia.dirty || fechaVigencia.touched)">
+          <small class="error-message">{{ error.message }}</small>
+        </ng-container>
+      </div>
     </ion-list>
+
+    <ion-card class="ion-text-center" *ngIf="!isUploading && !isUploaded">
+      <ion-card-header>
+        <ion-card-title>Elegi una imagen para cargar</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-button color="success" shape="round" size="large">
+          <span>Seleccione</span>
+          <input id="uploadBtn" type="file" class="upload" (change)="uploadFile($event.target.files)" />
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+    <ion-card class="ion-text-center" *ngIf="isUploading && !isUploaded">
+      <ion-card-header>
+        <ion-card-title>Imagen seleccionada:<b>{{ fileName }}</b></ion-card-title>
+      </ion-card-header>
+  
+      <ion-card-content>
+        <div *ngIf="percentage | async as pct">
+          Progreso: {{ pct | number }}%
+          <ion-progress-bar value="{{ pct / 100 }}"></ion-progress-bar>
+        </div>
+        <div *ngIf="snapshot | async as snap">
+          <div *ngIf="snapshot && snap.bytesTransferred != snap.totalBytes">
+            <ion-button color="warning" size="small" (click)="task.pause()" class="button is-warning">Pausa</ion-button>
+            <ion-button size="small" (click)="task.resume()" class="button is-info">Reanudir</ion-button>
+            <ion-button color="danger" size="small" (click)="task.cancel()" class="button is-danger">Cancelar</ion-button>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+    <ion-card class="ion-text-center" *ngIf="!isUploading && isUploaded">
+      <ion-card-header>
+        
+      </ion-card-header>
+  
+      <ion-card-content>
+        <div *ngIf="UploadedFileURL | async as url">
+          <img [src]="url" />
+          
+        </div>
+        <ion-button expand="full" color="success" (click)="isUploading = isUploaded = false">Cargar otra</ion-button>
+      </ion-card-content>
+    </ion-card>
 
     <ion-button [disabled]="!promocionForm.valid" expand="block" type="submit" class="add">
       <ion-icon name="add-outline"></ion-icon> Crear promoción

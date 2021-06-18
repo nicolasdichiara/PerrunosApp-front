@@ -27,7 +27,7 @@ export class Promocion {
         console.log(newDate);
         return {
             ...this,
-            fechaRealizacion: this.dosDigitosDia(newDate) + '/' +
+            fechaVigencia: this.dosDigitosDia(newDate) + '/' +
                 this.dosDigitosMes(newDate) + '/' + newDate.getFullYear()
         };
     }

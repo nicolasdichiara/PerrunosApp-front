@@ -18,4 +18,9 @@ export class PromocionesService {
     const perfiles: Promocion[] = await this.http.get<any>(environment.apiUrl + 'promociones/getTodasLasPromociones').toPromise();
     return perfiles.map((promocion)=> Promocion.fromJson(promocion));
   }
+
+  async postPromocion(promocion: Promocion) {
+    console.log(promocion.toJSON());
+    return this.http.post(environment.apiUrl + 'promociones/crearPromocion', promocion.toJSON()).toPromise();
+  }
 }
