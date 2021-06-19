@@ -33,4 +33,12 @@ export class PromocionesService {
     console.log(promocion.toJSON());
     return this.http.post(environment.apiUrl + 'promociones/updatePromocion', promocion.toJSON()).toPromise();
   }
+
+  async activarPromocion(id: number) {
+    return this.http.delete(environment.apiUrl + 'promociones/activarPromocion/' + id).toPromise();
+  }
+
+  async desactivarPromocion(id: number) {
+    return this.http.delete(environment.apiUrl + 'promociones/desactivarPromocion/' + id).toPromise();
+  }
 }

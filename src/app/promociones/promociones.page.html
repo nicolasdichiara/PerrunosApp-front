@@ -20,11 +20,15 @@
         {{promocion.fechaVigencia.dayOfMonth}}/{{promocion.fechaVigencia.monthValue}}/{{promocion.fechaVigencia.year}}
       </ion-card-subtitle>
       <ion-card-subtitle>Cantidad de servicios para aplicar: {{promocion.cantidadPaseos}}</ion-card-subtitle>
-      <ion-button size="small" slot="end" fill="outline" (click)="verDetalle(promocion.idPromocion)">Ver Detalle</ion-button>
-      <ion-button size="small" slot="end" color="warning" fill="outline" (click)="editar(promocion.idPromocion)">Editar</ion-button>
-      <ion-button *ngIf="promocion.activa" size="small" color="danger" fill="outline" slot="end">Desactivar
+      <ion-button size="small" slot="end" fill="outline" (click)="verDetalle(promocion.idPromocion)">Ver Detalle
       </ion-button>
-      <ion-button *ngIf="!promocion.activa" size="small" color="success" fill="outline" slot="end">Activar
+      <ion-button size="small" slot="end" color="warning" fill="outline" (click)="editar(promocion.idPromocion)">Editar
+      </ion-button>
+      <ion-button *ngIf="!promocion.activa" size="small" color="success" fill="outline" slot="end"
+        (click)="activarPromo(promocion.idPromocion)">Activar
+      </ion-button>
+      <ion-button *ngIf="promocion.activa" size="small" color="danger" fill="outline" slot="end"
+        (click)="desactivarPromo(promocion.idPromocion)">Desactivar
       </ion-button>
     </ion-card-content>
   </ion-card>

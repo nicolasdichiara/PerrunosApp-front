@@ -35,4 +35,22 @@ export class PromocionesPage implements OnInit {
     this.router.navigate(['home/promociones/promocion-edit', idPromocion]);
   }
 
+  activarPromo(idPromocion){
+    try{
+      this.promocionesService.activarPromocion(idPromocion)
+      this.promociones.find(promo => promo.idPromocion == idPromocion).activa = "true"
+    } catch (error) {
+      this.toastService.presentToast('Ha ocurrido un error, reintente.' + error);
+    }
+  }
+
+  desactivarPromo(idPromocion){
+    try{
+      this.promocionesService.desactivarPromocion(idPromocion)
+      this.promociones.find(promo => promo.idPromocion == idPromocion).activa = null
+    } catch (error) {
+      this.toastService.presentToast('Ha ocurrido un error, reintente.' + error);
+    }
+  }
+
 }
