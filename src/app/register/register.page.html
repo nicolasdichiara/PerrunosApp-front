@@ -15,7 +15,7 @@
   <form [formGroup]="registrationForm" (ngSubmit)="submit()" >
   <ion-list>
     <ion-item>
-      <ion-label>Seleccione Perfil</ion-label>
+      <ion-label>Seleccione</ion-label>
       <ion-select placeholder="Tipo" formControlName="tipo" type="text" name="tipo" interface="popover">
         <ion-select-option value="{{perfil.idPerfil}}" *ngFor="let perfil of perfiles">{{perfil.nombrePerfil}}</ion-select-option>
       </ion-select>
