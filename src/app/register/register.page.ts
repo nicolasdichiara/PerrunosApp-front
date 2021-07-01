@@ -56,11 +56,11 @@ export class RegisterPage implements OnInit {
       { type: 'maxlength', message: 'Nombre no puede ser mayor que 50 caracteres' },
     ],
     apellido: [
-      { type: 'required', message: 'Nombre es requerido' },
-      { type: 'maxlength', message: 'Nombre no puede ser mayor que 50 caracteres' },
+      { type: 'required', message: 'Apellido es requerido' },
+      { type: 'maxlength', message: 'Apellido no puede ser mayor que 50 caracteres' },
     ],
     email: [
-      { type: 'required', message: 'descripcion es requerido' },
+      { type: 'required', message: 'Email es requerido' },
     ],
     tipo: [
       { type: 'required', message: 'Tipo es requerido' },

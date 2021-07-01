@@ -10,24 +10,17 @@
 
 
 <ion-content *ngIf="authUser?.tipoPerfil !== 'Administrador'">
-  <ion-item>
-
-    <ion-item>
-      <ion-avatar slot="start" style="height:10em ;width: auto;" [routerLink]="'/home/menuuser/subir-imagen'">
-        <img src={{userStats?.imagenPerfil}}>
-      </ion-avatar>
-    </ion-item>
-  </ion-item>
-
-
 
   <ion-item>
+    <ion-avatar slot="start" [routerLink]="'/home/menuuser/subir-imagen'">
+      <img style="margin-top: -30px;min-width: 100px;min-height: 100px;" src={{userStats?.imagenPerfil}}>
+    </ion-avatar>
     <ion-label>
-      <h3>Bienvenido, {{ authUser?.nombre }}</h3>
-      <p *ngIf="authUser?.tipoPerfil !== 'Especialista'">
+      <h3 style="margin-left:70px;">Bienvenido, {{ authUser?.nombre }}</h3>
+      <p style="margin-left:70px;" *ngIf="authUser?.tipoPerfil !== 'Especialista'">
         Viajes realizados: {{servicios?.length}}
       </p>
-      <p>
+      <p style="margin-left:70px;">
         Calificación: {{this.userStats?.calificacion}}
         <ion-icon name="star" item-right></ion-icon>
       </p>
@@ -117,6 +110,21 @@
             <label>Reportar</label>
           </div>
         </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <h3>Promociones</h3>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div>Promo 1</div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div>Proximamente ...</div>
       </ion-col>
     </ion-row>
   </ion-grid>
