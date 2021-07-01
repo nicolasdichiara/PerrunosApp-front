@@ -146,6 +146,14 @@ export class RegisterPage implements OnInit {
     return ('0' + fecha.getDate()).slice(-2);
   }
 
+  parsearNombre(unNombre: String){
+    if(unNombre == 'Duenio'){
+      return 'Dueño'
+    } else {
+      return unNombre
+    }
+  }
+
   async ngOnInit() {
     this.perfiles = await this.perfilesService.getTodosLosPerfiles();
     console.log(this.perfiles)
