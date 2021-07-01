@@ -43,6 +43,11 @@ export class HomePage implements OnInit {
       title: 'Perfil',
       url: '/home/menuuser/perfil',
       icon: 'person'
+    },
+    {
+      title: 'Mi Token',
+      url: '/home/menuuser/token-gen',
+      icon: 'key'
     }
   ];
 

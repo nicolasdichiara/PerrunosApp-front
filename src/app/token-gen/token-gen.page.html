@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mi token</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-text color="dark">
+    <h3>Actualizar Token</h3>
+    <h4>Compartí el siguiente token con el dueño de la mascota al momento de tomar posesión de la mascota para comenzar el servicio y al finalizarlo para recibir el pago correspondiente!</h4>
+  </ion-text>
+  <ion-card>
+    <ion-text color="dark">
+      <h1 style="font-weight:bold; text-align:center;letter-spacing: 4px;">QWERTYU</h1>
+    </ion-text>
+      <ion-button color="success" expand="block" class="btn-inicio" (click)="updateToken(authUser)" >
+        <div>
+            <ion-icon name="refresh" class="icon-menu"></ion-icon><br>
+            <label>Actualizar</label>
+        </div>
+      </ion-button>
+  </ion-card>
+</ion-content>

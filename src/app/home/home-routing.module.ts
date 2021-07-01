@@ -49,6 +49,10 @@ const routes: Routes = [
             loadChildren: () =>
               import('../subidaImagen/subidaImagen.module').then(m => m.SubidaImagenPageModule)
           },
+          {
+            path: 'token-gen',
+            loadChildren: () => import('../token-gen/token-gen.module').then( m => m.TokenGenPageModule)
+          }
         ]
       },
       {
@@ -92,6 +96,10 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () => import('../avisos/avisos.module').then(m => m.AvisosPageModule)
+          },
+          {
+            path: 'pagar',
+            loadChildren: () => import('../pagar/pagar.module').then( m => m.PagarPageModule)
           },
           {
             path: 'avisos-add',
@@ -149,7 +157,7 @@ const routes: Routes = [
         path: 'subir-imagen-mascota/:id',
         loadChildren: () =>
           import('../subidaImagen-mascota/subidaImagen-mascota.module').then(m => m.SubidaImagenPageModule)
-      },   
+      },
       {
         path: 'mascotas',
         loadChildren: () => import('../mascotas/mascotas.module').then(m => m.MascotasPageModule)

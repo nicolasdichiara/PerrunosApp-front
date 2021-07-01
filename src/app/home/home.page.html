@@ -2,6 +2,9 @@
   <ion-menu [disabled]="!isLoggedIn()" contentId="main-content" type="overlay">
     <ion-content>
       <ion-list *ngIf="authUser?.tipoPerfil == 'Duenio'" id="inbox-list">
+        <ion-avatar style="margin-left:20px;margin-bottom:55px;" slot="start" [routerLink]="'/home/menuuser/subir-imagen'">
+          <img style="min-width: 100px;min-height: 100px;" src={{authUser?.imagenPerfil}}>
+        </ion-avatar>
         <ion-list-header>{{ authUser?.nombre }}</ion-list-header>
         <ion-note>{{ authUser?.email }}</ion-note>
 
@@ -14,6 +17,9 @@
         
       </ion-list>
       <ion-list *ngIf="authUser?.tipoPerfil != 'Duenio'" id="inbox-list2">
+        <ion-avatar style="margin-bottom:55px;" slot="start" [routerLink]="'/home/menuuser/subir-imagen'">
+          <img style="min-width: 100px;min-height: 100px;" src={{authUser?.imagenPerfil}}>
+        </ion-avatar>
         <ion-list-header>{{ authUser?.nombre }}</ion-list-header>
         <ion-note>{{ authUser?.email }}</ion-note>
 
