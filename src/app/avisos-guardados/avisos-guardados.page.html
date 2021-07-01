@@ -55,8 +55,8 @@
         </ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
-        <ion-button *ngIf="aviso?.tipoServicio.nombre=='Servicio de Paseo' || aviso?.tipoServicio.nombre=='Servicio de Guarderia'" size="small" color="success" slot="end" (click)="realizar(aviso.idAviso, aviso.tipoServicio.idTipoServicio, i)">Comenzar
-          Paseo</ion-button>
+        <ion-button *ngIf="aviso?.tipoServicio.nombre=='Paseo' || aviso?.tipoServicio.nombre=='Guarderia'" size="small" color="success" slot="end" (click)="realizar(aviso.idAviso, aviso.tipoServicio.idTipoServicio, i)">Comenzar
+          Servicio</ion-button>
         <ion-button size="small" slot="end" fill="outline" (click)="verDetalle(aviso.idAviso)">Ver Detalle
         </ion-button>
         <ion-button size="small" color="danger" fill="outline" slot="end" (click)="eliminar(aviso.idAviso, i)">Quitar

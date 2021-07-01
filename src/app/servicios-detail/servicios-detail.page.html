@@ -31,7 +31,7 @@
       </ion-card-header>
       <ion-button [disabled]="!puedoVerMapa()" color="danger" fill="outline" slot="end" (click)="finalizarServicio(servicio.idServicio)">Finalizar
       </ion-button>
-      <ion-button *ngIf="servicio?.tipoServicio.nombre=='Servicio de Paseo'" [disabled]="!puedoVerMapa()" slot="end" (click)="verMapa()">Ver Mapa</ion-button>
+      <ion-button *ngIf="servicio?.tipoServicio.nombre=='Paseo'" [disabled]="!puedoVerMapa()" slot="end" (click)="verMapa()">Ver Mapa</ion-button>
       <ion-button color="success" slot="end" (click)="contactarContraparte()">
         <ion-icon name="logo-whatsapp"></ion-icon>
         Chat
