@@ -29,7 +29,7 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      this.deeplinks.route({       //ESTO ES EL DEEPLINKING, COMENTARLO EN DEV PARA QUE NO JODA Y DESCOMENTARLO AL COMPILAR LA APK
+      /*this.deeplinks.route({       //ESTO ES EL DEEPLINKING, COMENTARLO EN DEV PARA QUE NO JODA Y DESCOMENTARLO AL COMPILAR LA APK
         ':id': '/home/mascota-detail/'
       }).subscribe((match) => {
         // match.$route - the route we matched, which is the matched entry from the arguments to route()
@@ -45,6 +45,7 @@ export class AppComponent {
           console.error('Got a deeplink that didn\'t match', nomatch);
           alert('El link no es correcto')
         });
+        */
 
     });
   }
