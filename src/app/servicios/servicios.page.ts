@@ -8,6 +8,7 @@ import { AlertController } from '@ionic/angular';
 import { AvisosService } from '../services/avisos.service';
 import { ServiciosService } from '../services/servicios.service';
 import { Servicio } from 'src/domain/servicio';
+import { LoadingService } from '../services/loading.service';
 
 @Component({
   selector: 'app-servicios',
@@ -25,7 +26,8 @@ export class ServiciosPage implements OnInit {
     private alertController: AlertController,
     private auth: UsuariosService,
     private serviciosService: ServiciosService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    public loading: LoadingService
   ) { }
 
   ngOnInit() {
@@ -46,11 +48,18 @@ export class ServiciosPage implements OnInit {
       }
   }
 
-  async finalizarServicio(idServicio, index){
+  async finalizarServicio(idServicio, idPrestador, index){
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Confimación',
       message: 'Desea finalizar el servicio?',
+      inputs: [
+        {
+          name: 'token',
+          type: 'text',
+          placeholder: 'Token Prestador'
+        }
+      ],
       buttons: [
         {
           text: 'Cancelar',
@@ -61,13 +70,32 @@ export class ServiciosPage implements OnInit {
           }
         }, {
           text: 'Sí',
-          handler: () => {
+          handler: async (values) => {
             console.log('Confirmado');
             try {
-              this.serviciosService.finalizarServicio(idServicio);
-              this.servicios.splice(index, 1);
-              this.toastService.presentToast('Servicio Finalizado');
-              this.router.navigate(['home/servicios/calificar/' + idServicio ]);
+              this.loading.present();
+              await this.auth.getTokenPrestador(idPrestador).then((tok) => {
+                console.log(tok)
+                console.log('Token obtenido')
+                if(tok.token == values.token){
+                  console.log('FINALIZA SERVICIO!')
+                  this.serviciosService.finalizarServicio(idServicio).then(() => {
+                    this.servicios.splice(index, 1);
+                    this.toastService.presentToast('Servicio Finalizado');
+                    this.loading.dismiss();
+                    this.router.navigate(['home/servicios/calificar/' + idServicio ]);
+                  })
+                  .catch(() => { this.toastService.presentToast('Ha ocurrido un error, reintente por favor.') });
+                }else{
+                  this.toastService.presentToast('El token ingresado no es correcto, Solicítelo al paseador para finalizar!');
+                  this.loading.dismiss();
+                  return false;
+                }
+              });
+
+              //this.serviciosService.finalizarServicio(idServicio);
+              //this.servicios.splice(index, 1);
+              //this.toastService.presentToast('Servicio Finalizado');
             }
             catch (error) {
               this.toastService.presentToast('Ha ocurrido un error, reintente.');
