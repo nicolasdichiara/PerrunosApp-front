@@ -79,7 +79,17 @@ export class UsuariosService {
     return this.http.post(environment.apiUrl + 'usuario/perfil/cargarImagen/' + idUser, imagenjson).toPromise();
   }
 
+  setTokenPrestador(id: number, token: string) {
+    const postData = {
+      token
+    }
+    return this.http.post(environment.apiUrl + 'usuarios/setToken/' + id, postData).toPromise();
+  }
 
+  async getTokenPrestador(id) {
+    const token = await this.http.get<any>(environment.apiUrl + 'usuarios/getToken/' + id).toPromise();
+    return token;
+  }
 
   async getUserById(id) {
     const user = await this.http.get<Usuario>(environment.apiUrl + 'usuario/' + id).toPromise();

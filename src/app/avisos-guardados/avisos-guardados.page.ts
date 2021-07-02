@@ -4,6 +4,7 @@ import { AlertController } from '@ionic/angular';
 import { Aviso } from 'src/domain/aviso';
 import { TipoServicio } from 'src/domain/tipoServicio';
 import { AvisosService } from '../services/avisos.service';
+import { LoadingService } from '../services/loading.service';
 import { ServiciosService } from '../services/servicios.service';
 import { ToastService } from '../services/toast.service';
 import { UsuariosService } from '../services/usuarios.service';
@@ -27,7 +28,8 @@ export class AvisosGuardadosPage implements OnInit {
     private auth: UsuariosService,
     private avisosService: AvisosService,
     private serviciosService: ServiciosService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    public loading: LoadingService
   ) {}
 
   async ngOnInit() {
@@ -88,7 +90,7 @@ export class AvisosGuardadosPage implements OnInit {
     await alert.present();
   }
 
-  async realizar(idAviso, idTipo, index) {
+  async realizar(idAviso, idTipo, idPrestador, index) {
     const postData = {
       idAviso: '',
       idContratante: '',
@@ -98,24 +100,49 @@ export class AvisosGuardadosPage implements OnInit {
       cssClass: 'my-custom-class',
       header: 'Confimación',
       message: 'Desea llevar adelante el paseo? El paseador debe estar de acuerdo',
+      inputs: [
+        {
+          name: 'token',
+          type: 'text',
+          placeholder: 'Token Prestador'
+        }
+      ],
       buttons: [
         {
           text: 'Cancelar',
           role: 'cancel',
           cssClass: 'secondary',
-          handler: (blah) => {
+          handler: () => {
             console.log('Cancelado');
           }
         }, {
           text: 'Sí',
-          handler: () => {
+          handler: async (values) => {
+            console.log(values);
             console.log('Confirmado');
             postData.idAviso = idAviso;
             postData.idContratante = this.authUser.id;
             postData.tipo = idTipo
             console.log(postData);
-            this.serviciosService.contratarServicio(postData);
-            this.router.navigate(['home']);
+            console.log(values.token + " validare contra el back buscando token de paseador con id:" + idPrestador);
+            this.loading.present();
+            await this.auth.getTokenPrestador(idPrestador).then((tok) => {
+              console.log(tok)
+              console.log('Token obtenido')
+              if(tok.token == values.token){
+                console.log('ACTIVA SERVICIO!')
+                this.serviciosService.contratarServicio(postData).then(() => {
+                  this.loading.dismiss();
+                  this.router.navigate(['home']);
+                })
+                .catch(() => { this.toastService.presentToast('Ha ocurrido un error, reintente por favor.') });
+              }else{
+                this.toastService.presentToast('El token ingresado no es correcto, Solicítelo al paseador para comenzar!');
+                this.loading.dismiss();
+                return false;
+              }
+              // 
+            });
           }
         }
       ]
