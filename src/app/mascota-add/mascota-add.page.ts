@@ -6,6 +6,7 @@ import { MascotasService } from '../services/mascotas.service';
 import { Raza } from 'src/domain/raza';
 import { UsuariosService } from '../services/usuarios.service';
 import { Router } from '@angular/router';
+import { LoadingService } from '../services/loading.service';
 
 @Component({
   selector: 'app-mascota-add',
@@ -103,7 +104,8 @@ export class MascotaAddPage implements OnInit {
     private formBuilder: FormBuilder,
     private mascotasService: MascotasService,
     private auth: UsuariosService,
-    private toastService: ToastService) {
+    private toastService: ToastService,
+    public loading: LoadingService) {
     this.today = new Date().toISOString();
     this.auth.userData$.subscribe((res: any) => {
       this.authUser = res;
@@ -134,10 +136,13 @@ export class MascotaAddPage implements OnInit {
     this.mascota.sexo = this.registrationForm.get('sexo').value
     this.mascota.vacunaDeLaRabia = this.vacunaDeLaRabia
     this.mascota.vacunaSextuple = this.vacunaSextuple
+    this.loading.present()
     try {
       await this.mascotasService.postMascota(this.mascota, this.authUser.id);
       this.router.navigate(['home']);
+      this.loading.dismiss()
     } catch (error) {
+      this.loading.dismiss()
       this.toastService.presentToast('Ha ocurrido un error, reintente.' + error);
     }
 

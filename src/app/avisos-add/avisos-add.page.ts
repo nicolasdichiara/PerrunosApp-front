@@ -8,6 +8,7 @@ import { AvisosService } from '../services/avisos.service';
 import { TipoServicio } from 'src/domain/tipoServicio';
 import { Zona } from 'src/domain/zona';
 import { ZonasService } from '../services/zonas.service';
+import { LoadingService } from '../services/loading.service';
 
 @Component({
   selector: 'app-avisos-add',
@@ -122,7 +123,8 @@ export class AvisosAddPage implements OnInit {
     private avisosService: AvisosService,
     private auth: UsuariosService,
     private toastService: ToastService,
-    private zonasService: ZonasService
+    private zonasService: ZonasService,
+    public loading: LoadingService
   ) {
     this.today = new Date().toISOString();
     this.auth.userData$.subscribe(async (res: any) => {
@@ -169,11 +171,13 @@ export class AvisosAddPage implements OnInit {
     this.aviso.viernes = this.viernes
     this.aviso.sabado = this.sabado
     this.aviso.domingo = this.domingo
-
+    this.loading.present()
     try {
       await this.avisosService.postAviso(this.aviso, this.authUser.id);
       this.router.navigate(['home/avisos']);
+      this.loading.dismiss()
     } catch (error) {
+      this.loading.dismiss()
       this.toastService.presentToast('Ha ocurrido un error creando el aviso, reintente.');
       console.log('Ha ocurrido un error creando el aviso, reintente.', error);
     }
