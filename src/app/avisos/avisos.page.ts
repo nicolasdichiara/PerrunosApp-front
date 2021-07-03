@@ -95,7 +95,11 @@ export class AvisosPage implements OnInit {
   }
 
   aplicarFiltros() {
-    this.avisosActivosFiltrados = this.avisosActivos.filter(avs => avs.tipoServicio.idTipoServicio == this.idTipoElegido && avs.zona.idZona == this.zonaElegida)
+    if((!this.zonaElegida) || this.zonaElegida==49){
+      this.avisosActivosFiltrados = this.avisosActivos.filter(avs => avs.tipoServicio.idTipoServicio == this.idTipoElegido)
+    } else {
+      this.avisosActivosFiltrados = this.avisosActivos.filter(avs => avs.tipoServicio.idTipoServicio == this.idTipoElegido && avs.zona.idZona == this.zonaElegida)
+    }
   }
 
   async eliminar(idAviso, index) {
