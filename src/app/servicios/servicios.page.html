@@ -12,24 +12,39 @@
     <ion-list-header>
       <ion-label class="titulo">Mis Servicios</ion-label>
     </ion-list-header>
-  <ion-card *ngFor="let servicio of servicios; let i = index">
-    <ion-card-header>
-      <img src="../../assets/img/servicio2.png" style="padding:5px;max-width: 50px;" />
-      <ion-card-title>
-        {{servicio.tipoServicio.nombre}}
-      </ion-card-title>
-      <ion-card-subtitle>
-        Fecha: {{servicio.fechaRealizacion.dayOfMonth}}/{{servicio.fechaRealizacion.monthValue}}/{{servicio.fechaRealizacion.year}} - {{servicio.horario.hour}}:{{servicio.horario.minute}}
-      </ion-card-subtitle>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-button *ngIf="authUser?.tipoPerfil == 'Duenio'" size="small" color="danger" fill="outline" slot="end" (click)="pagarParaFinalizar(servicio.idServicio)">Finalizar</ion-button>
-<!--
+    <ion-card *ngFor="let servicio of servicios; let i = index">
+      <ion-card-header>
+        <img src="../../assets/img/servicio2.png" style="padding:5px;max-width: 50px;" />
+        <ion-card-title>
+          {{servicio.tipoServicio.nombre}}
+        </ion-card-title>
+        <ion-card-subtitle>
+          Fecha:
+          {{servicio.fechaRealizacion.dayOfMonth}}/{{servicio.fechaRealizacion.monthValue}}/{{servicio.fechaRealizacion.year}}
+          - {{servicio.horario.hour}}:{{servicio.horario.minute}}
+        </ion-card-subtitle>
+        <ion-card-subtitle *ngIf="authUser?.tipoPerfil == 'Duenio'">
+          Prestador: {{servicio?.nombrePrestador}} {{servicio?.apellidoPrestador}}
+        </ion-card-subtitle>
+        <ion-card-subtitle *ngIf="authUser?.tipoPerfil != 'Duenio'">
+          Dueño: {{servicio?.nombreDuenio}} {{servicio?.apellidoDuenio}}
+        </ion-card-subtitle>
+        <ion-card-subtitle *ngIf="authUser?.tipoPerfil == 'Duenio'">
+          Email: {{servicio?.emailPrestador}}
+        </ion-card-subtitle>
+        <ion-card-subtitle *ngIf="authUser?.tipoPerfil != 'Duenio'">
+          Email: {{servicio?.emailDuenio}}
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-button *ngIf="authUser?.tipoPerfil == 'Duenio'" size="small" color="danger" fill="outline" slot="end"
+          (click)="pagarParaFinalizar(servicio.idServicio)">Finalizar</ion-button>
+        <!--
    <ion-button *ngIf="authUser?.tipoPerfil == 'Duenio'" size="small" color="danger" fill="outline" slot="end" (click)="finalizarServicio(servicio.idServicio, servicio.idPrestador, i)">Finalizar</ion-button>
       <ion-button size="small" color="warning" slot="end" (click)="editar(aviso.id)">Editar</ion-button>
 -->
-      <ion-button size="small" slot="end" (click)="verDetalle(servicio.idServicio)">Ver Detalle</ion-button>
-    </ion-card-content>
-  </ion-card>
-</ion-list>
+        <ion-button size="small" slot="end" (click)="verDetalle(servicio.idServicio)">Ver Detalle</ion-button>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
 </ion-content>

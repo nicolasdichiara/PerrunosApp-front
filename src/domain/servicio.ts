@@ -20,11 +20,13 @@ export class Servicio {
     apellidoPrestador: string
     telefonoPrestador: string
     imagenPerfilPrestador: string
+    emailPrestador: string
     idDuenio: number;
     nombreDuenio: string
     apellidoDuenio: string
     telefonoDuenio: string
     imagenPerfilDuenio: string
+    emailDuenio: string
     precio: number
 
 
@@ -36,8 +38,8 @@ export class Servicio {
         _fechaRealizacion?: Date, _horarioInicio?: string, _calificacionDuenio?: string, _calificacionPrestador?: string,
         _latitudDuenio?: string, _longitudDuenio?: string, _latitudPrestador?: string, _longitudPrestador?: string,
         _idPrestador?: number, _nombrePrestador?: string, _apellidoPrestador?: string, _telefonoPrestador?: string, 
-        _imagenPerfilPrestador?: string, _idDuenio?: number, _nombreDuenio?: string, _apellidoDuenio?: string,
-        _telefonoDuenio?: string, _imagenPerfilDuenio?: string, _precio?: number) {
+        _imagenPerfilPrestador?: string, _emailPrestador?: string, _idDuenio?: number, _nombreDuenio?: string, _apellidoDuenio?: string,
+        _telefonoDuenio?: string, _imagenPerfilDuenio?: string, _emailDuenio?: string, _precio?: number) {
         this.idServicio = _idServicio;
         this.activo = _activo;
         this.fechaRealizacion = _fechaRealizacion;
@@ -54,11 +56,13 @@ export class Servicio {
         this.apellidoPrestador = _apellidoPrestador
         this.telefonoPrestador = _telefonoPrestador
         this.imagenPerfilPrestador = _imagenPerfilPrestador
+        this.emailPrestador = _emailPrestador
         this.idDuenio = _idDuenio
         this.nombreDuenio = _nombreDuenio
         this.apellidoDuenio = _apellidoDuenio
         this.telefonoDuenio = _telefonoDuenio
         this.imagenPerfilDuenio = _imagenPerfilDuenio
+        this.emailDuenio = _emailDuenio
         this.precio = _precio
     }
 
