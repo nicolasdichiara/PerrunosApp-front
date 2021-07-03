@@ -30,6 +30,7 @@ import { Deeplinks } from '@ionic-native/deeplinks/ngx/index'
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx'
 import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx'
 import { Geolocation } from '@ionic-native/geolocation/ngx'
+import { ComponentsModule } from './components/components.module';
 
 
 @NgModule({

@@ -23,8 +23,9 @@
       </ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
-      <ion-button size="small" color="danger" fill="outline" slot="end" (click)="finalizarServicio(servicio.idServicio, servicio.idPrestador, i)">Finalizar</ion-button>
+      <ion-button *ngIf="authUser?.tipoPerfil == 'Duenio'" size="small" color="danger" fill="outline" slot="end" (click)="pagarParaFinalizar(servicio.idServicio)">Finalizar</ion-button>
 <!--
+   <ion-button *ngIf="authUser?.tipoPerfil == 'Duenio'" size="small" color="danger" fill="outline" slot="end" (click)="finalizarServicio(servicio.idServicio, servicio.idPrestador, i)">Finalizar</ion-button>
       <ion-button size="small" color="warning" slot="end" (click)="editar(aviso.id)">Editar</ion-button>
 -->
       <ion-button size="small" slot="end" (click)="verDetalle(servicio.idServicio)">Ver Detalle</ion-button>

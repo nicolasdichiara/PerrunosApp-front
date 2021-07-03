@@ -5,9 +5,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { PagarPageRoutingModule } from './pagar-routing.module';
-import { IonicStripeCheckoutModule } from '@vyconsulting/ionic-stripe-checkout';
 import { PagarPage } from './pagar.page';
 import { BrowserModule } from '@angular/platform-browser';
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   imports: [
@@ -15,8 +15,8 @@ import { BrowserModule } from '@angular/platform-browser';
     ReactiveFormsModule,
     FormsModule,
     IonicModule,
+    ComponentsModule,
     PagarPageRoutingModule,
-    IonicStripeCheckoutModule,
   ],
   declarations: [PagarPage]
 })

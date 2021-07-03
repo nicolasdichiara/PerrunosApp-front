@@ -48,66 +48,8 @@ export class ServiciosPage implements OnInit {
       }
   }
 
-  async finalizarServicio(idServicio, idPrestador, index){
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'Confimación',
-      message: 'Desea finalizar el servicio?',
-      inputs: [
-        {
-          name: 'token',
-          type: 'text',
-          placeholder: 'Token Prestador'
-        }
-      ],
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: (blah) => {
-            console.log('Cancelado');
-          }
-        }, {
-          text: 'Sí',
-          handler: async (values) => {
-            console.log('Confirmado');
-            try {
-              this.loading.present();
-              await this.auth.getTokenPrestador(idPrestador).then((tok) => {
-                console.log(tok)
-                console.log('Token obtenido')
-                if(tok.token == values.token){
-                  console.log('FINALIZA SERVICIO!')
-                  this.serviciosService.finalizarServicio(idServicio).then(() => {
-                    this.servicios.splice(index, 1);
-                    this.toastService.presentToast('Servicio Finalizado');
-                    this.loading.dismiss();
-                    this.router.navigate(['home/servicios/calificar/' + idServicio ]);
-                  })
-                  .catch(() => { this.toastService.presentToast('Ha ocurrido un error, reintente por favor.') });
-                }else{
-                  this.toastService.presentToast('El token ingresado no es correcto, Solicítelo al paseador para finalizar!');
-                  this.loading.dismiss();
-                  return false;
-                }
-              });
-
-              //this.serviciosService.finalizarServicio(idServicio);
-              //this.servicios.splice(index, 1);
-              //this.toastService.presentToast('Servicio Finalizado');
-            }
-            catch (error) {
-              this.toastService.presentToast('Ha ocurrido un error, reintente.');
-            }
-
-          }
-        }
-      ]
-    });
-
-    await alert.present();
-
+  pagarParaFinalizar(idServicio: number){
+    this.router.navigate(['home/avisos/pagar/' + idServicio ]);
   }
 
   verDetalle(idServicio){

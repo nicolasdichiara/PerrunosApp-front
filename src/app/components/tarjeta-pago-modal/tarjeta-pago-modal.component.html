@@ -1,0 +1,33 @@
+<ion-toolbar>
+  <ion-title>Pago con Tarjeta de crédito</ion-title>
+  <ion-buttons slot="primary">
+    <ion-button fill="solid" (click)="dismissModal()">
+      <ion-icon name="close-outline"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+<ion-content style="padding:10px;">
+   <ion-stripe-checkout
+    [amount]="pago.valor"
+    [currency]="'ARS'"
+    (checkout)="onPay($event)"
+  >
+  </ion-stripe-checkout>
+<!--
+  <form [formGroup]="amigosAddForm" (ngSubmit)="onSubmit(amigosAddForm,$event)">
+  <ion-item>
+    <ion-input type="username" placeholder="Usuario Amigo" formControlName="username"></ion-input>
+    <ion-button class="btn btn-primary" type="submit" [disabled]="amigosAddForm.invalid">Guardar</ion-button>
+  </ion-item>
+  </form>
+
+  <div style="padding:10px;">
+    <ion-item lines="none" color="secondary">
+      <ion-label class="center">Amigos actuales</ion-label>
+    </ion-item>
+    <ion-item lines="none" *ngFor="let amigo of amigos" style="--background:white;">
+      <ion-label class="center">{{ amigo }}</ion-label>
+    </ion-item>
+  </div>
+  -->
+</ion-content>

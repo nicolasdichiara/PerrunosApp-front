@@ -9,14 +9,22 @@
 
 <ion-content>  
 <p style="margin-top:20px;">
-  Desde aquí podrás abonar tu servicio y dejar que tu compañero favorito disfrute en buenas manos! <br><br><b>Gracias por elegir perrunosApp.</b>
+  Desde aquí podrás abonar tu servicio y finalizar el buen momento que tu compañero favorito ha pasado en buenas manos! <br><br><b>Gracias por elegir perrunosApp.</b>
 </p>
-<ion-stripe-checkout
-    [amount]="300"
-    [currency]="'ARS'"
-    (checkout)="onPay($event)"
-  >
-  </ion-stripe-checkout>
+<ion-button color="success" expand="block" class="btn-inicio" (click)="pagarEfectivo()">
+  <div>
+      <ion-icon name="cash-outline" class="icon-menu"></ion-icon><br>
+      <label>Pagá en Efectivo</label>
+  </div>
+</ion-button>
+<ion-button expand="block" class="btn-inicio" (click)="openModalAtr()">
+  <div>
+      <ion-icon name="card" class="icon-menu"></ion-icon><br>
+      <label>Pagá con tarjeta</label>
+  </div>
+</ion-button>
+
+
 <!--
 <ion-card *ngIf="preferencia != null">
   <ion-text color="dark">

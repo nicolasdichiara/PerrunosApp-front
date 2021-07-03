@@ -98,7 +98,7 @@ const routes: Routes = [
             loadChildren: () => import('../avisos/avisos.module').then(m => m.AvisosPageModule)
           },
           {
-            path: 'pagar',
+            path: 'pagar/:idServicio',
             loadChildren: () => import('../pagar/pagar.module').then( m => m.PagarPageModule)
           },
           {
