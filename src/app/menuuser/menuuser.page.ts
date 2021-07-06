@@ -7,6 +7,8 @@ import { Servicio } from 'src/domain/servicio';
 import { ServiciosService } from '../services/servicios.service';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
+import { Promocion } from 'src/domain/promocion';
+import { PromocionesService } from '../services/promociones.service';
 
 @Component({
   selector: 'app-menuuser',
@@ -20,6 +22,7 @@ export class MenuuserPage implements OnInit {
   userStats: any;
   servicios: Array<Servicio> = [];
   whatsapp: any = "https://api.whatsapp.com/send?phone=+541166899679&text=Hola"
+  promocionesActivas: Promocion[];
 
   constructor(
     private auth: UsuariosService,
@@ -27,7 +30,8 @@ export class MenuuserPage implements OnInit {
     private mascotasService: MascotasService,
     private toastService: ToastService,
     private androidPermissions: AndroidPermissions,
-    private locationAccuracy: LocationAccuracy
+    private locationAccuracy: LocationAccuracy,
+    private _promocionesService: PromocionesService
   ) { }
 
   ngOnInit() {
@@ -70,6 +74,15 @@ export class MenuuserPage implements OnInit {
           this.servicios = await this.serviciosService.getHistorialServiciosUser(this.authUser.id);
         } catch (error) {
           this.toastService.presentToast('No se ha podido actualizar historico');
+        }
+        if (this.authUser.tipoPerfil == 'Duenio'){
+          console.log('busco promo')
+          try {
+            this.promocionesActivas = await this._promocionesService.getTodasLasPromociones();
+            console.log(this.promocionesActivas)
+          } catch (error) {
+            this.toastService.presentToast('No se han podido actualizar las ultimas promociones');
+          }
         }
         if (this.authUser.tipoPerfil != 'Paseador'){
           try {

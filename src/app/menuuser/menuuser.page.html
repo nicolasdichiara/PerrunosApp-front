@@ -85,7 +85,6 @@
       <ion-col>
         <ion-button expand="block" class="btn-inicio" [routerLink]="'/home/avisos'">
           <div>
-           
             <img src="../../assets/img/paseos.png" /><br>
             <label>Servicios</label>
           </div>
@@ -117,14 +116,14 @@
         <h3>Promociones</h3>
       </ion-col>
     </ion-row>
-    <ion-row>
+    <ion-row *ngIf="!promocionesActivas">
       <ion-col>
-        <div>Promo 1</div>
+        <div>No hay promos disponibles en este momento para tu nivel de usuario! Suma viajes y accedé a las mejores promos!</div>
       </ion-col>
     </ion-row>
-    <ion-row>
+    <ion-row *ngFor="let promo of promocionesActivas">
       <ion-col>
-        <div>Proximamente ...</div>
+        <div><img src="{{ promo.imagenPromo }}" alt=""></div>
       </ion-col>
     </ion-row>
   </ion-grid>

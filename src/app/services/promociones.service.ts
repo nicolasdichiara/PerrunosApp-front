@@ -14,6 +14,12 @@ export class PromocionesService {
     private httpService: HttpService
   ) { }
 
+
+  async getPromocionesActivas() {
+    const promociones: Promocion[] = await this.http.get<any>(environment.apiUrl + 'promociones/getPromocionesActivas').toPromise();
+    return promociones.map((promocion)=> Promocion.fromJson(promocion));
+  }
+
   async getTodasLasPromociones() {
     const perfiles: Promocion[] = await this.http.get<any>(environment.apiUrl + 'promociones/getTodasLasPromociones').toPromise();
     return perfiles.map((promocion)=> Promocion.fromJson(promocion));
