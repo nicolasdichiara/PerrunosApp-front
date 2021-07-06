@@ -51,6 +51,12 @@
         <ion-card-subtitle *ngIf="authUser?.tipoPerfil != 'Duenio'">
           Dueño: {{servicio?.nombreDuenio}} {{servicio?.apellidoDuenio}}
         </ion-card-subtitle>
+        <ion-card-subtitle *ngIf="authUser?.tipoPerfil == 'Duenio'">
+          Email: {{servicio?.emailPrestador}}
+        </ion-card-subtitle>
+        <ion-card-subtitle *ngIf="authUser?.tipoPerfil != 'Duenio'">
+          Email: {{servicio?.emailDuenio}}
+        </ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
         <ion-button size="small" color="success" slot="end" (click)="calificar(servicio.idServicio)">Calificar

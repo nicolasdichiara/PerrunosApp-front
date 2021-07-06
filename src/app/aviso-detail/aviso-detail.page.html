@@ -23,6 +23,10 @@
       <ion-text color="medium" type="text" name="name" required>{{aviso?.nombre}} {{aviso?.apellido}}</ion-text>
     </ion-item>
     <ion-item>
+      <ion-label floating>Precio</ion-label>
+      <ion-text color="medium" type="text" name="name" required>${{aviso?.precio}}</ion-text>
+    </ion-item>
+    <ion-item>
       <ion-label floating>Zona</ion-label>
       <ion-text color="medium" type="text" name="name" required>{{aviso?.zona.nombreZona}}</ion-text>
     </ion-item>

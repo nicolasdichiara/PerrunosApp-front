@@ -52,6 +52,10 @@ const routes: Routes = [
           {
             path: 'token-gen',
             loadChildren: () => import('../token-gen/token-gen.module').then( m => m.TokenGenPageModule)
+          },
+          {
+            path: 'faq',
+            loadChildren: () => import('../faq/faq.module').then( m => m.FaqPageModule)
           }
         ]
       },
