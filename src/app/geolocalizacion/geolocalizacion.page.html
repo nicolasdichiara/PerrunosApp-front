@@ -17,10 +17,21 @@
       </ion-item>
       <ion-item-sliding class="ion-no-border">
         <ion-item  class="ion-no-border">
-          <ion-label>Direccion: Calle Falsa 1234</ion-label>
+          <ion-chip class="ion-margin-start">
+            <ion-avatar>
+              <img src="{{servicio?.imagenPerfilPrestador}}">
+            </ion-avatar>
+            <ion-label>{{servicio?.nombrePrestador}}</ion-label>
+          </ion-chip>
+          <ion-chip class="ion-margin-start">
+            <ion-avatar>
+              <img src="{{servicio?.imagenPerfilDuenio}}">
+            </ion-avatar>
+            <ion-label>{{servicio?.nombreDuenio}}</ion-label>
+          </ion-chip>
         </ion-item>
         <ion-item-options side="end" class="ion-no-border">
-          <ion-item-option (click)="finalizarServicio(servicio.idServicio)">Finalizar servicio</ion-item-option>
+          <ion-item-option (click)="pagarParaFinalizar(servicio.idServicio)">Finalizar servicio</ion-item-option>
         </ion-item-options>
       </ion-item-sliding>
     </ion-list>

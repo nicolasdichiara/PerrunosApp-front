@@ -31,7 +31,7 @@ import { AndroidPermissions } from '@ionic-native/android-permissions/ngx'
 import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx'
 import { Geolocation } from '@ionic-native/geolocation/ngx'
 import { ComponentsModule } from './components/components.module';
-
+import { CallNumber } from '@ionic-native/call-number/ngx';
 
 @NgModule({
   declarations: [
@@ -57,6 +57,7 @@ import { ComponentsModule } from './components/components.module';
     AngularFireStorageModule // imports firebase/storage only needed for storage features
   ],
   providers: [
+    CallNumber,
     StatusBar,
     SplashScreen,
     Deeplinks,

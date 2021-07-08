@@ -26,6 +26,7 @@ export class Aviso {
     telefono: string
     tipoPerfil: string
     calificacion: number
+    imagenPerfil: string;
 
     static fromJson(avisoJSON): Aviso {
         return Object.assign(new Aviso(), avisoJSON);
@@ -79,6 +80,10 @@ export class Aviso {
 
     dosDigitosMinutos(fecha: Date) {
         return ('0' + fecha.getMinutes()).slice(-2);
+    }
+
+    get calificacionFormat(){
+        return this.calificacion.toFixed(2)
     }
 
 }

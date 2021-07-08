@@ -269,6 +269,10 @@ export class GeolocalizacionPage implements OnInit, OnDestroy {
     }
   }
 
+  pagarParaFinalizar(idServicio: number){
+    this.router.navigate(['home/avisos/pagar/' + idServicio ]);
+  }
+/*
   async finalizarServicio(idServicio) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
@@ -303,5 +307,6 @@ export class GeolocalizacionPage implements OnInit, OnDestroy {
     await alert.present();
 
   }
+  */
 
 }

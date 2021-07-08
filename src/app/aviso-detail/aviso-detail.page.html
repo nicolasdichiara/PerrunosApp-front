@@ -77,6 +77,9 @@
   </ion-item>
   <ion-button [disabled]="puedoContactar()" *ngIf="authUser?.id!=aviso?.idUsuario" color="success" expand="block" (click)="contactar()">
     <ion-icon name="logo-whatsapp"></ion-icon>
-    Contactar
+    &nbsp;Contactar
   </ion-button>
+  <ion-button [disabled]="puedoContactar()" expand="block" (click)='callNumber()'>
+    <ion-icon name="call"></ion-icon>
+     &nbsp;Llamar </ion-button>
 </ion-content>

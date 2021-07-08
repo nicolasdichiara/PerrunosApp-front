@@ -184,11 +184,11 @@ export class PagarPage implements OnInit {
       if(res.role != 'cancel'){
         console.log('Pago efectuado')
         console.log(res)
-        this.serviciosService.finalizarServicio(this.idServicio).then(() => {
-          this.toastService.presentToast('Servicio Finalizado');
-          this.router.navigate(['home/servicios/calificar/' + this.idServicio ]);
-        })
-        .catch(() => { this.toastService.presentToast('Ha ocurrido un error, reintente por favor.') });
+        //this.serviciosService.finalizarServicio(this.idServicio).then(() => {
+        //  this.toastService.presentToast('Servicio Finalizado');
+        //  this.router.navigate(['home/servicios/calificar/' + this.idServicio ]);
+        //})
+        //.catch(() => { this.toastService.presentToast('Ha ocurrido un error, reintente por favor.') });
       }else{
         console.log('Pago CANCELADO')
       }

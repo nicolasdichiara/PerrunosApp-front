@@ -21,7 +21,7 @@
         Viajes realizados: {{servicios?.length}}
       </p>
       <p style="margin-left:70px;">
-        Calificación: {{this.userStats?.calificacion}}
+        Calificación: {{ this.userStats?.calificacionFormat }}
         <ion-icon name="star" item-right></ion-icon>
       </p>
     </ion-label>
@@ -111,7 +111,7 @@
         </ion-button>
       </ion-col>
       <ion-col>
-        <ion-button expand="block" class="btn-inicio" [routerLink]="'/home/avisos-guardados'">
+        <ion-button expand="block" class="btn-inicio" [routerLink]="'/home/menuuser/faq'">
           <div>
             <img src="../../assets/img/confun.png" /><br>
             <label class="ion-text-wrap">Preguntas</label>
