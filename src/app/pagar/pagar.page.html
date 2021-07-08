@@ -8,9 +8,13 @@
 </ion-header>
 
 <ion-content>  
-<p style="margin-top:20px;">
+
+<p style="margin-top:20px;text-align: center;">
   Desde aquí podrás abonar tu servicio y finalizar el buen momento que tu compañero favorito ha pasado en buenas manos! <br><br><b>Gracias por elegir perrunosApp.</b>
 </p>
+<p style="margin-top:40px;margin-bottom:40px;font-size: 45px;font-weight: bold;text-align: center;width: 100%;">
+  $ {{ servicio?.precio }}
+ </p>
 <ion-button color="success" expand="block" class="btn-inicio" (click)="pagarEfectivo()">
   <div>
       <ion-icon name="cash-outline" class="icon-menu"></ion-icon><br>

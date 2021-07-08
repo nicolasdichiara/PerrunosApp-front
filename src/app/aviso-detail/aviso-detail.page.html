@@ -10,7 +10,7 @@
 <ion-content>
   <div align="center">
     <h1> {{aviso?.tipoServicio.nombre}}</h1>
-    <img style="height:20em ;width: auto;" class="center profile-image" src={{aviso?.imagenPerfil}}>
+    <img style="height:10em ;width: auto;max-width: 150px;" class="center profile-image" [src]="getAvisoImagenPerfil(aviso?.imagenPerfil)">
     <h4> Publicado el
       {{aviso?.fechaPublicacion.dayOfMonth}}/{{aviso?.fechaPublicacion.monthValue}}/{{aviso?.fechaPublicacion.year}}
     </h4>

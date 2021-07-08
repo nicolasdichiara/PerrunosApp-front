@@ -20,7 +20,7 @@
     <ion-card-content>
       <ion-card-header>
         <ion-card-subtitle>
-          El Paseo inició el
+          El Servicio inició el
           {{servicio?.fechaRealizacion.dayOfMonth}}/{{servicio?.fechaRealizacion.monthValue}}/{{servicio?.fechaRealizacion.year}}
           a las {{servicio?.horario.hour}}:{{servicio?.horario.minute}}
         </ion-card-subtitle>
@@ -31,7 +31,7 @@
         <ion-card-subtitle *ngIf="authUser?.tipoPerfil != 'Duenio'">Teléfono: {{servicio?.telefonoDuenio}}</ion-card-subtitle>
         <ion-card-subtitle *ngIf="authUser?.tipoPerfil != 'Duenio'">Email: {{servicio?.emailDuenio}}</ion-card-subtitle>
       </ion-card-header>
-      <ion-button [disabled]="!puedoVerMapa()" color="danger" fill="outline" slot="end" (click)="finalizarServicio(servicio.idServicio)">Finalizar
+      <ion-button [disabled]="!puedoVerMapa()" color="danger" fill="outline" slot="end" (click)="pagarParaFinalizar(servicio.idServicio)">Finalizar
       </ion-button>
       <ion-button *ngIf="servicio?.tipoServicio.nombre=='Paseo'" [disabled]="!puedoVerMapa()" slot="end" (click)="verMapa()">Ver Mapa</ion-button>
       <ion-button color="success" slot="end" (click)="contactarContraparte()">

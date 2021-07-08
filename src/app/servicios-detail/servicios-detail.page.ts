@@ -76,6 +76,10 @@ export class ServiciosDetailPage implements OnInit {
     this.router.navigate(['home/geolocalizacion', this.servicio.idServicio]);
   }
 
+  pagarParaFinalizar(idServicio: number){
+    this.router.navigate(['home/avisos/pagar/' + idServicio ]);
+  }
+/*
   async finalizarServicio(idServicio) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
@@ -110,5 +114,5 @@ export class ServiciosDetailPage implements OnInit {
     await alert.present();
 
   }
-
+*/
 }

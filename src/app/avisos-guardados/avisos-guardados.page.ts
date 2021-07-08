@@ -99,7 +99,7 @@ export class AvisosGuardadosPage implements OnInit {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Confimación',
-      message: 'Desea llevar adelante el paseo? El paseador debe estar de acuerdo',
+      message: 'Desea llevar adelante el servicio? El prestador debe estar de acuerdo',
       inputs: [
         {
           name: 'token',
@@ -137,7 +137,7 @@ export class AvisosGuardadosPage implements OnInit {
                 })
                 .catch(() => { this.toastService.presentToast('Ha ocurrido un error, reintente por favor.') });
               }else{
-                this.toastService.presentToast('El token ingresado no es correcto, Solicítelo al paseador para comenzar!');
+                this.toastService.presentToast('El token ingresado no es correcto, Solicítelo al prestador para comenzar!');
                 this.loading.dismiss();
                 return false;
               }

@@ -71,4 +71,9 @@ export class AvisoDetailPage implements OnInit {
     " le dejo el Link al perfil de mi mascota " + "https://perrunosapp.com/home/mascota-detail/?id=" + this.idMascota
   }
 
+  getAvisoImagenPerfil(imagenLink: string){
+    console.log(imagenLink);
+    return imagenLink != null ? imagenLink : 'https://i.postimg.cc/bJMGBhMg/asd.png'
+  }
+
 }

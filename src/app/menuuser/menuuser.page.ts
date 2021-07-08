@@ -78,7 +78,7 @@ export class MenuuserPage implements OnInit {
         if (this.authUser.tipoPerfil == 'Duenio'){
           console.log('busco promo')
           try {
-            this.promocionesActivas = await this._promocionesService.getTodasLasPromociones();
+            this.promocionesActivas = await this._promocionesService.getPromocionesActivas();
             console.log(this.promocionesActivas)
           } catch (error) {
             this.toastService.presentToast('No se han podido actualizar las ultimas promociones');
