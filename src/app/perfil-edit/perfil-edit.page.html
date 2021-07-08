@@ -24,9 +24,9 @@
         <small class="error-message">{{ error.message }}</small>
       </ng-container>
     </div>
-    <ion-item lines="none">
+    <ion-item>
       <ion-label>Fecha Nacimiento</ion-label>
-      <ion-datetime name="fechaNacimiento" placeholder="Seleccione una fecha" [max]="today" (ionChange)="calcEdad()"
+      <ion-datetime [(ngModel)]="fechaNacimientoEdit" name="fechaNacimiento" placeholder="Seleccione una fecha" [max]="today" (ionChange)="calcEdad()"
         formControlName="fechaNacimiento"></ion-datetime>
     </ion-item>
     <div *ngFor="let error of errorMessages.fechaNacimiento">
@@ -58,6 +58,15 @@
     </ion-item>
     <div *ngFor="let error of errorMessages.telefono">
       <ng-container *ngIf="telefono.hasError(error.type) && (telefono.dirty || telefono.touched)">
+        <small class="error-message">{{ error.message }}</small>
+      </ng-container>
+    </div>
+    <ion-item *ngIf="authUser?.tipoPerfil != 'Duenio'">
+      <ion-label>Cbu</ion-label>
+      <ion-input formControlName="cbu" name="telefono" type="text" [(ngModel)]="cbuEdit"></ion-input>
+    </ion-item>
+    <div *ngFor="let error of errorMessages.cbu">
+      <ng-container *ngIf="cbu.hasError(error.type) && (cbu.dirty || cbu.touched)">
         <small class="error-message">{{ error.message }}</small>
       </ng-container>
     </div>
