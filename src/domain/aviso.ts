@@ -82,4 +82,8 @@ export class Aviso {
         return ('0' + fecha.getMinutes()).slice(-2);
     }
 
+    get calificacionFormat(){
+        return this.calificacion.toFixed(2)
+    }
+
 }

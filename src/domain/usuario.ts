@@ -12,6 +12,7 @@ export class Usuario {
     direccion: string;
     tipoPerfil: string;
     imagenPerfil: string;
+    calificacion;
 
     static fromJson(individuoJSON): Usuario {
         return Object.assign(new Usuario(), individuoJSON);
@@ -34,6 +35,10 @@ export class Usuario {
       this.direccion = _direccion;
       this.tipoPerfil = _tipoPerfil;
       this.imagenPerfil = _imagenPerfil;
+    }
+
+    get calificacionFormat(){
+        return parseFloat(this.calificacion).toFixed(2)
     }
 
 }

@@ -9,6 +9,7 @@ import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
 import { Promocion } from 'src/domain/promocion';
 import { PromocionesService } from '../services/promociones.service';
+import { Usuario } from '../../domain/usuario';
 
 @Component({
   selector: 'app-menuuser',
@@ -19,7 +20,7 @@ export class MenuuserPage implements OnInit {
 
   mascotas: Array<Mascota> = [];
   public authUser: any;
-  userStats: any;
+  userStats: Usuario;
   servicios: Array<Servicio> = [];
   whatsapp: any = "https://api.whatsapp.com/send?phone=+541166899679&text=Hola"
   promocionesActivas: Promocion[];
