@@ -28,6 +28,7 @@ export class Servicio {
     imagenPerfilDuenio: string
     emailDuenio: string
     precio: number
+    horario;
 
 
     static fromJson(servicioJSON): Servicio {

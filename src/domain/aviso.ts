@@ -26,6 +26,7 @@ export class Aviso {
     telefono: string
     tipoPerfil: string
     calificacion: number
+    imagenPerfil: string;
 
     static fromJson(avisoJSON): Aviso {
         return Object.assign(new Aviso(), avisoJSON);

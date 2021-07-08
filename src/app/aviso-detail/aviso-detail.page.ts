@@ -6,6 +6,7 @@ import { AvisosService } from '../services/avisos.service';
 import { MascotasService } from '../services/mascotas.service';
 import { ToastService } from '../services/toast.service';
 import { UsuariosService } from '../services/usuarios.service';
+import { CallNumber } from '@ionic-native/call-number/ngx';
 
 @Component({
   selector: 'app-aviso-detail',
@@ -26,7 +27,8 @@ export class AvisoDetailPage implements OnInit {
     private toastService: ToastService,
     private auth: UsuariosService,
     private mascotasService: MascotasService,
-    private router: Router
+    private router: Router,
+    private _callNumber: CallNumber
   ) {
     this.auth.userData$.subscribe(async (res: any) => {
       this.authUser = res;
@@ -74,6 +76,12 @@ export class AvisoDetailPage implements OnInit {
   getAvisoImagenPerfil(imagenLink: string){
     console.log(imagenLink);
     return imagenLink != null ? imagenLink : 'https://i.postimg.cc/bJMGBhMg/asd.png'
+  }
+
+  callNumber(){
+    this._callNumber.callNumber(this.aviso?.telefono, true)
+    .then(() => console.log('Llamada exitosa!'))
+    .catch(() => console.log('Error al intentar llamar'));
   }
 
 }
