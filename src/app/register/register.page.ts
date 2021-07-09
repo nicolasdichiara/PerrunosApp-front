@@ -14,6 +14,7 @@ import { PerfilesService } from '../services/perfiles.service';
 })
 export class RegisterPage implements OnInit {
 
+  aceptaTyC: boolean = false
   today: Date;
   postData = {
     nombre: '',
@@ -46,7 +47,7 @@ export class RegisterPage implements OnInit {
     return this.registrationForm.get('tipo');
   }
 
-  get telefono(){
+  get telefono() {
     return this.registrationForm.get('telefono')
   }
 
@@ -146,12 +147,20 @@ export class RegisterPage implements OnInit {
     return ('0' + fecha.getDate()).slice(-2);
   }
 
-  parsearNombre(unNombre: String){
-    if(unNombre == 'Duenio'){
+  parsearNombre(unNombre: String) {
+    if (unNombre == 'Duenio') {
       return 'Dueño'
     } else {
       return unNombre
     }
+  }
+
+  puedoAceptar(){
+    return ((!this.registrationForm.valid) || (!this.aceptaTyC))
+  }
+
+  linkTyC(){
+    window.location.href = "https://drive.google.com/file/d/1S9v1pXf5x6bx33tBMsc6UyKu50Pip9Iv/view?usp=sharing"
   }
 
   async ngOnInit() {
