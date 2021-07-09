@@ -140,7 +140,7 @@
   <ion-grid *ngIf="authUser?.tipoPerfil !== 'Duenio'">
     <ion-row *ngIf="authUser?.tipoPerfil !== 'Especialista'">
       <ion-col>
-        <ion-button color="secondary" expand="block" class="btn-inicio" [routerLink]="'/home/servicios'">
+        <ion-button color="primary" expand="block" class="btn-inicio" [routerLink]="'/home/servicios'">
           <div>
             <ion-icon name="flash" class="icon-menu"></ion-icon><br>
             <label class="ion-text-wrap">Servicios Actuales</label>
@@ -158,7 +158,7 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-button color="secondary" expand="block" class="btn-inicio" [routerLink]="'/home/avisos/avisos-add'">
+        <ion-button color="tertiary" expand="block" class="btn-inicio" [routerLink]="'/home/avisos/avisos-add'">
           <div>
             <ion-icon name="send" class="icon-menu"></ion-icon><br>
             <label class="ion-text-wrap">Publicar Aviso</label>
@@ -166,7 +166,7 @@
         </ion-button>
       </ion-col>
       <ion-col>
-        <ion-button color="secondary" expand="block" class="btn-inicio" [routerLink]="'/home/avisos'">
+        <ion-button color="success" expand="block" class="btn-inicio" [routerLink]="'/home/avisos'">
           <div>
             <ion-icon name="search" class="icon-menu"></ion-icon><br>
             <label>Mis Avisos</label>
@@ -184,7 +184,7 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-button color="secondary" expand="block" class="btn-inicio" [routerLink]="'/home/reportar'">
+        <ion-button color="warning" expand="block" class="btn-inicio" [routerLink]="'/home/reportar'">
           <div>
             <ion-icon name="warning" class="icon-menu"></ion-icon><br>
             <label>Reportar</label>
@@ -192,7 +192,7 @@
         </ion-button>
       </ion-col>
       <ion-col>
-        <ion-button color="secondary" expand="block" class="btn-inicio" [routerLink]="'/home/menuuser/faq'">
+        <ion-button color="danger" expand="block" class="btn-inicio" [routerLink]="'/home/menuuser/faq'">
           <div>
             <img src="../../assets/img/confun.png" /><br>
             <label class="ion-text-wrap">Preguntas</label>
