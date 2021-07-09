@@ -64,6 +64,11 @@
     <ion-text type="text" name="email" required>{{authUser.email}}</ion-text>
   </ion-item>
 
+  <ion-item *ngIf="authUser?.tipoPerfil != 'Duenio'">
+    <ion-label floating>Cbu</ion-label>
+    <ion-text type="text" name="cbu" required>{{authUser.cbu}}</ion-text>
+  </ion-item>
+
   <section>
     <ion-button expand="block" size="medium" [routerLink]="'/home/menuuser/perfil-edit'">Editar Perfil</ion-button>
   </section>
