@@ -35,6 +35,10 @@ export class ServiciosService {
     return this.http.post(environment.apiUrl + 'usuario/servicios/finalizarServicio/' + id, '').toPromise();
   }
 
+  async registrarPagoServicio(postData: any) {
+    return this.http.post(environment.apiUrl + 'servicios/pagarServicio', postData).toPromise();
+  }
+
   async getServicioById(id: number) {
     const servicio = await this.http.get<Servicio>(environment.apiUrl + 'usuario/traerUnServicio/' + id).toPromise();
     return Servicio.fromJson(servicio);

@@ -91,15 +91,31 @@ export class PagarPage implements OnInit {
                 console.log(tok)
                 console.log('Token obtenido')
                 if(tok.token == values.token){
+
+                  const postData = {
+                    idServicio: this.idServicio,
+                    medioPago : 'Efectivo',
+                    linkRecibo: ''
+                  }
+
                   console.log('FINALIZA SERVICIO!')
-                  this.serviciosService.finalizarServicio(this.idServicio).then(() => {
-                    this.toastService.presentToast('Servicio Finalizado');
-                    this.loading.dismiss();
-                    this.router.navigate(['home/servicios/calificar/' + this.idServicio ]);
+                  this.serviciosService.registrarPagoServicio(postData).then(() => {
+                    this.serviciosService.finalizarServicio(this.idServicio).then(() => {
+                      this.toastService.presentToast('Servicio Finalizado');
+                      this.loading.dismiss();
+                      this.router.navigate(['home/servicios/calificar/' + this.idServicio ]);
+                    })
+                    .catch(() => {
+                      this.toastService.presentToast('Ha ocurrido un error, reintente por favor.')
+                      this.loading.dismiss();
+                    });
                   })
-                  .catch(() => { this.toastService.presentToast('Ha ocurrido un error, reintente por favor.') });
+                  .catch(() => {
+                    this.toastService.presentToast('Ha ocurrido un error registrando pago, reintente por favor.')
+                    this.loading.dismiss();
+                  });
                 }else{
-                  this.toastService.presentToast('El token ingresado no es correcto, Solicítelo al paseador para finalizar!');
+                  this.toastService.presentToast('El token ingresado no es correcto, Solicítelo al prestador para finalizar!');
                   this.loading.dismiss();
                   return false;
                 }
@@ -180,15 +196,36 @@ export class PagarPage implements OnInit {
 
     await alert.present();
 
-    await modal.onWillDismiss().then((res) => {
+    await modal.onWillDismiss().then((res: any) => {
       if(res.role != 'cancel'){
-        console.log('Pago efectuado')
+        console.log('Pago se intentará efectuar')
         console.log(res)
-        //this.serviciosService.finalizarServicio(this.idServicio).then(() => {
-        //  this.toastService.presentToast('Servicio Finalizado');
-        //  this.router.navigate(['home/servicios/calificar/' + this.idServicio ]);
-        //})
-        //.catch(() => { this.toastService.presentToast('Ha ocurrido un error, reintente por favor.') });
+        if(res.data.status == 'succeeded'){
+          this.loading.present();
+          const postData = {
+            idServicio: this.idServicio,
+            medioPago : res.data.source.object + '-' + res.data.source.brand + '-' + res.data.source.name,
+            linkRecibo: res.data.receipt_url
+          }
+          this.serviciosService.registrarPagoServicio(postData).then(() => {
+            console.log('pago almacenado en base de datos')
+            this.serviciosService.finalizarServicio(this.idServicio).then(() => {
+              this.toastService.presentToast('Servicio Finalizado');
+              this.loading.dismiss();
+              this.router.navigate(['home/servicios/calificar/' + this.idServicio ]);
+            })
+            .catch(() => { 
+              this.toastService.presentToast('Ha ocurrido un error, reintente por favor.')
+              this.loading.dismiss();
+             });
+          })
+          .catch(() => { 
+            this.toastService.presentToast('Ha ocurrido un error registrando pago, reintente por favor.')
+            this.loading.dismiss();
+          });
+        }else{
+          this.toastService.presentToast('El pago no ha sido aprobado, reintente.');
+        }
       }else{
         console.log('Pago CANCELADO')
       }

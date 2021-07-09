@@ -44,6 +44,14 @@ export class HistorialPage implements OnInit {
     }
   }
 
+  habilitaCalificar(servicio: Servicio){
+    if(this.authUser.id == servicio.idPrestador){
+      return servicio.calificacionDuenio != null
+    }else{
+      return servicio.calificacionPrestador != null
+    }
+  }
+
   calificar(idServ: number) {
     this.router.navigate(['home/servicios/calificar/' + idServ])
   }
