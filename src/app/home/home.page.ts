@@ -62,6 +62,14 @@ export class HomePage implements OnInit {
     }
   }
 
+  parseTipoPerfil(valor:string){
+    if(valor=="Duenio"){
+      return "Dueño De Mascota"
+    } else {
+      return valor
+    }
+  }
+
   ngOnInit() {
 
     // this.auth.getUserData();

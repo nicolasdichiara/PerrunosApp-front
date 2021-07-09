@@ -20,6 +20,7 @@ export class PerfilEditPage implements OnInit {
   dniEdit: string;
   direccionEdit: string;
   telefonoEdit: string;
+  cbuEdit: string
   today: any;
   edad = 0;
 
@@ -30,7 +31,8 @@ export class PerfilEditPage implements OnInit {
     fechaNacimiento: '',
     dni: '',
     telefono: '',
-    direccion: ''
+    direccion: '',
+    cbu: ''
   };
 
   // get nombre() {
@@ -61,6 +63,10 @@ export class PerfilEditPage implements OnInit {
     return this.registrationForm.get('direccion');
   }
 
+  get cbu() {
+    return this.registrationForm.get('cbu');
+  }
+
   public errorMessages = {
     // nombre: [
     //   { type: 'required', message: 'Nombre es requerido' },
@@ -88,6 +94,9 @@ export class PerfilEditPage implements OnInit {
     direccion: [
       { type: 'required', message: 'direccion es requerido' },
       { type: 'maxlength', message: 'direccion no puede ser mayor que 50 caracteres' },
+    ],
+    cbu: [
+      { type: 'maxlength', message: 'cbu no puede ser mayor que 22 caracteres' },
     ]
   };
 
@@ -98,7 +107,8 @@ export class PerfilEditPage implements OnInit {
     fechaNacimiento: ['', [Validators.required]],
     dni: ['', [Validators.required, Validators.maxLength(11)]],
     telefono: ['', [Validators.required, Validators.maxLength(50)]],
-    direccion: ['', [Validators.required, Validators.maxLength(50)]]
+    direccion: ['', [Validators.required, Validators.maxLength(50)]],
+    cbu: ['', [Validators.maxLength(22)]]
   });
 
   constructor(
@@ -116,10 +126,11 @@ export class PerfilEditPage implements OnInit {
         // this.nombreEdit = this.authUser.nombre
         // this.apellidoEdit = this.authUser.apellido
         this.apodoEdit = this.authUser.apodo
-        //this.fechaNacimientoEdit = this.authUser.fechaNacimiento
+        this.fechaNacimientoEdit = this.authUser.fechaNacimiento
         this.dniEdit = this.authUser.dni
         this.telefonoEdit = this.authUser.telefono
         this.direccionEdit = this.authUser.direccion
+        this.cbuEdit = this.authUser.cbu
       }
     });
   }
@@ -142,6 +153,7 @@ export class PerfilEditPage implements OnInit {
     this.postData.dni = this.registrationForm.get('dni').value;
     this.postData.telefono = this.registrationForm.get('telefono').value;
     this.postData.direccion = this.registrationForm.get('direccion').value;
+    this.postData.cbu = this.registrationForm.get('cbu').value;
     try {
       await this.auth.editProfile(this.postData, this.authUser.id);
       this.router.navigate(['/home/menuuser']);
@@ -212,10 +224,11 @@ export class PerfilEditPage implements OnInit {
         // this.nombreEdit = this.authUser.nombre
         // this.apellidoEdit = this.authUser.apellido
         this.apodoEdit = this.authUser.apodo
-        //this.fechaNacimientoEdit = this.authUser.fechaNacimiento
+        this.fechaNacimientoEdit = this.authUser.fechaNacimiento
         this.dniEdit = this.authUser.dni
         this.telefonoEdit = this.authUser.telefono
         this.direccionEdit = this.authUser.direccion
+        this.cbuEdit = this.authUser.cbu
       }
     });
   }
