@@ -37,7 +37,7 @@
   <ion-grid *ngIf="authUser?.tipoPerfil == 'Duenio'">
     <ion-row>
       <ion-col>
-        <ion-button expand="block" class="btn-inicio" [routerLink]="'/home/servicios'">
+        <ion-button color="primary" expand="block" class="btn-inicio" [routerLink]="'/home/servicios'">
           <div>
             <ion-icon name="flash" class="icon-menu"></ion-icon><br>
             <label class="ion-text-wrap">Servicios Actuales</label>
@@ -45,7 +45,7 @@
         </ion-button>
       </ion-col>
       <ion-col>
-        <ion-button expand="block" class="btn-inicio" [routerLink]="'/home/servicios/historial'">
+        <ion-button color="secondary" expand="block" class="btn-inicio" [routerLink]="'/home/servicios/historial'">
           <div>
             <ion-icon name="time" class="icon-menu"></ion-icon><br>
             <label>Historial</label>
@@ -83,7 +83,7 @@
       </ion-item> -->
 
       <ion-col>
-        <ion-button expand="block" class="btn-inicio" [routerLink]="'/home/avisos'">
+        <ion-button color="tertiary" expand="block" class="btn-inicio" [routerLink]="'/home/avisos'">
           <div>
             <img src="../../assets/img/paseos.png" /><br>
             <label>Servicios</label>
@@ -93,7 +93,7 @@
 
 
       <ion-col>
-        <ion-button expand="block" class="btn-inicio" [routerLink]="'/home/avisos-guardados'">
+        <ion-button color="success" expand="block" class="btn-inicio" [routerLink]="'/home/avisos-guardados'">
           <div>
             <ion-icon name="mail" class="icon-menu"></ion-icon><br>
             <label class="ion-text-wrap">Avisos Contactados</label>
@@ -103,7 +103,7 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-button expand="block" class="btn-inicio" [routerLink]="'/home/reportar'">
+        <ion-button color="warning" expand="block" class="btn-inicio" [routerLink]="'/home/reportar'">
           <div>
             <ion-icon name="warning" class="icon-menu"></ion-icon><br>
             <label>Reportar</label>
@@ -111,7 +111,7 @@
         </ion-button>
       </ion-col>
       <ion-col>
-        <ion-button expand="block" class="btn-inicio" [routerLink]="'/home/menuuser/faq'">
+        <ion-button color="danger" expand="block" class="btn-inicio" [routerLink]="'/home/menuuser/faq'">
           <div>
             <img src="../../assets/img/confun.png" /><br>
             <label class="ion-text-wrap">Preguntas</label>
