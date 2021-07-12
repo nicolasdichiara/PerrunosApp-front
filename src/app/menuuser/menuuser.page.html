@@ -129,11 +129,13 @@
         <div>No hay promos disponibles en este momento para tu nivel de usuario! Suma viajes y accedé a las mejores promos!</div>
       </ion-col>
     </ion-row>
-    <ion-row *ngFor="let promo of promocionesActivas">
-      <ion-col>
-        <div><img src="{{ promo.imagenPromo }}" alt=""></div>
-      </ion-col>
-    </ion-row>
+    <div *ngFor="let promo of promocionesActivas">
+      <ion-row  *ngIf="promo.cantidadPaseos < servicios?.length">
+        <ion-col>
+          <div><img src="{{ promo.imagenPromo }}" alt=""></div>
+        </ion-col>
+      </ion-row>
+    </div>
   </ion-grid>
 
 
