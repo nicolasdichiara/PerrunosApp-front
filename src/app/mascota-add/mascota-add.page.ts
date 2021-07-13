@@ -131,7 +131,7 @@ export class MascotaAddPage implements OnInit {
     this.mascota.paseaFrecuente = this.paseaFrecuente;
     this.mascota.paseoConUnPaseador = this.paseoConUnPaseador;
     this.mascota.paseoConOtrosPerros = this.paseoConOtrosPerros;
-    this.mascota.imagen = 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y';
+    this.mascota.imagen = '../../assets/img/mascotaDefault.png';
     this.mascota.imagenLibretaVacunacion = 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y';
     this.mascota.sexo = this.registrationForm.get('sexo').value
     this.mascota.vacunaDeLaRabia = this.vacunaDeLaRabia

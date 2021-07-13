@@ -13,14 +13,22 @@
         <ion-label class="titulo">Mis Mascotas</ion-label>
       </ion-list-header>
     <ion-card *ngFor="let mascota of mascotas; let i = index ">
-      <img style="height:20em ;width: auto;" class="profile-image" src="{{mascota?.muestroImagen()}}" />  
-      <!-- <img style="height:20em ;width: auto;" class="center profile-image" src={{muestraImagen()}} />  -->
+      <ion-item>
+        <ion-avatar style="min-width: 70px;height: 70px;" slot="start">
+          <img src="{{mascota?.muestroImagen()}}">
+        </ion-avatar>
+        <ion-label style="margin-left: 30px;">
+          <h3>{{mascota.nombre}}</h3>
+          <p>{{mascota.raza.nombre}}</p>
+        </ion-label>
+      </ion-item>
+      <!--<img style="height:20em ;width: auto;" class="profile-image" src="{{mascota?.muestroImagen()}}" />  
       <ion-card-header>
         <ion-card-title>
           {{mascota.nombre}}
         </ion-card-title>
         <ion-card-subtitle>{{mascota.raza.nombre}}</ion-card-subtitle>
-      </ion-card-header>
+      </ion-card-header>-->
       <ion-card-content>
         <ion-button size="small" color="danger" fill="outline" slot="end" (click)="eliminar(mascota.idPerro, i)">Eliminar</ion-button>
         <ion-button size="small" color="warning" slot="end" (click)="editar(mascota.idPerro)">Editar</ion-button>

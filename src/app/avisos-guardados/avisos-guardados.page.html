@@ -20,19 +20,24 @@
     <ion-item>
       <ion-button size="small" slot="end" (click)="aplicarFiltros()">Buscar Avisos</ion-button>
     </ion-item>
+    <ion-card *ngIf="avisosFiltrados.length<=0">
+      <ion-card-content>
+        No hay Avisos contactados aún!
+      </ion-card-content>
+    </ion-card>
     <ion-card *ngFor="let aviso of avisosFiltrados; let i = index">
       <!-- <img src="../../assets/img/aviso.png" style="max-width: 40px;" /> -->
       <ion-card-header>
-        <ion-card-title>
+        <ion-card-title style="margin-left: -16px;margin-right: -16px;margin-top: -16px;background: aliceblue;">
           <ion-grid>
             <ion-row>
               <ion-col>
-                <div class="ion-text-start ion-text-nowrap">
+                <div class="ion-text-start ion-text-nowrap" style="margin-left: 10px;margin-top: 6px;margin-bottom: -10px;">
                   <h2>{{aviso?.tipoServicio.nombre}}</h2>
                 </div>
               </ion-col>
               <ion-col>
-                <div class="ion-text-end ion-text-nowrap">
+                <div class="ion-text-end ion-text-nowrap" style="margin-right: 10px;margin-top: 6px;margin-bottom: -10px;">
                   <h2>${{aviso?.precio}}</h2>
                 </div>
               </ion-col>

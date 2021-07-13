@@ -30,6 +30,11 @@ export class HomePage implements OnInit {
       title: 'Agregar Mascota',
       url: '/home/mascota-add',
       icon: 'add-circle'
+    },
+    {
+      title: 'Reportar',
+      url: '/home/reportar',
+      icon: 'warning'
     }
   ];
 
@@ -48,6 +53,11 @@ export class HomePage implements OnInit {
       title: 'Mi Token',
       url: '/home/menuuser/token-gen',
       icon: 'key'
+    },
+    {
+      title: 'Reportar',
+      url: '/home/reportar',
+      icon: 'warning'
     }
   ];
 

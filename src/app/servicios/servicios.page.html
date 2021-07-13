@@ -12,6 +12,12 @@
     <ion-list-header>
       <ion-label class="titulo">Mis Servicios</ion-label>
     </ion-list-header>
+    <ion-card *ngIf="servicios.length<=0">
+      <ion-card-content>
+        No hay servicios en curso!
+      </ion-card-content>
+    </ion-card>
+    <ion-button *ngIf="servicios.length<=0" [routerLink]="'/home/avisos'" expand="block" size="small">Buscar Avisos</ion-button>
     <ion-card *ngFor="let servicio of servicios; let i = index">
       <ion-card-header>
         <img src="../../assets/img/servicio2.png" style="padding:5px;max-width: 50px;" />
