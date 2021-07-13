@@ -133,6 +133,7 @@ export class AvisosGuardadosPage implements OnInit {
                 console.log('ACTIVA SERVICIO!')
                 this.serviciosService.contratarServicio(postData).then(() => {
                   this.loading.dismiss();
+                  this.toastService.presentToast('Su servicio ha comenzado, podrá seguir al prestador desde "Servicios Actuales" !')
                   this.router.navigate(['home']);
                 })
                 .catch(() => { this.toastService.presentToast('Ha ocurrido un error, reintente por favor.') });
