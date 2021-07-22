@@ -194,17 +194,18 @@
 
 <ion-content *ngIf="authUser?.tipoPerfil == 'Administrador'">
   <ion-item>
-
-    <ion-item>
-      <ion-avatar slot="start" style="height:10em ;width: auto;">
-        <img src={{userStats?.imagenPerfil}}>
-      </ion-avatar>
-    </ion-item>
-  </ion-item>
-
-  <ion-item>
+    <ion-avatar slot="start">
+      <img style="margin-top: -30px;min-width: 100px;min-height: 100px;" src={{userStats?.imagenPerfil}}>
+    </ion-avatar>
     <ion-label>
-      <h3>Bienvenido, {{ authUser?.nombre }}</h3>
+      <h3 style="margin-left:70px;">Bienvenido, {{ authUser?.nombre }}</h3>
+      <p style="margin-left:70px;" *ngIf="authUser?.tipoPerfil !== 'Especialista'">
+        <!-- Viajes realizados: {{servicios?.length}} -->
+      </p>
+      <p style="margin-left:70px;">
+        <!-- Calificación: {{ this.userStats?.calificacionFormat }} -->
+        <!-- <ion-icon name="star" item-right></ion-icon> -->
+      </p>
     </ion-label>
   </ion-item>
 
