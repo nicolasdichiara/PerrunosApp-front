@@ -31,7 +31,7 @@
         <ion-card-subtitle *ngIf="authUser?.tipoPerfil != 'Duenio'">Teléfono: {{servicio?.telefonoDuenio}}</ion-card-subtitle>
         <ion-card-subtitle *ngIf="authUser?.tipoPerfil != 'Duenio'">Email: {{servicio?.emailDuenio}}</ion-card-subtitle>
       </ion-card-header>
-      <ion-button [disabled]="!puedoVerMapa()" color="danger" fill="outline" slot="end" (click)="pagarParaFinalizar(servicio.idServicio)">Finalizar
+      <ion-button *ngIf="authUser?.tipoPerfil == 'Duenio'" [disabled]="!puedoVerMapa()" color="danger" fill="outline" slot="end" (click)="pagarParaFinalizar(servicio.idServicio)">Finalizar
       </ion-button>
       <ion-button *ngIf="servicio?.tipoServicio.nombre=='Paseo'" [disabled]="!puedoVerMapa()" slot="end" (click)="verMapa()">Ver Mapa</ion-button>
       <ion-button color="success" slot="end" (click)="contactarContraparte()">
