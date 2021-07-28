@@ -59,6 +59,15 @@ export class MenuuserPage implements OnInit {
 */
   }
 
+  noTienePromosActivasUser() {
+    if(this.promocionesActivas){
+      const promosUser = this.promocionesActivas.filter(promo => {
+        return promo.cantidadPaseos < this.servicios.length
+      });
+      return promosUser.length == 0
+    }
+  }
+
   ionViewWillEnter() {
     console.log('cargando view');
     this.auth.userData$.subscribe(async (res: any) => {

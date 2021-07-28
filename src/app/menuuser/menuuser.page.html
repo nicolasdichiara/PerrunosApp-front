@@ -117,7 +117,7 @@
         <h3>Promociones</h3>
       </ion-col>
     </ion-row>
-    <ion-row *ngIf="!promocionesActivas">
+    <ion-row *ngIf="noTienePromosActivasUser()">
       <ion-col>
         <div>No hay promos disponibles en este momento para tu nivel de usuario! Suma viajes y accedé a las mejores promos!</div>
       </ion-col>
