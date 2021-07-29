@@ -123,7 +123,7 @@
       </ion-col>
     </ion-row>
     <div *ngFor="let promo of promocionesActivas">
-      <ion-row  *ngIf="promo.cantidadPaseos < servicios?.length">
+      <ion-row  *ngIf="promo.cantidadPaseos <= servicios?.length">
         <ion-col>
           <div><img src="{{ promo.imagenPromo }}" alt=""></div>
         </ion-col>
