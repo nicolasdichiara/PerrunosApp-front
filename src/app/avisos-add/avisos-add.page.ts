@@ -129,7 +129,12 @@ export class AvisosAddPage implements OnInit {
     this.today = new Date().toISOString();
     this.auth.userData$.subscribe(async (res: any) => {
       this.authUser = res;
-      // if (this.authUser.id){
+      if (this.authUser.id){
+        try {
+           this.authUser = await this.auth.getUserById(this.authUser.id);
+         } catch (error) {
+           this.toastService.presentToast('No se han podido actualizar prestador, reintente.');
+         }
       //   if (this.authUser.tipoPerfil == 'Paseador') {
       //     this.toastService.presentToast('Momentaneamente los paseadores no pueden generar avisos');
       //     this.router.navigate(['home']);
@@ -139,7 +144,7 @@ export class AvisosAddPage implements OnInit {
       //   } catch (error) {
       //     this.toastService.presentToast('No se han podido cargar sus mascotas, reintente.' + error);
       //   }
-      // }
+      }
 
     });
   }
@@ -151,37 +156,40 @@ export class AvisosAddPage implements OnInit {
   }
 
   public async submit() {
-    this.aviso = new Aviso();
-    this.aviso.tipoServicio = this.avisoForm.get('tipoServicio').value;
-    this.aviso.detalle = this.avisoForm.get('detalle').value;
-    this.aviso.horario = this.avisoForm.get('horario').value;
-    this.aviso.precio = this.avisoForm.get('precio').value;
-    this.aviso.zona = this.avisoForm.get('zona').value;
-    // this.aviso.lunes = !!this.avisoForm.get('lunes').value;
-    // this.aviso.martes = !!this.avisoForm.get('martes').value;
-    // this.aviso.miercoles = !!this.avisoForm.get('miercoles').value;
-    // this.aviso.jueves = !!this.avisoForm.get('jueves').value;
-    // this.aviso.viernes = !!this.avisoForm.get('viernes').value;
-    // this.aviso.sabado = !!this.avisoForm.get('sabado').value;
-    // this.aviso.domingo = !!this.avisoForm.get('domingo').value;
-    this.aviso.lunes = this.lunes
-    this.aviso.martes = this.martes
-    this.aviso.miercoles = this.miercoles
-    this.aviso.jueves = this.jueves
-    this.aviso.viernes = this.viernes
-    this.aviso.sabado = this.sabado
-    this.aviso.domingo = this.domingo
-    this.loading.present()
-    try {
-      await this.avisosService.postAviso(this.aviso, this.authUser.id);
-      this.router.navigate(['home/avisos']);
-      this.loading.dismiss()
-    } catch (error) {
-      this.loading.dismiss()
-      this.toastService.presentToast('Ha ocurrido un error creando el aviso, reintente.');
-      console.log('Ha ocurrido un error creando el aviso, reintente.', error);
+    if(this.authUser.cbu != null){
+      this.aviso = new Aviso();
+      this.aviso.tipoServicio = this.avisoForm.get('tipoServicio').value;
+      this.aviso.detalle = this.avisoForm.get('detalle').value;
+      this.aviso.horario = this.avisoForm.get('horario').value;
+      this.aviso.precio = this.avisoForm.get('precio').value;
+      this.aviso.zona = this.avisoForm.get('zona').value;
+      // this.aviso.lunes = !!this.avisoForm.get('lunes').value;
+      // this.aviso.martes = !!this.avisoForm.get('martes').value;
+      // this.aviso.miercoles = !!this.avisoForm.get('miercoles').value;
+      // this.aviso.jueves = !!this.avisoForm.get('jueves').value;
+      // this.aviso.viernes = !!this.avisoForm.get('viernes').value;
+      // this.aviso.sabado = !!this.avisoForm.get('sabado').value;
+      // this.aviso.domingo = !!this.avisoForm.get('domingo').value;
+      this.aviso.lunes = this.lunes
+      this.aviso.martes = this.martes
+      this.aviso.miercoles = this.miercoles
+      this.aviso.jueves = this.jueves
+      this.aviso.viernes = this.viernes
+      this.aviso.sabado = this.sabado
+      this.aviso.domingo = this.domingo
+      this.loading.present()
+      try {
+        await this.avisosService.postAviso(this.aviso, this.authUser.id);
+        this.router.navigate(['home/avisos']);
+        this.loading.dismiss()
+      } catch (error) {
+        this.loading.dismiss()
+        this.toastService.presentToast('Ha ocurrido un error creando el aviso, reintente.');
+        console.log('Ha ocurrido un error creando el aviso, reintente.', error);
+      }
+    }else{
+      this.toastService.presentToast('Para publicar un paseo debes registrar un CBU en tu perfil, donde depositaremos tus cobros!');
     }
-
   }
 
   async ngOnInit() {
