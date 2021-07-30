@@ -156,7 +156,7 @@ export class AvisosAddPage implements OnInit {
   }
 
   public async submit() {
-    if(this.authUser.cbu != null){
+    if(this.authUser.tipoPerfil == 'Especialista' || this.authUser.cbu != null){
       this.aviso = new Aviso();
       this.aviso.tipoServicio = this.avisoForm.get('tipoServicio').value;
       this.aviso.detalle = this.avisoForm.get('detalle').value;
